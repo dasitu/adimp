@@ -71,10 +71,11 @@ SHOW WARNINGS;
 CREATE  TABLE IF NOT EXISTS `upfiles` (
   `upfile_id` INT NOT NULL AUTO_INCREMENT ,
   `upfile_name` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
-  `upfile_path` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
+  `upfile_sysname` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `upfile_time` INT NOT NULL ,
   `upfile_user_id` INT NOT NULL ,
   `upfile_ip` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
+  `upfile_ext` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   PRIMARY KEY (`upfile_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -113,12 +114,12 @@ CREATE  TABLE IF NOT EXISTS `trip` (
   CONSTRAINT `FK_trip_doc`
     FOREIGN KEY (`trip_report_doc_id` )
     REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_trip_user`
     FOREIGN KEY (`trip_user_id` )
     REFERENCES `ad_imp`.`user` (`user_id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -169,12 +170,12 @@ CREATE  TABLE IF NOT EXISTS `training_plan` (
   CONSTRAINT `FK_tplan_doc`
     FOREIGN KEY (`tplan_doc_id` )
     REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION,
   CONSTRAINT `FK_tplan_user`
     FOREIGN KEY (`tplan_user_id` )
     REFERENCES `ad_imp`.`user` (`user_id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -293,7 +294,7 @@ CREATE  TABLE IF NOT EXISTS `personal_training` (
   CONSTRAINT `FK_o_training_user`
     FOREIGN KEY (`p_training_user_id` )
     REFERENCES `ad_imp`.`user` (`user_id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -373,7 +374,7 @@ CREATE  TABLE IF NOT EXISTS `firewall_rule` (
   CONSTRAINT `FK_firewall_rule_doc`
     FOREIGN KEY (`rule_doc_id` )
     REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -405,7 +406,7 @@ CREATE  TABLE IF NOT EXISTS `standard` (
   CONSTRAINT `FK_std_doc`
     FOREIGN KEY (`standard_id` )
     REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
-    ON DELETE NO ACTION
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -504,41 +505,23 @@ CREATE INDEX `FK_info_doc` ON `infomation` (`info_doc_id` ASC) ;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Data for table `user`
+-- Placeholder table for view `firewall_rule_view`
 -- -----------------------------------------------------
-SET AUTOCOMMIT=0;
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (1, 'tjle', '乐铁军', 'tjle', 1);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (2, 'xdgong', '弓晓东', 'xdgong', 1);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (3, 'lysi', '司凌燕', 'lysi', 1);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (4, 'jcdu', '杜建春', 'jcdu', 2);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (5, 'ymtang', '唐益民', 'ymtang', 2);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (6, 'yychi', '池玉友', 'yychi', 2);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (7, 'sgyang', '杨善国', 'sgyang', 3);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (8, 'yqwang', '王育强', 'yqwang', 3);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (9, 'hbzhu', '朱海冰', 'hbzhu', 3);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (10, 'ywdai', '戴韵汶', 'ywdai', 3);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (11, 'jyye', '叶君永', 'jyye', 3);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (12, 'rqshen', '沈仁强', 'rqshen', 3);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (13, 'xzlong', '龙小专', 'xzlong', 3);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (14, 'llhou', '侯伶俐', 'llhou', 3);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (15, 'xdwang', '王小东', 'xdwang', 3);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (16, 'lmxu', '徐利明', 'lmxu', 4);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (17, 'xyzhang', '张熙瑜', 'xyzhang', 4);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (18, 'qgsun', '孙全国', 'qgsun', 4);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (19, 'hbzhang', '张浩斌', 'hbzhang', 4);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (20, 'zguo', '郭峥', 'zguo', 4);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (21, 'xluo', '罗旭', 'xluo', 4);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (22, 'yliu', '刘颖', 'yliu', 4);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (23, 'zli', '李智', 'zli', 4);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (24, 'ychuang', '黄迎春', 'ychuang', 4);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (25, 'xlshi', '石小林', 'xlshi', 4);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (26, 'zjzhou', '周志杰', 'zjzhou', 4);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (27, 'dqxiong', '熊东琼', 'dqxiong', 5);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (28, 'wrhuang', '黄文锐', 'wrhuang', 5);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (29, 'jxli', '李建星', 'jxli', 5);
-INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`) VALUES (30, 'rltang', '唐荣利', 'rltang', 5);
+CREATE TABLE IF NOT EXISTS `firewall_rule_view` (`id` INT);
+SHOW WARNINGS;
 
-COMMIT;
+-- -----------------------------------------------------
+-- View `firewall_rule_view`
+-- -----------------------------------------------------
+DROP VIEW IF EXISTS `firewall_rule_view` ;
+SHOW WARNINGS;
+DROP TABLE IF EXISTS `firewall_rule_view`;
+SHOW WARNINGS;
+CREATE  OR REPLACE VIEW `ad_imp`.`firewall_rule_view` AS
+select upfiles.upfile_name, upfiles.upfile_sysname,firewall_rule.f_rule_id 
+from firewall_rule, upfiles
+where firewall_rule.rule_doc_id= upfiles.upfile_id;
+SHOW WARNINGS;
 
 -- -----------------------------------------------------
 -- Data for table `department`

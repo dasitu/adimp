@@ -1,0 +1,393 @@
+2010-01-03 09:35:20 query:Set names UTF8
+2010-01-03 09:35:40 query:Set names UTF8
+2010-01-03 09:35:40 query:select * from upfiles where upfile_name='ssss.html'
+2010-01-03 09:35:40 query_first:select * from upfiles where upfile_name='ssss.html'
+2010-01-03 09:36:11 query:Set names UTF8
+2010-01-03 09:36:11 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 09:36:11 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 09:36:11 query:delete from upfiles where upfile_sysname='1262426958.doc'
+2010-01-03 09:36:11 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262511371.doc', '1262511371', '0', '127.0.0.1', 'doc');
+2010-01-03 09:39:48 query:Set names UTF8
+2010-01-03 09:39:52 query:Set names UTF8
+2010-01-03 09:43:45 query:Set names UTF8
+2010-01-03 09:44:46 query:Set names UTF8
+2010-01-03 09:45:13 query:Set names UTF8
+2010-01-03 17:50:28 query:Set names UTF8
+2010-01-03 17:52:11 query:Set names UTF8
+2010-01-03 17:53:42 query:Set names UTF8
+2010-01-03 17:53:46 query:Set names UTF8
+2010-01-03 17:54:18 query:Set names UTF8
+2010-01-03 17:55:24 query:Set names UTF8
+2010-01-03 17:55:31 query:Set names UTF8
+2010-01-03 17:55:46 query:Set names UTF8
+2010-01-03 17:56:42 query:Set names UTF8
+2010-01-03 17:58:47 query:Set names UTF8
+2010-01-03 17:58:47 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 17:58:47 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 17:59:17 query:Set names UTF8
+2010-01-03 17:59:17 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 17:59:17 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 17:59:34 query:Set names UTF8
+2010-01-03 17:59:34 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 17:59:34 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:00:19 query:Set names UTF8
+2010-01-03 18:00:19 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:00:19 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:01:50 query:Set names UTF8
+2010-01-03 18:01:50 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:01:50 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:02:12 query:Set names UTF8
+2010-01-03 18:02:12 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:02:12 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:03:06 query:Set names UTF8
+2010-01-03 18:03:06 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:03:06 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:03:19 query:Set names UTF8
+2010-01-03 18:03:19 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:03:19 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:04:52 query:Set names UTF8
+2010-01-03 18:04:52 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:04:52 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:05:20 query:Set names UTF8
+2010-01-03 18:05:20 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:05:20 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:08:53 query:Set names UTF8
+2010-01-03 18:08:53 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:08:53 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:12:05 query:Set names UTF8
+2010-01-03 18:12:05 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:12:05 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:12:48 query:Set names UTF8
+2010-01-03 18:12:48 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:12:48 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:12:48 query:delete from upfiles where upfile_sysname='1262511371.doc'
+2010-01-03 18:12:48 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试上传文档', '1262513568.doc', '1262513568', '0', '127.0.0.1', 'doc');
+2010-01-03 18:12:48 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('8');
+2010-01-03 18:16:04 query:Set names UTF8
+2010-01-03 18:16:16 query:Set names UTF8
+2010-01-03 18:16:56 query:Set names UTF8
+2010-01-03 18:16:56 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:16:56 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:16:56 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262513816.doc', '1262513816', '0', '127.0.0.1', 'doc');
+2010-01-03 18:16:56 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('9');
+2010-01-03 18:28:08 query:Set names UTF8
+2010-01-03 18:28:10 query:Set names UTF8
+2010-01-03 18:28:10 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:28:10 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:28:10 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262514490.doc', '1262514490', '0', '127.0.0.1', 'doc');
+2010-01-03 18:28:10 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('10');
+2010-01-03 18:28:12 query:Set names UTF8
+2010-01-03 18:28:42 query:Set names UTF8
+2010-01-03 18:28:43 query:Set names UTF8
+2010-01-03 18:28:43 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:28:43 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:28:43 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262514523.doc', '1262514523', '0', '127.0.0.1', 'doc');
+2010-01-03 18:28:43 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('11');
+2010-01-03 18:28:53 query:Set names UTF8
+2010-01-03 18:29:13 query:Set names UTF8
+2010-01-03 18:29:15 query:Set names UTF8
+2010-01-03 18:29:17 query:Set names UTF8
+2010-01-03 18:29:17 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:29:17 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:29:17 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262514557.doc', '1262514557', '0', '127.0.0.1', 'doc');
+2010-01-03 18:29:17 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('12');
+2010-01-03 18:29:27 query:Set names UTF8
+2010-01-03 18:32:21 query:Set names UTF8
+2010-01-03 18:32:22 query:Set names UTF8
+2010-01-03 18:32:22 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:32:22 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:32:22 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262514742.doc', '1262514742', '0', '127.0.0.1', 'doc');
+2010-01-03 18:32:22 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('13');
+2010-01-03 18:36:29 query:Set names UTF8
+2010-01-03 18:36:29 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:36:29 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:36:29 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262514989.doc', '1262514989', '0', '127.0.0.1', 'doc');
+2010-01-03 18:36:29 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('14');
+2010-01-03 18:37:38 query:Set names UTF8
+2010-01-03 18:37:38 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:37:38 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:37:38 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262515058.doc', '1262515058', '0', '127.0.0.1', 'doc');
+2010-01-03 18:37:38 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('15');
+2010-01-03 18:38:33 query:Set names UTF8
+2010-01-03 18:38:33 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:38:33 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:38:33 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262515113.doc', '1262515113', '0', '127.0.0.1', 'doc');
+2010-01-03 18:38:33 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('16');
+2010-01-03 18:39:24 query:Set names UTF8
+2010-01-03 18:39:24 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:39:24 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:39:24 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262515164.doc', '1262515164', '0', '127.0.0.1', 'doc');
+2010-01-03 18:39:24 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('17');
+2010-01-03 18:42:40 query:Set names UTF8
+2010-01-03 18:43:27 query:Set names UTF8
+2010-01-03 18:43:27 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:43:27 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 18:43:27 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '测试文档2.doc', '1262515407', '0', '127.0.0.1', 'doc');
+2010-01-03 18:43:27 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('18');
+2010-01-03 22:01:53 query:Set names UTF8
+2010-01-03 22:01:53 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 22:01:53 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 22:01:53 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262527313.doc', '1262527313', '0', '127.0.0.1', 'doc');
+2010-01-03 22:01:53 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('19');
+2010-01-03 22:02:01 query:Set names UTF8
+2010-01-03 22:02:01 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 22:02:01 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 22:02:01 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262527321.doc', '1262527321', '0', '127.0.0.1', 'doc');
+2010-01-03 22:02:01 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('20');
+2010-01-03 22:32:55 query:Set names UTF8
+2010-01-03 22:32:55 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:32:55 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:33:17 query:Set names UTF8
+2010-01-03 22:33:17 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:33:17 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:33:17 query:delete from upfiles where upfile_sysname='1262513816.doc'
+2010-01-03 22:33:17 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '测试文档2.doc', '1262529197', '0', '127.0.0.1', 'doc');
+2010-01-03 22:33:17 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('21');
+2010-01-03 22:37:55 query:Set names UTF8
+2010-01-03 22:37:55 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:37:55 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:37:55 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '测试文档2.doc', '1262529475', '0', '127.0.0.1', 'doc');
+2010-01-03 22:37:55 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('22');
+2010-01-03 22:38:01 query:Set names UTF8
+2010-01-03 22:38:01 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:38:01 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:38:01 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '测试文档2.doc', '1262529481', '0', '127.0.0.1', 'doc');
+2010-01-03 22:38:01 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('23');
+2010-01-03 22:38:22 query:Set names UTF8
+2010-01-03 22:38:22 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:38:22 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:38:22 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '测试文档2.doc', '1262529502', '0', '127.0.0.1', 'doc');
+2010-01-03 22:38:22 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('24');
+2010-01-03 22:40:45 query:Set names UTF8
+2010-01-03 22:40:45 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:45 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:45 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262529645.doc', '1262529645', '0', '127.0.0.1', 'doc');
+2010-01-03 22:40:45 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('25');
+2010-01-03 22:40:47 query:Set names UTF8
+2010-01-03 22:40:47 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:47 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:47 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262529647.doc', '1262529647', '0', '127.0.0.1', 'doc');
+2010-01-03 22:40:47 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('26');
+2010-01-03 22:40:49 query:Set names UTF8
+2010-01-03 22:40:49 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:49 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:49 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262529649.doc', '1262529649', '0', '127.0.0.1', 'doc');
+2010-01-03 22:40:49 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('27');
+2010-01-03 22:40:52 query:Set names UTF8
+2010-01-03 22:40:52 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:52 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:52 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262529652.doc', '1262529652', '0', '127.0.0.1', 'doc');
+2010-01-03 22:40:52 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('28');
+2010-01-03 22:40:54 query:Set names UTF8
+2010-01-03 22:40:54 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:54 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:54 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262529654.doc', '1262529654', '0', '127.0.0.1', 'doc');
+2010-01-03 22:40:54 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('29');
+2010-01-03 22:40:55 query:Set names UTF8
+2010-01-03 22:40:55 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:55 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:40:55 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262529655.doc', '1262529655', '0', '127.0.0.1', 'doc');
+2010-01-03 22:40:55 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('30');
+2010-01-03 22:41:34 query:Set names UTF8
+2010-01-03 22:41:34 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:41:34 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:41:36 query:Set names UTF8
+2010-01-03 22:41:36 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:41:36 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:41:37 query:Set names UTF8
+2010-01-03 22:41:37 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:41:37 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:41:38 query:Set names UTF8
+2010-01-03 22:41:38 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:41:38 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:41:38 query:Set names UTF8
+2010-01-03 22:41:38 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:41:38 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:42:13 query:Set names UTF8
+2010-01-03 22:42:13 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:42:13 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:54:29 query:Set names UTF8
+2010-01-03 22:54:29 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:54:29 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:58:05 query:Set names UTF8
+2010-01-03 22:58:05 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:58:05 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:59:12 query:Set names UTF8
+2010-01-03 22:59:12 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:59:12 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:59:12 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档2', '1262530752.doc', '1262530752', '0', '127.0.0.1', 'doc');
+2010-01-03 22:59:12 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('1');
+2010-01-03 22:59:19 query:Set names UTF8
+2010-01-03 22:59:19 query:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 22:59:19 query_first:select * from upfiles where upfile_name='测试文档2'
+2010-01-03 23:00:50 query:Set names UTF8
+2010-01-03 23:00:50 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:00:50 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:00:50 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('测试文档', '1262530850.doc', '1262530850', '0', '127.0.0.1', 'doc');
+2010-01-03 23:00:50 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('2');
+2010-01-03 23:01:06 query:Set names UTF8
+2010-01-03 23:01:06 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:01:06 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:03:53 query:Set names UTF8
+2010-01-03 23:03:53 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:03:53 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:04:19 query:Set names UTF8
+2010-01-03 23:04:19 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:04:19 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:04:39 query:Set names UTF8
+2010-01-03 23:04:39 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:04:39 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:05:09 query:Set names UTF8
+2010-01-03 23:05:09 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:05:09 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:05:50 query:Set names UTF8
+2010-01-03 23:05:50 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:05:50 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:09:37 query:Set names UTF8
+2010-01-03 23:09:37 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:09:37 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:10:02 query:Set names UTF8
+2010-01-03 23:10:07 query:Set names UTF8
+2010-01-03 23:10:14 query:Set names UTF8
+2010-01-03 23:10:17 query:Set names UTF8
+2010-01-03 23:10:23 query:Set names UTF8
+2010-01-03 23:10:41 query:Set names UTF8
+2010-01-03 23:11:02 query:Set names UTF8
+2010-01-03 23:11:43 query:Set names UTF8
+2010-01-03 23:12:01 query:Set names UTF8
+2010-01-03 23:12:01 query:select * from upfiles where upfile_name=''
+2010-01-03 23:12:01 query_first:select * from upfiles where upfile_name=''
+2010-01-03 23:12:01 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('', '1262531521.doc', '1262531521', '0', '127.0.0.1', 'doc');
+2010-01-03 23:12:01 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('3');
+2010-01-03 23:12:31 query:Set names UTF8
+2010-01-03 23:12:31 query:select * from upfiles where upfile_name=''
+2010-01-03 23:12:31 query_first:select * from upfiles where upfile_name=''
+2010-01-03 23:13:06 query:Set names UTF8
+2010-01-03 23:13:06 query:select * from upfiles where upfile_name=''
+2010-01-03 23:13:06 query_first:select * from upfiles where upfile_name=''
+2010-01-03 23:13:26 query:Set names UTF8
+2010-01-03 23:13:26 query:select * from upfiles where upfile_name=''
+2010-01-03 23:13:26 query_first:select * from upfiles where upfile_name=''
+2010-01-03 23:14:57 query:Set names UTF8
+2010-01-03 23:14:57 query:select * from upfiles where upfile_name=''
+2010-01-03 23:14:57 query_first:select * from upfiles where upfile_name=''
+2010-01-03 23:15:10 query:Set names UTF8
+2010-01-03 23:15:11 query:Set names UTF8
+2010-01-03 23:15:17 query:Set names UTF8
+2010-01-03 23:15:19 query:Set names UTF8
+2010-01-03 23:15:19 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:15:19 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:17:16 query:Set names UTF8
+2010-01-03 23:17:16 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:17:16 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:18:16 query:Set names UTF8
+2010-01-03 23:18:16 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:18:16 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:18:33 query:Set names UTF8
+2010-01-03 23:18:33 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:18:33 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:18:52 query:Set names UTF8
+2010-01-03 23:18:52 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:18:52 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:19:22 query:Set names UTF8
+2010-01-03 23:19:22 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:19:22 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:19:26 query:Set names UTF8
+2010-01-03 23:19:26 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:19:26 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:19:34 query:Set names UTF8
+2010-01-03 23:21:36 query:Set names UTF8
+2010-01-03 23:21:36 query:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:21:36 query_first:select * from upfiles where upfile_name='测试文档'
+2010-01-03 23:21:44 query:Set names UTF8
+2010-01-03 23:23:07 query:Set names UTF8
+2010-01-03 23:23:15 query:Set names UTF8
+2010-01-03 23:23:51 query:Set names UTF8
+2010-01-03 23:23:59 query:Set names UTF8
+2010-01-03 23:24:21 query:Set names UTF8
+2010-01-03 23:24:23 query:Set names UTF8
+2010-01-03 23:24:30 query:Set names UTF8
+2010-01-03 23:24:36 query:Set names UTF8
+2010-01-03 23:24:43 query:Set names UTF8
+2010-01-03 23:24:56 query:Set names UTF8
+2010-01-03 23:24:56 query:select * from upfiles where upfile_name=''
+2010-01-03 23:24:56 query_first:select * from upfiles where upfile_name=''
+2010-01-03 23:25:02 query:Set names UTF8
+2010-01-03 23:26:54 query:Set names UTF8
+2010-01-03 23:26:54 query:select * from upfiles where upfile_name=''
+2010-01-03 23:26:54 query_first:select * from upfiles where upfile_name=''
+2010-01-03 23:27:01 query:Set names UTF8
+2010-01-03 23:27:40 query:Set names UTF8
+2010-01-03 23:27:40 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 23:27:40 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 23:27:40 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262532460.doc', '1262532460', '0', '127.0.0.1', 'doc');
+2010-01-03 23:27:40 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('4');
+2010-01-03 23:27:47 query:Set names UTF8
+2010-01-03 23:34:09 query:Set names UTF8
+2010-01-03 23:34:09 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 23:34:09 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 23:34:09 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262532849.doc', '1262532849', '0', '127.0.0.1', 'doc');
+2010-01-03 23:34:09 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('5');
+2010-01-03 23:34:13 query:Set names UTF8
+2010-01-03 23:34:20 query:Set names UTF8
+2010-01-03 23:34:20 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 23:34:20 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 23:34:26 query:Set names UTF8
+2010-01-03 23:34:39 query:Set names UTF8
+2010-01-03 23:34:39 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 23:34:39 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 23:34:39 query:delete from upfiles where upfile_sysname = '1262532849.doc'
+2010-01-03 23:34:39 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262532879.doc', '1262532879', '0', '127.0.0.1', 'doc');
+2010-01-03 23:34:39 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('6');
+2010-01-03 23:34:45 query:Set names UTF8
+2010-01-03 23:35:15 query:Set names UTF8
+2010-01-03 23:35:15 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 23:35:15 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-03 23:35:15 query:delete from upfiles where upfile_sysname = '1262532879.doc'
+2010-01-03 23:35:15 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262532915.doc', '1262532915', '0', '127.0.0.1', 'doc');
+2010-01-03 23:35:15 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('7');
+2010-01-03 23:35:21 query:Set names UTF8
+2010-01-04 00:02:33 query:Set names UTF8
+2010-01-04 00:02:33 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:02:33 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:02:33 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262534553.doc', '1262534553', '0', '127.0.0.1', 'doc');
+2010-01-04 00:02:33 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('1');
+2010-01-04 00:02:35 query:Set names UTF8
+2010-01-04 00:02:42 query:Set names UTF8
+2010-01-04 00:02:42 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:02:42 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:02:48 query:Set names UTF8
+2010-01-04 00:03:16 query:Set names UTF8
+2010-01-04 00:03:16 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:03:16 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:03:16 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262534596.doc', '1262534596', '0', '127.0.0.1', 'doc');
+2010-01-04 00:03:16 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('2');
+2010-01-04 00:03:18 query:Set names UTF8
+2010-01-04 00:06:54 query:Set names UTF8
+2010-01-04 00:06:54 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:06:54 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:06:54 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262534814.doc', '1262534814', '0', '127.0.0.1', 'doc');
+2010-01-04 00:06:54 query_insert:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262534814.doc', '1262534814', '0', '127.0.0.1', 'doc');
+2010-01-04 00:07:01 query:Set names UTF8
+2010-01-04 00:07:02 query:Set names UTF8
+2010-01-04 00:07:05 query:Set names UTF8
+2010-01-04 00:07:07 query:Set names UTF8
+2010-01-04 00:07:36 query:Set names UTF8
+2010-01-04 00:29:39 query:Set names UTF8
+2010-01-04 00:29:39 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:29:39 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:29:39 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262536179.doc', '1262536179', '0', '127.0.0.1', 'doc');
+2010-01-04 00:29:39 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('1');
+2010-01-04 00:29:45 query:Set names UTF8
+2010-01-04 00:30:42 query:Set names UTF8
+2010-01-04 00:30:42 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:30:42 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:30:42 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262536242.doc', '1262536242', '0', '127.0.0.1', 'doc');
+2010-01-04 00:30:42 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('2');
+2010-01-04 00:30:48 query:Set names UTF8
+2010-01-04 00:32:39 query:Set names UTF8
+2010-01-04 00:32:39 query:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:32:39 query_first:select * from upfiles where upfile_name='self-leadership.doc'
+2010-01-04 00:32:39 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('self-leadership.doc', '1262536359.doc', '1262536359', '0', '127.0.0.1', 'doc');
+2010-01-04 00:32:39 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('1');
+2010-01-04 00:32:45 query:Set names UTF8

@@ -1,45 +1,29 @@
-<?php 
-/*
-Easy PHP Upload - version 2.29
-A easy to use class for your (multiple) file uploads
-
-Copyright (c) 2004 - 2006, Olaf Lederer
-All rights reserved.
-
-Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:
-
-    * Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.
-    * Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.
-    * Neither the name of the finalwebsites.com nor the names of its contributors may be used to endorse or promote products derived from this software without specific prior written permission.
-
-THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
-
-______________________________________________________________________
-available at http://www.finalwebsites.com 
-Comments & suggestions: http://www.finalwebsites.com/contact.php
-*/
- 
+﻿<?php
 class file_upload {
 
-    var $the_file;
+    var $db;
+	var $the_file;
 	var $the_temp_file;
     var $upload_dir;
 	var $replace;
 	var $do_filename_check;
 	var $max_length_filename = 100;
+	var $file_ext;
     var $extensions;
 	var $ext_string;
 	var $language;
 	var $http_error;
-	var $rename_file; // if this var is true the file copy get a new name
-	var $file_copy; // the new name
+	var $rename_file = "true"; // if this var is true the file copy get a new name
+	var $file_sys_name; // the new name
+	var $new_name;
 	var $message = array();
 	var $create_directory = true;
 	
-	function file_upload($language="en") {
+	function file_upload($language="en",$db) {
 		$this->language = $language; // choice of en, nl, es, ch.
 		$this->rename_file = false;
 		$this->ext_string = "";
+		$this->db = $db;
 	}
 	function show_error_string() {
 		$msg_string = "";
@@ -48,26 +32,32 @@ class file_upload {
 		}
 		return $msg_string;
 	}
-	function set_file_name($new_name = "") { // this "conversion" is used for unique/new filenames 
+	function set_file_name() { // this "conversion" is used for unique/new filenames 
 		if ($this->rename_file) {
 			if ($this->the_file == "") return;
-			$name = ($new_name == "") ? strtotime("now") : $new_name;
+			$name = strtotime("now");
 			$name = $name.$this->get_extension($this->the_file);
 		} else {
 			$name = $this->the_file;
 		}
 		return $name;
 	}
-	function upload($to_name = "") {
-		$new_name = $this->set_file_name($to_name);
-		if ($this->check_file_name($new_name)) {
+	function upload($file_name = "") {
+		$sys_name = $this->set_file_name();
+		$this->new_name = $file_name;
+		if ($this->check_file_name($sys_name)) {
 			if ($this->validateExtension()) {
 				if (is_uploaded_file($this->the_temp_file)) {
-					$this->file_copy = $new_name;
-					if ($this->move_upload($this->the_temp_file, $this->file_copy)) {
-						$this->message[] = $this->error_text($this->http_error);
-						if ($this->rename_file) $this->message[] = $this->error_text(16);
-						return true;
+					if ($this->existing_file($this->new_name)) {
+						$this->file_sys_name = $sys_name;
+						if ($this->move_upload($this->the_temp_file, $this->file_sys_name)) {
+							$this->message[] = $this->error_text($this->http_error);
+							if ($this->rename_file) $this->message[] = $this->error_text(16);
+							return true;
+						}
+					} else {
+						$this->message[] = $this->error_text(15);
+						return false;
 					}
 				} else {
 					$this->message[] = $this->error_text($this->http_error);
@@ -106,6 +96,7 @@ class file_upload {
 	}
 	function get_extension($from_file) {
 		$ext = strtolower(strrchr($from_file,"."));
+		$this->file_ext = str_replace('.','',$ext);
 		return $ext;
 	}
 	function validateExtension() {
@@ -124,27 +115,22 @@ class file_upload {
 	}
 	function move_upload($tmp_file, $new_file) {
 		umask(0);
-		if ($this->existing_file($new_file)) {
-			$newfile = $this->upload_dir.$new_file;
-			if ($this->check_dir($this->upload_dir)) {
-				if (move_uploaded_file($tmp_file, $newfile)) {
-					if ($this->replace == "y") {
-						//system("chmod 0777 $newfile"); // maybe you need to use the system command in some cases...
-						chmod($newfile , 0777);
-					} else {
-						// system("chmod 0755 $newfile");
-						chmod($newfile , 0755);
-					}
-					return true;
+		$newfile = $this->upload_dir.$new_file;
+		if ($this->check_dir($this->upload_dir)) {
+			if (move_uploaded_file($tmp_file, $newfile)) {
+				if ($this->replace == "y") {
+					//system("chmod 0777 $newfile"); // maybe you need to use the system command in some cases...
+					chmod($newfile , 0777);
 				} else {
-					return false;
+					// system("chmod 0755 $newfile");
+					chmod($newfile , 0755);
 				}
+				return true;
 			} else {
-				$this->message[] = $this->error_text(14);
 				return false;
 			}
 		} else {
-			$this->message[] = $this->error_text(15);
+			$this->message[] = $this->error_text(14);
 			return false;
 		}
 	}
@@ -165,7 +151,7 @@ class file_upload {
 		if ($this->replace == "y") {
 			return true;
 		} else {
-			if (file_exists($this->upload_dir.$file_name)) {
+			if (checkFileExsit($this->db,$file_name,$this->upload_dir)) {
 				return false;
 			} else {
 				return true;
@@ -213,7 +199,7 @@ class file_upload {
 			$error[13] = "De bestandsnaam is te lang, het maximum is: ".$this->max_length_filename." teken.";
 			$error[14] = "Sorry, het opgegeven directory bestaat niet!";
 			$error[15] = "Uploading <b>".$this->the_file."...Fout!</b> Sorry, er is al een bestand met deze naam aanwezig.";
-			$error[16] = "Het gekopieerde bestand is hernoemd naar <b>".$this->file_copy."</b>.";
+			$error[16] = "Het gekopieerde bestand is hernoemd naar <b>".$this->file_sys_name."</b>.";
 			break;
 			case "de":
 			$error[0] = "Die Datei: <b>".$this->the_file."</b> wurde hochgeladen!"; 
@@ -227,7 +213,7 @@ class file_upload {
 			$error[13] = "Der Dateiname &uuml;berschreitet die maximale Anzahl von ".$this->max_length_filename." Zeichen."; 
 			$error[14] = "Das Upload-Verzeichnis existiert nicht!"; 
 			$error[15] = "Upload <b>".$this->the_file."...Fehler!</b> Eine Datei mit gleichem Dateinamen existiert bereits.";
-			$error[16] = "Die hochgeladene Datei ist umbenannt in <b>".$this->file_copy."</b>.";
+			$error[16] = "Die hochgeladene Datei ist umbenannt in <b>".$this->file_sys_name."</b>.";
 			break;
 			case "ch":
 			// start http errors
@@ -242,8 +228,8 @@ class file_upload {
 			$error[12] = "您的文件名包含有非法字符，请检查后重新上传";
 			$error[13] = "文件名长度超过最大限制 ".$this->max_length_filename." 字符.";
 			$error[14] = "上传文件目录不存在";
-			$error[15] = "上传文件 <b>".$this->the_file." 时出错，</b> 此文件名的文件已经存在";
-			$error[16] = "上传的文件已经被重命名为 <b>".$this->file_copy."</b>.";
+			$error[15] = "上传文件 <b>".$this->the_file."</b> 时出错， 文档名为 <b>".$this->new_name." </b>的文件已经存在";
+			$error[16] = "上传的文件已经被重命名为 <b>".$this->file_sys_name."</b>.";
 			break;
 			//
 			// place here the translations (if you need) from the directory "add_translations"
@@ -262,7 +248,7 @@ class file_upload {
 			$error[13] = "The filename exceeds the maximum length of ".$this->max_length_filename." characters.";
 			$error[14] = "Sorry, the upload directory doesn't exist!";
 			$error[15] = "Uploading <b>".$this->the_file."...Error!</b> Sorry, a file with this name already exitst.";
-			$error[16] = "The uploaded file is renamed to <b>".$this->file_copy."</b>.";		
+			$error[16] = "The uploaded file is renamed to <b>".$this->file_sys_name."</b>.";		
 		}
 		return $error[$err_num];
 	}

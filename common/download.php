@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 require "../common/queries.php";
 $file_id = $_GET['id'];
 

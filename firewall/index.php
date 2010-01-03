@@ -1,8 +1,9 @@
-<?php
+﻿<?php
 require "../common/queries.php";
 ?>
+
 <!-- upload section -->
-<form name="uploadForm" action="" method="post">
+<form name="uploadForm" enctype="multipart/form-data" action="../firewall/actions.php" method="post">
 <table border=1>
 <tr>
 	<td>名称</td>
@@ -14,6 +15,7 @@ require "../common/queries.php";
 </tr>
 </table>
 </form>
+
 
 <!-- show section -->
 <table border=1>

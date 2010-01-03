@@ -1,11 +1,12 @@
-<?php
-include "../../lib/upload/upload.class.php"; //classes is the map where the class file is stored (one above the root)
+﻿<?php
+require_once "../common/queries.php";
+require "../lib/upload.class.php"; //classes is the map where the class file is stored (one above the root)
 
 $max_size = 1024*250; // the max. size for uploading
 
-$my_upload = new file_upload('ch');
+$my_upload = new file_upload('ch',$db);
 
-$my_upload->upload_dir = "../../upload/"; 
+$my_upload->upload_dir = $config['upload_dir']; 
 // "files" is the folder for the uploaded files (you have to create this folder)
 
 $my_upload->extensions = array(".png", ".zip", ".pdf", ".doc", ".txt", ".html"); 
@@ -18,7 +19,7 @@ $my_upload->max_length_filename = 50;
 // change this value to fit your field length in your database (standard 100)
 
 $my_upload->rename_file = true;
-		
+
 if(isset($_POST['Submit'])) {
 	$my_upload->the_temp_file = $_FILES['upload']['tmp_name'];
 	$my_upload->the_file = $_FILES['upload']['name'];
@@ -36,7 +37,14 @@ if(isset($_POST['Submit'])) {
 		$full_path = $my_upload->upload_dir.$my_upload->file_copy;
 		$info = $my_upload->get_uploaded_file_info($full_path);
 		
-		insertFileInfo();
+		//insert into database
+		$file['upfile_name'] = $my_upload->the_file;
+		$file['upfile_sysname'] = $my_upload->file_copy;
+		$file['upfile_time'] = time();
+		$file['upfile_user_id'] = "0";
+		$file['upfile_ip'] = $_SERVER['REMOTE_ADDR'];
+		$file['upfile_ext'] = $my_upload->file_ext;
+		insertFileInfo($db,$file);
 	}
 }
 ?> 
