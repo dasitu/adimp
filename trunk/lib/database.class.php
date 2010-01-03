@@ -25,9 +25,10 @@
 
 
 
-//require("config.php");
+//require "../common/config.inc.php";
 //$db = new Database($config['server'],$config['user'],$config['pass'],$config['database'],$config['tablePrefix']);
-
+//$db->connect();
+//$db->query('Set names UTF8');
 
 ###################################################################################################
 ###################################################################################################
@@ -40,6 +41,8 @@ var $user     = ""; //database login name
 var $pass     = ""; //database login password
 var $database = ""; //database name
 var $pre      = ""; //table prefix
+var $debug	  = "1"; //1 if you would like to see the sql
+var $logfile  = "../log/dblog.log";
 
 
 #######################
@@ -89,6 +92,7 @@ function connect($new_link=false) {
 	$this->user='';
 	$this->pass='';
 	$this->database='';
+	$this->query('Set names UTF8');
 }#-#connect()
 
 
@@ -124,7 +128,10 @@ function query($sql) {
 	}
 	
 	$this->affected_rows = @mysql_affected_rows();
-
+	
+	if($this->debug){
+		$this->write_log("query:".$sql);
+	}
 	return $this->query_id;
 }#-#query()
 
@@ -152,6 +159,7 @@ function fetch_array($query_id=-1) {
 		//	$this->record[$key]=stripslashes($val);
 		//}
 	}
+
 	return $this->record;
 }#-#fetch_array()
 
@@ -169,6 +177,10 @@ function fetch_all_array($sql) {
 	}
 
 	$this->free_result($query_id);
+
+	if($this->debug){
+		$this->write_log("fetch_all_array:".$sql);
+	}
 	return $out;
 }#-#fetch_all_array()
 
@@ -194,6 +206,9 @@ function query_first($query_string) {
 	$query_id = $this->query($query_string);
 	$out = $this->fetch_array($query_id);
 	$this->free_result($query_id);
+	if($this->debug){
+		$this->write_log("query_first:".$query_string);
+	}
 	return $out;
 }#-#query_first()
 
@@ -213,6 +228,9 @@ function query_update($table, $data, $where='1') {
 
 	$q = rtrim($q, ', ') . ' WHERE '.$where.';';
 
+	if($this->debug){
+		$this->write_log("query_update:".$q);
+	}
 	return $this->query($q);
 }#-#query_update()
 
@@ -238,10 +256,21 @@ function query_insert($table, $data) {
 		//$this->free_result();
 		return mysql_insert_id();
 	}
+
+	if($this->debug){
+		$this->write_log("query_insert:".$q);
+	}
 	else return false;
 
 }#-#query_insert()
 
+function write_log($msg) {
+	$fp=fopen($this->logfile,'a');
+	date_default_timezone_set("Asia/Chongqing");
+	$msg = date("Y-m-d H:i:s")." ".$msg."\r\n";
+	fwrite($fp,$msg);
+    fclose($fp);
+}
 
 #-#############################################
 # desc: throw an error message
