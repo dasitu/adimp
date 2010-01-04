@@ -1,6 +1,7 @@
 ﻿<?php
 require_once "../lib/database.class.php";
 require_once "../common/config.inc.php";
+require_once "../common/functions.php";
 
 $db = new Database($config['server'],$config['user'],$config['pass'],$config['database'],$config['tablePrefix']);
 $db->connect();
@@ -15,17 +16,6 @@ function insertUser($db,$user)
 {
 	print $db->query_insert("user",$user);
 	print "<BR>";
-}
-
-//list all the users from table user
-function getAllUser($db)
-{
-	$sql = "select * from user";
-	$rs = $db->fetch_all_array($sql);
-	foreach ($rs as $record){
-		print_r($record);
-		print "<BR>";
-	}
 }
 
 //give the options for selectbox according to the parameters, return html code
@@ -82,5 +72,20 @@ function checkFileExsit($db,$file_name,$path)
 		}
 	}
 	return false;
+}
+
+function listUser($db){
+	$sql = "select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id";
+	$head = array("ID","登录名","用户名","部门");
+	$body = $db->fetch_all_array($sql);
+	return listInTable($head,$body);
+}
+
+function listFirewallRule($db){
+	$sql = "select b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id";
+	$head = array("文件名","上传时间","上传人");
+	$body = $db->fetch_all_array($sql);
+	$body = time2str($body,true,"upfile_time"); //convert the datetime to string
+	return listInTable($head,$body);
 }
 ?>
