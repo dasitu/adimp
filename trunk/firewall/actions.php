@@ -26,7 +26,7 @@ if(isset($_FILES['upfile'])) {
 		$file['upfile_name'] = $new_file_name;
 		$file['upfile_sysname'] = $my_upload->file_sys_name;
 		$file['upfile_time'] = time();
-		$file['upfile_user_id'] = "0";
+		$file['upfile_user_id'] = "2";
 		$file['upfile_ip'] = $_SERVER['REMOTE_ADDR'];
 		$file['upfile_ext'] = $my_upload->file_ext;
 		$doc_id = insertFileInfo($db,$file);
