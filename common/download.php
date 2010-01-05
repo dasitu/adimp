@@ -2,12 +2,11 @@
 require "../common/queries.php";
 $file_id = $_GET['id'];
 
-//Avoid to access directly
-if($_SERVER["REQUEST_URI"])
+if(@$_SERVER["HTTP_REFERER"]) //Avoid to access directly
 {
-	$file = getFilePath($db,$file_id);
+	$file = getFileInfo($db,$file_id);
 	$file_extension = strtolower($file['upfile_ext']);
-	$file_name = $config['upload_dir'].$file['upfile_path'];
+	$file_name = $config['upload_dir'].$file['upfile_sysname'];
 
 	// required for IE, otherwise Content-disposition is ignored
 	if(ini_get('zlib.output_compression'))
@@ -17,7 +16,7 @@ if($_SERVER["REQUEST_URI"])
 	{
 	  echo "<html><title>Download Script</title><body>ERROR: download file NOT SPECIFIED. USE download.php?id=$file_id</body></html>";
 	  exit;
-	} elseif ( ! file_exists( $filename ) ) 
+	} elseif ( !file_exists($file_name) ) 
 	{
 	  echo "<html><title>Download Script</title><body>ERROR: File not found. USE download.php?id=$file_id</body></html>";
 	  exit;
@@ -45,13 +44,11 @@ if($_SERVER["REQUEST_URI"])
 	header("Content-Disposition: attachment; filename=\"".basename($file_name)."\";" );
 	header("Content-Transfer-Encoding: binary");
 	header("Content-Length: ".filesize($file_name));
-	readfile("$file_name");
+	//readfile("$file_name");
 	exit;
 }
 else
 {
-	print "禁止盗链";
+	echo "请通过正常途径下载文件!";
 }
-
-
-<?
+?>

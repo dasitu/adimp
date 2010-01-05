@@ -1,9 +1,6 @@
 ﻿<?php
-function showFileLink()
-{
-	
-}
-
+//return an auto redirect link HTML,$link should be the full address with protocol and $msg the what you want to show in the page.
+//it can be used in both FF and IE
 function goLink($link,$msg)
 {
 echo "
@@ -21,8 +18,6 @@ echo "
 		{
 			second = document.getElementById('totalSecond').textContent;
 		}
-
-
 		setInterval(\"redirect()\", 1000);
 		function redirect()
 		{
@@ -44,7 +39,9 @@ echo "
 	";
 }
 
-function listInTable($head,$body)
+//used to show the dataset in table. $head and $show_col are array. $body is the dataset generate by "$db->fetch_all_array"
+//$show_col means what column will be shown in table, $head and $show_col should have the same size
+function listInTable($head,$body,$show_col)
 {
 	//create the header
 	for($header = "<tr>",$i=0;$i<count($head);$i++)
@@ -58,9 +55,9 @@ function listInTable($head,$body)
 	foreach ($body as $record)
 	{
 		$tr .= "<tr>";
-		for($i=0;$i<count($head);$i++)
+		for($i=0;$i<count($show_col);$i++)
 		{
-			$tr .= "<td>".$record[$i]."</td>";
+			$tr .= "<td>".$record["$show_col[$i]"]."</td>";
 		}
 		$tr .= "</tr>";
 	}
@@ -76,15 +73,8 @@ function time2str($epoch,$db_array=false,$col_name="")
 		if($db_array){
 			for($i=0;$i<count($epoch);$i++)
 			{
-				$epoch_value = $epoch["$i"]["$col_name"];	//unix time stamp(int)
-				$str_value = date('Y-m-d H:i:s', $epoch_value); //string datetime(string)
-
 				//change the value of the text index
-				$epoch["$i"]["$col_name"] = $str_value;
-
-				//change the value of the num index
-				$num_key = array_search($epoch_value, $epoch["$i"],true);
-				$epoch["$i"]["$num_key"] = $str_value;
+				$epoch["$i"]["$col_name"] = date('Y-m-d H:i:s', $epoch["$i"]["$col_name"]);
 			}
 		}
 		//convert the array directly
@@ -100,8 +90,20 @@ function time2str($epoch,$db_array=false,$col_name="")
 	return date('Y-m-d H:i:s', $epoch);	
 }
 
-function addDownloadLink()
+//add the download file link into the dataset, then it can be listed in the table by listInTable function
+function addDownloadLink($upfiles)
+{	
+	for($i=0;$i<count($upfiles);$i++)
+	{
+		//change the value of the text index
+		$upfiles[$i]['doc_link'] = "<a href='../common/download.php?id=".$upfiles[$i]['upfile_id']."'>".ext2img($upfiles[$i]['upfile_ext'])."</a>";
+	}
+	return $upfiles;
+}
+
+//convert the extension string to images
+function ext2img($string_ext)
 {
-	
+	return "<img width=20 height=20 border=0 src='../images/filetype/".$string_ext.".gif'></img>";
 }
 ?>

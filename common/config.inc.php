@@ -10,7 +10,7 @@ $config['max_size'] = 1024*250; // the max. size for uploading
 //database server
 $config['server'] = "localhost";
 $config['user'] = "root";
-$config['pass'] = "test";
+$config['pass'] = "test123";
 $config['database'] = "ad_imp";
 $config['tablePrefix'] = "";
 
