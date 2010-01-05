@@ -147,7 +147,7 @@ function fetch_array($query_id=-1) {
 	}
 
 	if (isset($this->query_id)) {
-		$this->record = @mysql_fetch_array($this->query_id,MYSQL_BOTH);
+		$this->record = @mysql_fetch_array($this->query_id,MYSQL_ASSOC);
 	}else{
 		$this->oops("Invalid query_id: <b>$this->query_id</b>. Records could not be fetched.");
 	}

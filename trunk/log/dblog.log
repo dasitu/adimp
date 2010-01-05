@@ -611,3 +611,327 @@
 2010-01-04 23:40:56 query:Set names UTF8
 2010-01-04 23:40:56 query:select b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
 2010-01-04 23:40:56 fetch_all_array:select b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:09:16 query:Set names UTF8
+2010-01-05 10:09:16 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:09:16 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:10:18 query:Set names UTF8
+2010-01-05 10:10:18 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:10:18 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:11:29 query:Set names UTF8
+2010-01-05 10:11:29 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:11:29 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:11:29 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:11:29 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:11:41 query:Set names UTF8
+2010-01-05 10:11:41 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:11:41 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:11:48 query:Set names UTF8
+2010-01-05 10:11:48 query:select * from upfiles where upfile_name='lost.txt'
+2010-01-05 10:11:48 query_first:select * from upfiles where upfile_name='lost.txt'
+2010-01-05 10:11:48 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('lost.txt', '1262657508.txt', '1262657508', '2', '127.0.0.1', 'txt');
+2010-01-05 10:11:48 query_insert:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('lost.txt', '1262657508.txt', '1262657508', '2', '127.0.0.1', 'txt');
+2010-01-05 10:11:54 query:Set names UTF8
+2010-01-05 10:11:54 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:11:54 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:12:45 query:Set names UTF8
+2010-01-05 10:12:45 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:12:45 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:12:50 query:Set names UTF8
+2010-01-05 10:12:50 query:select * from upfiles where upfile_name='lost.txt'
+2010-01-05 10:12:50 query_first:select * from upfiles where upfile_name='lost.txt'
+2010-01-05 10:12:50 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('lost.txt', '1262657570.txt', '1262657570', '2', '127.0.0.1', 'txt');
+2010-01-05 10:12:51 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('1');
+2010-01-05 10:12:57 query:Set names UTF8
+2010-01-05 10:12:57 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:12:57 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:12:58 query:Set names UTF8
+2010-01-05 10:12:58 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:12:58 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:16:09 query:Set names UTF8
+2010-01-05 10:16:09 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:16:09 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:16:34 query:Set names UTF8
+2010-01-05 10:16:34 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:16:34 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:16:34 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:16:34 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:17:13 query:Set names UTF8
+2010-01-05 10:17:13 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:17:13 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:18:11 query:Set names UTF8
+2010-01-05 10:18:11 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:18:11 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:18:23 query:Set names UTF8
+2010-01-05 10:18:23 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:18:23 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:18:23 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:18:23 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:19:03 query:Set names UTF8
+2010-01-05 10:19:03 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:19:03 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:19:03 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:19:03 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:19:48 query:Set names UTF8
+2010-01-05 10:19:48 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:19:48 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:19:48 query:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:19:48 fetch_all_array:select a.rule_doc_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:24:20 query:Set names UTF8
+2010-01-05 10:24:20 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:24:20 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:24:20 query:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:24:20 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:24:57 query:Set names UTF8
+2010-01-05 10:24:57 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:24:57 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:24:57 query:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:24:57 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:25:22 query:Set names UTF8
+2010-01-05 10:25:22 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:25:22 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:25:22 query:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:25:22 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:25:43 query:Set names UTF8
+2010-01-05 10:25:43 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:25:43 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:25:43 query:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:25:43 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:26:17 query:Set names UTF8
+2010-01-05 10:26:17 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:26:17 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:26:17 query:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:26:17 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:27:21 query:Set names UTF8
+2010-01-05 10:27:21 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:27:21 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:28:56 query:Set names UTF8
+2010-01-05 10:28:56 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:28:56 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:28:56 query:select * from upfiles where upfile_id = 1
+2010-01-05 10:28:56 query_first:select * from upfiles where upfile_id = 1
+2010-01-05 10:29:27 query:Set names UTF8
+2010-01-05 10:29:27 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:29:28 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:29:28 query:select * from upfiles where upfile_id = 1
+2010-01-05 10:29:28 query_first:select * from upfiles where upfile_id = 1
+2010-01-05 10:29:53 query:Set names UTF8
+2010-01-05 10:29:53 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:29:53 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:29:53 query:select * from upfiles where upfile_id = 1
+2010-01-05 10:29:53 query_first:select * from upfiles where upfile_id = 1
+2010-01-05 10:30:22 query:Set names UTF8
+2010-01-05 10:30:22 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:30:22 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:30:22 query:select * from upfiles where upfile_id = 1
+2010-01-05 10:30:22 query_first:select * from upfiles where upfile_id = 1
+2010-01-05 10:30:41 query:Set names UTF8
+2010-01-05 10:30:41 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:30:41 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:31:00 query:Set names UTF8
+2010-01-05 10:31:00 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:31:00 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:31:25 query:Set names UTF8
+2010-01-05 10:31:25 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:31:25 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:31:25 query:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:31:25 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:31:28 query:Set names UTF8
+2010-01-05 10:31:28 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:31:28 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:31:28 query:select * from upfiles where upfile_id = 1
+2010-01-05 10:31:28 query_first:select * from upfiles where upfile_id = 1
+2010-01-05 10:59:18 query:Set names UTF8
+2010-01-05 10:59:18 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:59:18 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:59:18 query:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:59:18 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:59:45 query:Set names UTF8
+2010-01-05 10:59:45 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:59:45 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 10:59:45 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 10:59:45 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:00:52 query:Set names UTF8
+2010-01-05 11:00:52 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:00:52 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:00:52 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:00:52 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:01:02 query:Set names UTF8
+2010-01-05 11:01:02 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:01:02 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:01:02 query:select * from upfiles where upfile_id = 1
+2010-01-05 11:01:02 query_first:select * from upfiles where upfile_id = 1
+2010-01-05 11:03:28 query:Set names UTF8
+2010-01-05 11:03:28 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:03:28 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:03:28 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:03:28 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:04:51 query:Set names UTF8
+2010-01-05 11:04:51 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:04:51 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:04:51 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:04:51 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:04:53 query:Set names UTF8
+2010-01-05 11:04:53 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:04:53 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:04:53 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:04:53 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:05:00 query:Set names UTF8
+2010-01-05 11:05:00 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:05:00 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:05:00 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:05:00 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:05:54 query:Set names UTF8
+2010-01-05 11:05:54 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:05:54 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:05:54 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:05:54 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:06:17 query:Set names UTF8
+2010-01-05 11:06:17 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:06:17 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:06:17 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:06:17 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:08:24 query:Set names UTF8
+2010-01-05 11:08:24 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:08:24 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:08:24 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:08:24 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:08:47 query:Set names UTF8
+2010-01-05 11:08:47 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:08:47 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:08:47 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:08:47 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:08:49 query:Set names UTF8
+2010-01-05 11:08:49 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:08:49 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:08:49 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:08:49 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:09:13 query:Set names UTF8
+2010-01-05 11:09:13 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:09:13 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:09:13 query:select * from upfiles where upfile_name='1.txt.doc'
+2010-01-05 11:09:13 query_first:select * from upfiles where upfile_name='1.txt.doc'
+2010-01-05 11:09:13 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('1.txt.doc', '1262660953.doc', '1262660953', '2', '127.0.0.1', 'doc');
+2010-01-05 11:09:13 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('2');
+2010-01-05 11:09:20 query:Set names UTF8
+2010-01-05 11:09:20 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:09:20 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:09:20 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:09:20 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:16:57 query:Set names UTF8
+2010-01-05 11:16:57 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:16:57 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:16:57 query:select * from upfiles where upfile_id = 2
+2010-01-05 11:16:57 query_first:select * from upfiles where upfile_id = 2
+2010-01-05 11:17:05 query:Set names UTF8
+2010-01-05 11:17:05 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:17:05 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:17:05 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:17:05 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:17:07 query:Set names UTF8
+2010-01-05 11:17:07 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:17:07 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:17:07 query:select * from upfiles where upfile_id = 2
+2010-01-05 11:17:07 query_first:select * from upfiles where upfile_id = 2
+2010-01-05 11:17:52 query:Set names UTF8
+2010-01-05 11:17:52 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:17:52 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:17:52 query:select * from upfiles where upfile_id = 1
+2010-01-05 11:17:52 query_first:select * from upfiles where upfile_id = 1
+2010-01-05 11:17:57 query:Set names UTF8
+2010-01-05 11:17:57 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:17:57 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:17:57 query:select * from upfiles where upfile_id = 2
+2010-01-05 11:17:57 query_first:select * from upfiles where upfile_id = 2
+2010-01-05 11:18:35 query:Set names UTF8
+2010-01-05 11:18:35 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:35 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:35 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:18:35 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:18:36 query:Set names UTF8
+2010-01-05 11:18:36 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:36 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:36 query:select * from upfiles where upfile_id = 1
+2010-01-05 11:18:36 query_first:select * from upfiles where upfile_id = 1
+2010-01-05 11:18:38 query:Set names UTF8
+2010-01-05 11:18:38 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:38 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:38 query:select * from upfiles where upfile_id = 2
+2010-01-05 11:18:38 query_first:select * from upfiles where upfile_id = 2
+2010-01-05 11:18:41 query:Set names UTF8
+2010-01-05 11:18:41 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:41 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:44 query:Set names UTF8
+2010-01-05 11:18:44 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:44 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:52 query:Set names UTF8
+2010-01-05 11:18:52 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:52 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:52 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:18:52 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:18:53 query:Set names UTF8
+2010-01-05 11:18:53 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:53 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:53 query:select * from upfiles where upfile_id = 1
+2010-01-05 11:18:53 query_first:select * from upfiles where upfile_id = 1
+2010-01-05 11:18:58 query:Set names UTF8
+2010-01-05 11:18:58 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:58 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:18:58 query:select * from upfiles where upfile_id = 2
+2010-01-05 11:18:58 query_first:select * from upfiles where upfile_id = 2
+2010-01-05 11:19:20 query:Set names UTF8
+2010-01-05 11:19:20 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:19:20 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:19:20 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:19:20 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:19:21 query:Set names UTF8
+2010-01-05 11:19:21 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:19:21 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:19:21 query:select * from upfiles where upfile_id = 1
+2010-01-05 11:19:21 query_first:select * from upfiles where upfile_id = 1
+2010-01-05 11:19:24 query:Set names UTF8
+2010-01-05 11:19:24 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:19:24 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:19:24 query:select * from upfiles where upfile_id = 2
+2010-01-05 11:19:24 query_first:select * from upfiles where upfile_id = 2
+2010-01-05 11:20:03 query:Set names UTF8
+2010-01-05 11:20:03 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:20:03 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:20:03 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:20:03 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:21:00 query:Set names UTF8
+2010-01-05 11:21:00 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:21:00 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:21:11 query:Set names UTF8
+2010-01-05 11:21:11 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:21:11 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:21:11 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:21:11 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:21:12 query:Set names UTF8
+2010-01-05 11:21:12 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:21:12 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:21:12 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:21:12 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:21:40 query:Set names UTF8
+2010-01-05 11:21:40 query:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:21:40 fetch_all_array:select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id
+2010-01-05 11:21:40 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:21:40 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:43:55 query:Set names UTF8
+2010-01-05 11:43:55 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:43:55 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:44:24 query:Set names UTF8
+2010-01-05 11:44:24 query:select * from upfiles where upfile_name='wa_report_status.xls'
+2010-01-05 11:44:24 query_first:select * from upfiles where upfile_name='wa_report_status.xls'
+2010-01-05 11:44:24 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('wa_report_status.xls', '1262663064.xls', '1262663064', '2', '127.0.0.1', 'xls');
+2010-01-05 11:44:24 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('3');
+2010-01-05 11:44:26 query:Set names UTF8
+2010-01-05 11:44:26 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:44:26 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:44:49 query:Set names UTF8
+2010-01-05 11:44:49 query:select * from upfiles where upfile_name='Access_SSRS_Report.doc'
+2010-01-05 11:44:49 query_first:select * from upfiles where upfile_name='Access_SSRS_Report.doc'
+2010-01-05 11:44:49 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('Access_SSRS_Report.doc', '1262663089.doc', '1262663089', '2', '127.0.0.1', 'doc');
+2010-01-05 11:44:49 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('4');
+2010-01-05 11:44:55 query:Set names UTF8
+2010-01-05 11:44:55 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-05 11:44:55 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id

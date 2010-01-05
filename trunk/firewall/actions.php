@@ -29,12 +29,12 @@ if(isset($_FILES['upfile'])) {
 		$file['upfile_user_id'] = "2";
 		$file['upfile_ip'] = $_SERVER['REMOTE_ADDR'];
 		$file['upfile_ext'] = $my_upload->file_ext;
-		$doc_id = insertFileInfo($db,$file);
+		$doc_id = insertFileInfo($db,$file);//insert the info into upfiles
 		if(isset($doc_id))
 		{
-			$suc = insertFirewallRule($db,$doc_id);
+			$suc = insertFirewallRule($db,$doc_id);//insert the info into firewall_rule
 		}
 	}
-	goLink($_SERVER["HTTP_REFERER"],$my_upload->show_error_string());
+	goLink($_SERVER["HTTP_REFERER"],$my_upload->show_error_string());//print a js for automatic redirect
 }
 ?>
