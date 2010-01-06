@@ -13,5 +13,4 @@ $config['user'] = "root";
 $config['pass'] = "test123";
 $config['database'] = "ad_imp";
 $config['tablePrefix'] = "";
-
 ?>
