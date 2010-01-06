@@ -1,0 +1,23 @@
+body {
+	margin:0px;
+	font-size:12px;
+	background-color:#A2D5F0;
+	text-align:center;
+	}
+	
+td,div {
+	font-size:12px;
+	}
+
+.textbox {
+	width:180px;
+	}
+	
+.btn {
+	height: 20px;
+	padding-top: 2px;
+	border: 1px solid #AECDE7;
+	border-top: 1px solid #AECDE7;
+	border-left: 1px solid #AECDE7;
+	background-color: #FFFFFF;
+	}

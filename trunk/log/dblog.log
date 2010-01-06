@@ -935,3 +935,42 @@
 2010-01-05 11:44:55 query:Set names UTF8
 2010-01-05 11:44:55 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
 2010-01-05 11:44:55 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 22:02:52 query:Set names UTF8
+2010-01-06 22:02:52 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 22:02:52 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 22:03:46 query:Set names UTF8
+2010-01-06 22:03:46 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 22:03:46 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 22:04:01 query:Set names UTF8
+2010-01-06 22:04:08 query:Set names UTF8
+2010-01-06 22:04:08 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 22:04:08 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 22:04:26 query:Set names UTF8
+2010-01-06 22:04:26 query:select * from upfiles where upfile_name='sss.html'
+2010-01-06 22:04:26 query_first:select * from upfiles where upfile_name='sss.html'
+2010-01-06 22:04:26 query:INSERT INTO `upfiles` (`upfile_name`, `upfile_sysname`, `upfile_time`, `upfile_user_id`, `upfile_ip`, `upfile_ext`) VALUES ('sss.html', '1262786666.html', '1262786666', '2', '127.0.0.1', 'html');
+2010-01-06 22:04:26 query:INSERT INTO `firewall_rule` (`rule_doc_id`) VALUES ('5');
+2010-01-06 22:04:33 query:Set names UTF8
+2010-01-06 22:04:33 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 22:04:33 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:48:07 query:Set names UTF8
+2010-01-06 23:48:07 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:48:07 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:51:46 query:Set names UTF8
+2010-01-06 23:51:46 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:51:46 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:52:39 query:Set names UTF8
+2010-01-06 23:52:39 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:52:39 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:52:50 query:Set names UTF8
+2010-01-06 23:52:50 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:52:50 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:53:35 query:Set names UTF8
+2010-01-06 23:53:35 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:53:35 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:53:38 query:Set names UTF8
+2010-01-06 23:53:38 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:53:38 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:53:40 query:Set names UTF8
+2010-01-06 23:53:40 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-06 23:53:40 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
