@@ -1,4 +1,14 @@
 ﻿<?php
+
+//need to be completed. used to create the input
+/*
+function input($tablename,$use,$checkNull,$is_use = true)
+{
+	$sql = "select * from $tablename limit 0,1";
+	$input_arr = "<input type="" name="upfile_name"></input>";
+}
+*/
+
 //return an auto redirect link HTML,$link should be the full address with protocol and $msg the what you want to show in the page.
 //it can be used in both FF and IE
 function goLink($link,$msg)

@@ -505,25 +505,6 @@ CREATE INDEX `FK_info_doc` ON `infomation` (`info_doc_id` ASC) ;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Placeholder table for view `firewall_rule_view`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `firewall_rule_view` (`id` INT);
-SHOW WARNINGS;
-
--- -----------------------------------------------------
--- View `firewall_rule_view`
--- -----------------------------------------------------
-DROP VIEW IF EXISTS `firewall_rule_view` ;
-SHOW WARNINGS;
-DROP TABLE IF EXISTS `firewall_rule_view`;
-SHOW WARNINGS;
-CREATE  OR REPLACE VIEW `ad_imp`.`firewall_rule_view` AS
-select upfiles.upfile_name, upfiles.upfile_sysname,firewall_rule.f_rule_id 
-from firewall_rule, upfiles
-where firewall_rule.rule_doc_id= upfiles.upfile_id;
-SHOW WARNINGS;
-
--- -----------------------------------------------------
 -- Data for table `department`
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
@@ -532,6 +513,20 @@ INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (2, '方案论证�
 INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (3, '航天及地面组');
 INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (4, '航空组');
 INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (5, '测试组');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `firewall_content_type`
+-- -----------------------------------------------------
+SET AUTOCOMMIT=0;
+INSERT INTO `firewall_content_type` (`f_c_type_id`, `f_c_type_name`) VALUES (1, '计划');
+INSERT INTO `firewall_content_type` (`f_c_type_id`, `f_c_type_name`) VALUES (2, '质量');
+INSERT INTO `firewall_content_type` (`f_c_type_id`, `f_c_type_name`) VALUES (3, '保密');
+INSERT INTO `firewall_content_type` (`f_c_type_id`, `f_c_type_name`) VALUES (4, '安全');
+INSERT INTO `firewall_content_type` (`f_c_type_id`, `f_c_type_name`) VALUES (5, '组织纪律');
+INSERT INTO `firewall_content_type` (`f_c_type_id`, `f_c_type_name`) VALUES (6, '6S');
+INSERT INTO `firewall_content_type` (`f_c_type_id`, `f_c_type_name`) VALUES (7, '其它');
 
 COMMIT;
 
