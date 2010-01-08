@@ -1,7 +1,6 @@
 body {
 	margin:0px;
 	font-size:12px;
-	background-color:#A2D5F0;
 	text-align:center;
 	}
 	
@@ -10,7 +9,7 @@ td,div {
 	}
 
 .textbox {
-	width:180px;
+	width:170px;
 	}
 	
 .btn {

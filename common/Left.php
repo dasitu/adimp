@@ -61,8 +61,8 @@ node1.add(node1_1);
 node1.add(node1_2);
 node1.add(node1_3);
 
-var node2_1 = new TreeNode('防火墙条款', '../firewall/index.php', 'tree_node.gif', null, 'tree_node.gif', null);
-var node2_2 = new TreeNode('防火墙事件', 'DepartmentMgr.aspx', 'tree_node.gif', null, 'tree_node.gif', null);
+var node2_1 = new TreeNode('防火墙条款', '../firewall/firewall_rule.php', 'tree_node.gif', null, 'tree_node.gif', null);
+var node2_2 = new TreeNode('防火墙事件', '../firewall/firewall.php', 'tree_node.gif', null, 'tree_node.gif', null);
 node2.add(node2_1);
 node2.add(node2_2);
 

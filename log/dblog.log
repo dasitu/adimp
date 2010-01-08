@@ -974,3 +974,91 @@
 2010-01-06 23:53:40 query:Set names UTF8
 2010-01-06 23:53:40 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
 2010-01-06 23:53:40 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-08 15:41:46 query:Set names UTF8
+2010-01-08 15:41:46 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-08 15:41:46 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-08 15:42:09 query:Set names UTF8
+2010-01-08 15:42:09 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-08 15:42:09 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-08 15:42:13 query:Set names UTF8
+2010-01-08 15:42:13 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-08 15:42:13 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-08 16:40:22 query:Set names UTF8
+2010-01-08 16:40:54 query:Set names UTF8
+2010-01-08 16:41:15 query:Set names UTF8
+2010-01-08 16:41:27 query:Set names UTF8
+2010-01-08 16:42:03 query:Set names UTF8
+2010-01-08 16:43:18 query:Set names UTF8
+2010-01-08 16:43:37 query:Set names UTF8
+2010-01-08 16:44:48 query:Set names UTF8
+2010-01-08 16:46:29 query:Set names UTF8
+2010-01-08 16:47:51 query:Set names UTF8
+2010-01-08 16:48:13 query:Set names UTF8
+2010-01-08 16:52:14 query:Set names UTF8
+2010-01-08 16:52:33 query:Set names UTF8
+2010-01-08 16:55:09 query:Set names UTF8
+2010-01-08 16:57:26 query:Set names UTF8
+2010-01-08 16:57:26 query:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-08 16:57:26 fetch_all_array:select b.upfile_id, b.upfile_name,b.upfile_time,b.upfile_ext,c.user_name from firewall_rule a, upfiles b, user c where a.rule_doc_id = b.upfile_id and b.upfile_user_id = c.user_id
+2010-01-08 16:57:27 query:Set names UTF8
+2010-01-08 17:02:42 query:Set names UTF8
+2010-01-08 17:03:07 query:Set names UTF8
+2010-01-08 17:04:26 query:Set names UTF8
+2010-01-08 17:07:40 query:Set names UTF8
+2010-01-08 17:08:18 query:Set names UTF8
+2010-01-08 17:08:42 query:Set names UTF8
+2010-01-08 17:09:52 query:Set names UTF8
+2010-01-08 17:09:53 query:Set names UTF8
+2010-01-08 17:09:58 query:Set names UTF8
+2010-01-08 17:09:59 query:Set names UTF8
+2010-01-08 17:10:00 query:Set names UTF8
+2010-01-08 17:10:22 query:Set names UTF8
+2010-01-08 17:15:54 query:Set names UTF8
+2010-01-08 17:15:54 query:select f_c_type_name from firewall_content_type
+2010-01-08 17:15:54 fetch_all_array:select f_c_type_name from firewall_content_type
+2010-01-08 17:16:54 query:Set names UTF8
+2010-01-08 17:16:54 query:select f_c_type_name from firewall_content_type
+2010-01-08 17:16:54 fetch_all_array:select f_c_type_name from firewall_content_type
+2010-01-08 17:17:48 query:Set names UTF8
+2010-01-08 17:17:48 query:select f_c_type_name from firewall_content_type
+2010-01-08 17:17:48 fetch_all_array:select f_c_type_name from firewall_content_type
+2010-01-08 17:17:48 query:select f_c_type_name from firewall_content_type
+2010-01-08 17:17:48 fetch_all_array:select f_c_type_name from firewall_content_type
+2010-01-08 17:18:33 query:Set names UTF8
+2010-01-08 17:18:33 query:select f_c_type_name from firewall_content_type
+2010-01-08 17:18:33 fetch_all_array:select f_c_type_name from firewall_content_type
+2010-01-08 17:18:33 query:select f_c_type_name from firewall_content_type
+2010-01-08 17:18:33 fetch_all_array:select f_c_type_name from firewall_content_type
+2010-01-08 17:21:04 query:Set names UTF8
+2010-01-08 17:21:04 query:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:21:04 fetch_all_array:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:22:04 query:Set names UTF8
+2010-01-08 17:22:04 query:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:22:04 fetch_all_array:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:23:51 query:Set names UTF8
+2010-01-08 17:23:51 query:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:23:51 fetch_all_array:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:23:52 query:Set names UTF8
+2010-01-08 17:23:52 query:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:23:52 fetch_all_array:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:23:54 query:Set names UTF8
+2010-01-08 17:23:54 query:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:23:54 fetch_all_array:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:23:55 query:Set names UTF8
+2010-01-08 17:23:55 query:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:23:55 fetch_all_array:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:23:55 query:Set names UTF8
+2010-01-08 17:23:55 query:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:23:55 fetch_all_array:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:24:02 query:Set names UTF8
+2010-01-08 17:24:02 query:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:24:02 fetch_all_array:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:24:06 query:Set names UTF8
+2010-01-08 17:24:06 query:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:24:06 fetch_all_array:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:24:39 query:Set names UTF8
+2010-01-08 17:24:39 query:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:24:39 fetch_all_array:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:24:50 query:Set names UTF8
+2010-01-08 17:24:50 query:select f_c_type_name,f_c_type_id from firewall_content_type
+2010-01-08 17:24:50 fetch_all_array:select f_c_type_name,f_c_type_id from firewall_content_type

@@ -14,13 +14,14 @@ function insertUser($db,$user)
 }
 
 //give the options for selectbox according to the parameters, return html code
-function listSelection($db,$tableName,$colName)
+function listSelection($db,$table_name,$col_name,$col_value)
 {
-	$sql = "select $colName from $tableName";
+	$sql = "select $col_name,$col_value from $table_name";
 	$rs = $db->fetch_all_array($sql);
+	$options = "";
 	foreach ($rs as $record)
 	{
-		$options .= "<option>$record</option>";
+		$options .= "<option value='".$record["$col_value"]."'>".$record["$col_name"]."</option>";
 	}
 	return $options;
 }
