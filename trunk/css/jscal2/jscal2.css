@@ -243,15 +243,6 @@ table.DynarchCalendar-titleCont {
   margin-top: 4px; margin-bottom: 3px;
 }
 
-.DynarchCalendar-time td { font-weight: bold; font-size: 120%; }
-.DynarchCalendar-time-hour, .DynarchCalendar-time-minute { padding: 1px 3px; }
-.DynarchCalendar-time-down { background: url("img/time-down.png") no-repeat 50% 50%; width: 11px; height: 8px; opacity: 0.5; }
-.DynarchCalendar-time-up { background: url("img/time-up.png") no-repeat 50% 50%; width: 11px; height: 8px; opacity: 0.5; }
-.DynarchCalendar-time-sep { padding: 0 2px; }
-.DynarchCalendar-hover-time { background-color: #444; color: #fff; opacity: 1; }
-.DynarchCalendar-pressed-time { background-color: #000; color: #fff; opacity: 1; }
-.DynarchCalendar-time-am { padding: 1px; width: 2.5em; text-align: center; }
-
 /* body */
 
 .DynarchCalendar-hover-week { background-color: #ddd; }

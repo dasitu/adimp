@@ -1,4 +1,5 @@
-﻿<?php
+<?php
+header("Content-Type: text/html; charset=utf-8");
 require "../common/queries.php";
 $file_id = $_GET['id'];
 
@@ -6,6 +7,7 @@ if(@$_SERVER["HTTP_REFERER"]) //Avoid to access directly
 {
 	$file = getFileInfo($db,$file_id);
 	$file_extension = strtolower($file['upfile_ext']);
+	$file_realname = $file['upfile_name'];
 	$file_name = $config['upload_dir'].$file['upfile_sysname'];
 
 	// required for IE, otherwise Content-disposition is ignored
@@ -39,12 +41,26 @@ if(@$_SERVER["HTTP_REFERER"]) //Avoid to access directly
 	header("Expires: 0");
 	header("Cache-Control: must-revalidate, post-check=0, pre-check=0");
 	header("Cache-Control: private",false); // required for certain browsers 
-	header("Content-Type: $ctype");
+	header("Content-Type: $ctype;charset=utf-8;");
+
 	// change, added quotes to allow spaces in filenames
-	header("Content-Disposition: attachment; filename=\"".basename($file_name)."\";" );
+	$ua = $_SERVER["HTTP_USER_AGENT"];
+	$filename = "$file_realname.$file_extension";
+	$encoded_filename = urlencode($filename);
+	$encoded_filename = str_replace("+", "%20", $encoded_filename);
+
+	header('Content-Type: application/octet-stream');
+	if (preg_match("/MSIE/", $ua)) {
+		header('Content-Disposition: attachment; filename="' . $encoded_filename . '"');
+	} else if (preg_match("/Firefox/", $ua)) {
+		header('Content-Disposition: attachment; filename*="utf8\'\'' . $filename . '"');
+	} else {
+		header('Content-Disposition: attachment; filename="' . $filename . '"');
+	}
+
+	//filename=\"".basename($file_name)."\";" );
 	header("Content-Transfer-Encoding: binary");
 	header("Content-Length: ".filesize($file_name));
-	//readfile("$file_name");
 	exit;
 }
 else

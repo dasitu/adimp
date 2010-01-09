@@ -1,4 +1,6 @@
-﻿<?php
+<?php
+session_start();
+header("Content-Type: text/html; charset=utf-8");
 require_once "../common/queries.php";
 require_once "../common/functions.php";
 require "../lib/upload.class.php"; //classes is the map where the class file is stored (one above the root)
@@ -26,7 +28,7 @@ if(isset($_FILES['upfile'])) {
 		$file['upfile_name'] = $new_file_name;
 		$file['upfile_sysname'] = $my_upload->file_sys_name;
 		$file['upfile_time'] = time();
-		$file['upfile_user_id'] = "2";
+		$file['upfile_user_id'] = $_SESSION['user_id'];
 		$file['upfile_ip'] = $_SERVER['REMOTE_ADDR'];
 		$file['upfile_ext'] = $my_upload->file_ext;
 		$doc_id = insertFileInfo($db,$file);//insert the info into upfiles
@@ -38,3 +40,4 @@ if(isset($_FILES['upfile'])) {
 	goLink($_SERVER["HTTP_REFERER"],$my_upload->show_error_string());//print a js for automatic redirect
 }
 ?>
+<link rel="stylesheet" type="text/css" href="../css/main.css" />

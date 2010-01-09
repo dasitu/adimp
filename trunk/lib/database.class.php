@@ -41,7 +41,7 @@ var $user     = ""; //database login name
 var $pass     = ""; //database login password
 var $database = ""; //database name
 var $pre      = ""; //table prefix
-var $debug	  = "1"; //1 if you would like to see the sql
+var $debug	  = "0"; //1 if you would like to see the sql
 var $logfile  = "../log/dblog.log";
 
 

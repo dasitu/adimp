@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 class file_upload {
 
     var $db;

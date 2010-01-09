@@ -1,10 +1,21 @@
-﻿<?php
+<?php
 require_once "../lib/database.class.php";
 require_once "../common/config.inc.php";
 require_once "../common/functions.php";
 
 $db = new Database($config['server'],$config['user'],$config['pass'],$config['database'],$config['tablePrefix']);
 $db->connect();
+
+//login
+function login($db,$login,$pass)
+{
+	$sql = "select u.*,d.depart_name from user u, department d where u.user_login='$login' and u.user_pwd=password('$pass') and u.user_depart_id=d.depart_id";
+	$user = $db->query_first($sql);
+	if($user){
+		return $user;
+	}
+	return false;
+}
 
 //insert one user to table user
 function insertUser($db,$user)

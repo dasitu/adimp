@@ -10,10 +10,6 @@ Calendar.LANG("de", "Deutsch", {
 
         weekend: "0,6",         // 0 = Sunday, 1 = Monday, etc.
 
-        AM: "am",
-
-        PM: "pm",
-
         mn : [ "Januar",
                "Februar",
                "M\u00e4rz",
