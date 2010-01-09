@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 //file upload config
 $config['language_upfile'] = "ch";

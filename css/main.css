@@ -1,15 +1,16 @@
 body {
-	margin:0px;
+	margin: 0px;
+	margin-top:5%;
 	font-size:12px;
 	text-align:center;
 	}
 	
-td,div {
+td,div,span {
 	font-size:12px;
 	}
 
 .textbox {
-	width:170px;
+	width:190px;
 	}
 	
 .btn {
@@ -19,4 +20,11 @@ td,div {
 	border-top: 1px solid #AECDE7;
 	border-left: 1px solid #AECDE7;
 	background-color: #FFFFFF;
+	}
+		
+.mytable, .mytable td {
+	border-collapse:collapse;
+	border: solid #000000;
+	border-width:1px 1px 1px 1px;
+	padding: 4px;
 	}

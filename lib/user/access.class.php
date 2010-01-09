@@ -34,41 +34,15 @@
 
 class flexibleAccess{
   /*Settings*/
-  /**
-   * The database that we will use
-   * var string
-   */
-  var $dbName = 'ad_imp';
-  /**
-   * The database host
-   * var string
-   */
-  var $dbHost = 'localhost';
-  /**
-   * The database port
-   * var int
-   */
-  var $dbPort = 3306;
-  /**
-   * The database user
-   * var string
-   */
-  var $dbUser = 'root';
-  /**
-   * The database password
-   * var string
-   */
-  var $dbPass = 'test123';
-  /**
-   * The database table that holds all the information
-   * var string
-   */
+  var $db = '';
   var $dbTable  = 'user';
   /**
    * The session variable ($_SESSION[$sessionVariable]) which will hold the data while the user is logged on
    * var string
    */
-  var $sessionVariable = 'userSessionValue';
+  var $sessionVariable = 'UserID';
+  var $sessionUserName = 'UserName';
+  var $sessionUserDepartID = 'userDepartID';
   /**
    * Those are the fields that our table uses in order to fetch the needed data. The structure is 'fieldType' => 'fieldName'
    * var array
@@ -76,15 +50,16 @@ class flexibleAccess{
   var $tbFields = array(
   	'userID'=> 'user_id', 
   	'login' => 'user_login',
+	'userName' => 'user_name',
   	'pass'  => 'user_pwd',
-  	'email' => 'email',
-  	'active'=> 'active'
+	'departID' => 'user_depart_id',
+  	'active'=> 'user_active'
   );
 	/**
    * When user wants the system to remember him/her, how much time to keep the cookie? (seconds)
    * var int
    */
-  var $remTime = 2592000;//One month
+  var $remTime = 3600;//One hour
   /**
    * The name of the cookie which we will use if user wants to be remembered by the system
    * var string
@@ -106,8 +81,7 @@ class flexibleAccess{
    */
   var $displayErrors = true;
   /*Do not edit after this line*/
-  var $userID;
-  var $dbConn;
+
   var $userData=array();
   /**
    * Class Constructure
@@ -116,7 +90,7 @@ class flexibleAccess{
    * @param array $settings
    * @return void
    */
-  function flexibleAccess($dbConn = '', $settings = '')
+  function flexibleAccess($db, $settings = '')
   {
 	    if ( is_array($settings) ){
 		    foreach ( $settings as $k => $v ){
@@ -125,9 +99,7 @@ class flexibleAccess{
 			}
 	    }
 	    $this->remCookieDomain = $this->remCookieDomain == '' ? $_SERVER['HTTP_HOST'] : $this->remCookieDomain;
-	    $this->dbConn = ($dbConn=='')? mysql_connect($this->dbHost.':'.$this->dbPort, $this->dbUser, $this->dbPass):$dbConn;
-	    if ( !$this->dbConn ) die(mysql_error($this->dbConn));
-	    mysql_select_db($this->dbName, $this->dbConn)or die(mysql_error($this->dbConn));
+		$db->connect();
 	    if( !isset( $_SESSION ) ) session_start();
 	    if ( !empty($_SESSION[$this->sessionVariable]) )
 	    {
@@ -162,7 +134,7 @@ class flexibleAccess{
 		  case 'nothing':
 		  	$password = "'$password'";
 		}
-		$res = $this->query("SELECT * FROM `{$this->dbTable}` 
+		$res = $this->$db->query("SELECT * FROM `{$this->dbTable}` 
 		WHERE `{$this->tbFields['login']}` = '$uname' AND `{$this->tbFields['pass']}` = $password LIMIT 1",__LINE__);
 		
 		print $res;
@@ -172,7 +144,12 @@ class flexibleAccess{
 		{
 			$this->userData = mysql_fetch_array($res);
 			$this->userID = $this->userData[$this->tbFields['userID']];
+
+			//register the sessions
 			$_SESSION[$this->sessionVariable] = $this->userID;
+			$_SESSION[$this->sessionUserDepartID] = $this->tbFields['departID'];
+			$_SESSION[$this->sessionUserName] = $this->tbFields['userName'];
+
 			if ( $remember ){
 			  $cookie = base64_encode(serialize(array('uname'=>$uname,'password'=>$originalPassword)));
 			  $a = setcookie($this->remCookieName, 
@@ -242,7 +219,7 @@ class flexibleAccess{
   {
     if (empty($this->userID)) $this->error('No user is loaded', __LINE__);
     if ( $this->is_active()) $this->error('Allready active account', __LINE__);
-    $res = $this->query("UPDATE `{$this->dbTable}` SET {$this->tbFields['active']} = 1 
+    $res = $this->$db->query("UPDATE `{$this->dbTable}` SET {$this->tbFields['active']} = 1 
 	WHERE `{$this->tbFields['userID']}` = '".$this->escape($this->userID)."' LIMIT 1");
     if (@mysql_affected_rows() == 1)
 	{
@@ -268,7 +245,7 @@ class flexibleAccess{
 	}
     foreach ($data as $k => $v ) $data[$k] = "'".$this->escape($v)."'";
     $data[$this->tbFields['pass']] = $password;
-    $this->query("INSERT INTO `{$this->dbTable}` (`".implode('`, `', array_keys($data))."`) VALUES (".implode(", ", $data).")");
+    $this->$db->query("INSERT INTO `{$this->dbTable}` (`".implode('`, `', array_keys($data))."`) VALUES (".implode(", ", $data).")");
     return (int)mysql_insert_id($this->dbConn);
   }
   /*
@@ -288,21 +265,6 @@ class flexibleAccess{
   ////////////////////////////////////////////
   
   /**
-  	* SQL query function
-  	* @access private
-  	* @param string $sql
-  	* @return string
-  */
-  function query($sql, $line = 'Uknown')
-  {
-    if (defined('DEVELOPMENT_MODE') ) echo '<b>Query to execute: </b>'.$sql.'<br /><b>Line: </b>'.$line.'<br />';
-	$res = mysql_db_query($this->dbName, $sql, $this->dbConn);
-	if ( !$res )
-		$this->error(mysql_error($this->dbConn), $line);
-	return $res;
-  }
-  
-  /**
   	* A function that is used to load one user's data
   	* @access private
   	* @param string $userID
@@ -310,27 +272,19 @@ class flexibleAccess{
   */
   function loadUser($userID)
   {
-	$res = $this->query("SELECT * FROM `{$this->dbTable}` WHERE `{$this->tbFields['userID']}` = '".$this->escape($userID)."' LIMIT 1");
+	$res = $this->$db->query("SELECT * FROM `{$this->dbTable}` WHERE `{$this->tbFields['userID']}` = '".$this->$db->escape($userID)."' LIMIT 1");
     if ( mysql_num_rows($res) == 0 )
     	return false;
     $this->userData = mysql_fetch_array($res);
     $this->userID = $userID;
-    $_SESSION[$this->sessionVariable] = $this->userID;
+	
+	//register the sessions
+	$_SESSION[$this->sessionVariable] = $this->userID;
+	$_SESSION[$this->sessionUserDepartID] = $this->tbFields['departID'];
+	$_SESSION[$this->sessionUserName] = $this->tbFields['userName'];
     return true;
   }
 
-  /**
-  	* Produces the result of addslashes() with more safety
-  	* @access private
-  	* @param string $str
-  	* @return string
-  */  
-  function escape($str) {
-    $str = get_magic_quotes_gpc()?stripslashes($str):$str;
-    $str = mysql_real_escape_string($str, $this->dbConn);
-    return $str;
-  }
-  
   /**
   	* Error holder for the class
   	* @access private

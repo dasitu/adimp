@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 
 //need to be completed. used to create the input
 /*
@@ -13,10 +13,10 @@ function input($tablename,$use,$checkNull,$is_use = true)
 //it can be used in both FF and IE
 function goLink($link,$msg)
 {
-echo "
-	$msg
+echo "<center>
+	<font color='red'>$msg</font>
 	<br />
-	页面将在 <span id=\"totalSecond\">5</span> 秒后跳转至以下地址 <br>
+	页面将在 <span style='color: red; font-size:18px;' id=\"totalSecond\">3</span> 秒后跳转至以下地址,如果没有自动跳转，请尝试点击链接 <br><br>
 	<a href='$link'>$link</a><br>
 	<script language=\"javascript\" type=\"text/javascript\">
 		var second = document.getElementById('totalSecond').textContent;
@@ -46,6 +46,7 @@ echo "
 			}
 		}
 	</script>
+	</center>
 	";
 }
 
@@ -72,7 +73,7 @@ function listInTable($head,$body,$show_col)
 		$tr .= "</tr>";
 	}
 
-	return "<table border=1>".$header.$tr."</table>";
+	return "<table class=mytable>".$header.$tr."</table>";
 }
 
 //when you use db_array, set the second paremeter to true and give the third paremter $col_name, then the function will convert all of the timestamp to time string 

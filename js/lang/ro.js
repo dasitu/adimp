@@ -10,10 +10,6 @@ Calendar.LANG("ro", "Română", {
 
         weekend: "0,6",         // 0 = Sunday, 1 = Monday, etc.
 
-        AM: "am",
-
-        PM: "pm",
-
         mn : [ "Ianuarie",
                "Februarie",
                "Martie",

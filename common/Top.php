@@ -1,4 +1,7 @@
-﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<?php
+session_start();
+?>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD id=Head1>
 <TITLE>无标题页</TITLE>
@@ -28,7 +31,7 @@ FORM {
 	</A> 您有新消息
 	<A id=HyperLink1 href="http://localhost:1479/Web/sys/Top.aspx#">5</A>
 	条 <IMG src="../images/menu_seprator.gif" align=absMiddle>
-	<A id=HyperLink3 href="javascript:window.opener=null;%20window.close();">退出系统</A>
+	<A id=HyperLink3 href="javascript:parent.close();window.opener=null;">退出系统</A>
 	</DIV>
 	<DIV style="DISPLAY: block; HEIGHT: 54px"></DIV>
     <DIV style="BACKGROUND-IMAGE: url(../images/bg_nav.gif); BACKGROUND-REPEAT: repeat-x; HEIGHT: 30px">
@@ -37,18 +40,18 @@ FORM {
           <TR>
             <TD>
               <DIV><IMG src="../images/nav_pre.gif" align=absMiddle /> 欢迎 
-			  <SPAN id=lblBra>乐铁军</SPAN> 
+			  <SPAN id=lblBra><?php echo $_SESSION['user_name'];?></SPAN> 
 			  <SPAN id=lblDep></SPAN>
-			  [办公室 ] 
+			  [  <?php echo $_SESSION['depart_name'];?> ] 
 			  </DIV>
             </TD>
             <TD align=right width="70%">
 			<SPAN style="PADDING-RIGHT: 50px">
 				<A href="javascript:history.go(-1);"><IMG src="../images/nav_back.gif" align=absMiddle border=0>后退</A>
 				<A href="javascript:history.go(1);"><IMG  src="../images/nav_forward.gif" align=absMiddle border=0>前进</A>
-				<A href="http://localhost:1479/Web/default.aspx" target=_top>
+				<A href="../common/logout.php" target=_top>
 				<IMG src="../images/nav_changePassword.gif" align=absMiddle border=0>重新登录</A> 
-				<A href="http://localhost:1479/Web/sys/updatePwd.aspx" target=mainFrame>
+				<A href="#" target=mainFrame>
 				<IMG src="../images/nav_resetPassword.gif" align=absMiddle border=0>修改密码</A> 
 				<IMG src="../images/menu_seprator.gif" align=absMiddle> 
 				<SPAN id=clock></SPAN>

@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 require_once "../common/queries.php";
 require "../lib/upload.class.php"; //classes is the map where the class file is stored (one above the root)
 
