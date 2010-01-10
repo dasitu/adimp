@@ -14,46 +14,62 @@ and d.depart_id = u.user_depart_id ";
 
 if(isset($_POST['actions']) && $_POST['actions'] == "filter_firewall")
 {
+	$and_cnt = 0;
 	$i=0;
-	$where = "";
+	$where_and = array();
+
 	//add the user filter
 	if(isset($_POST['f_user_id']))
 	{
+		$where_and[$and_cnt] = " ( ";
 		foreach($_POST['f_user_id'] as $uid)
 		{
-			$where[$i] = " (u.user_id = '$uid') ";
+			if($i==0)
+				$where_and[$and_cnt] .= " (u.user_id = '$uid') ";
+			else
+				$where_and[$and_cnt] .= " or (u.user_id = '$uid') ";
 			$i++;
 		}
+		$where_and[$and_cnt] .= ' ) ';
+		$and_cnt++;
+		$i=0;
 	}
 
 	//add the depart filter
 	if(isset($_POST['depart_id']))
 	{
+		$where_and[$and_cnt] = " ( ";
 		foreach($_POST['depart_id'] as $depart_id)
 		{
-			$where[$i] = " (d.depart_id = '$depart_id') ";
+			if($i==0)
+				$where_and[$and_cnt] .= " (d.depart_id = '$depart_id') ";
+			else
+				$where_and[$and_cnt] .= " or (d.depart_id = '$depart_id')";
 			$i++;
 		}
+		$where_and[$and_cnt] .= ' ) ';
+		$and_cnt++;
+		$i=0;
 	}
 
 	//add the data filter
 	if($_POST['f_date_start']!="")
 	{
-		$where[$i] = " (f.f_date > '".strtotime($_POST['f_date_start'])."') ";
-		$i++;
+		$where_and[$and_cnt] = " f.f_date > '".strtotime($_POST['f_date_start'])."' ";
+		$and_cnt++;
 	}
 
 	if($_POST['f_date_end']!="")
 	{
-		$where[$i] = " (f.f_date < '".strtotime($_POST['f_date_end'])."') ";
-		$i++;
+		$where_and[$and_cnt]= " f.f_date < '".strtotime($_POST['f_date_end'])."' ";
+		$and_cnt++;
 	}
 
 	//formate the where
-	while($i > 0)
+	while($and_cnt > 0)
 	{
-		$sql .= " and ".$where[$i-1];
-		$i--;
+		$sql .= " and ".$where_and[$and_cnt-1];
+		$and_cnt--;
 	}
 }
 
@@ -65,9 +81,9 @@ $body = time2str($body,true,"f_date",false);
 echo listInTable($head,$body,$show_col);
 ?>
 <br><br>
-<form action="../common/images.php" method="post" target="_blank">
-	<input class=btn type="button" name="filter" value="人员 —— 次数 直方图" onclick="location.href='#'"></input>
+<form action="../common/image.php" method="post" target="_blank">
+	<input class=btn type="submit" name="filter" value="人员 —— 次数 直方图" onclick="location.href='#'"></input>
 	&nbsp;&nbsp;&nbsp;&nbsp;
-	<input class=btn type="button" name="filter" value="事件 —— 类型 直方图" onclick="location.href='#'"></input>
+	<input class=btn type="submit" name="filter" value="事件 —— 类型 直方图" onclick="location.href='#'"></input>
 </form>
 </center>
