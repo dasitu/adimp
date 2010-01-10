@@ -11,7 +11,7 @@ require_once("../common/session.php");
 		<FRAME id=topFrame name=topFrame src="../common/top.php" noResize scrolling=no>
 		<FRAMESET border=0 frameSpacing=0 frameBorder=no cols=20%,*>
 			<FRAME id=leftFrame name=leftFrame src="../common/left.php" noResize scrolling=no>
-			<FRAME id=mainFrame name=mainFrame src="../common/welcome.php" noResize scrolling=no>
+			<FRAME id=mainFrame name=mainFrame src="../common/welcome.php" noResize scrolling=auto>
 		</FRAMESET>
 	</FRAMESET>
 </HTML>

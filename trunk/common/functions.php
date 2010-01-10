@@ -11,7 +11,7 @@ function input($tablename,$use,$checkNull,$is_use = true)
 
 //return an auto redirect link HTML,$link should be the full address with protocol and $msg the what you want to show in the page.
 //it can be used in both FF and IE
-function goLink($link,$msg)
+function goLink($msg, $link = "")
 {
 echo "<center>
 	<font color='red'>$msg</font>
@@ -77,15 +77,21 @@ function listInTable($head,$body,$show_col)
 }
 
 //when you use db_array, set the second paremeter to true and give the third paremter $col_name, then the function will convert all of the timestamp to time string 
-function time2str($epoch,$db_array=false,$col_name="")
+function time2str($epoch,$db_array=false,$col_name="",$longtime = true)
 {
+	$time_format = 'Y-m-d H:i:s';
+	if(!$longtime)
+	{
+		$time_format = 'Y-m-d';
+	}
+
 	if(is_array($epoch)){
 		//if you want to convert the time in dataset, you should specify the colum name
 		if($db_array){
 			for($i=0;$i<count($epoch);$i++)
 			{
 				//change the value of the text index
-				$epoch["$i"]["$col_name"] = date('Y-m-d H:i:s', $epoch["$i"]["$col_name"]);
+				$epoch["$i"]["$col_name"] = date($time_format, $epoch["$i"]["$col_name"]);
 			}
 		}
 		//convert the array directly
@@ -93,12 +99,12 @@ function time2str($epoch,$db_array=false,$col_name="")
 		{
 			for($i=0;$i<count($epoch);$i++)
 			{
-				$epoch[$i] = date("Y-m-d H:i:s", $epoch[$i]);
+				$epoch[$i] = date($time_format, $epoch[$i]);
 			}
 		}
 		return $epoch;
 	}
-	return date('Y-m-d H:i:s', $epoch);	
+	return date($time_format, $epoch);	
 }
 
 //add the download file link into the dataset, then it can be listed in the table by listInTable function
@@ -117,4 +123,41 @@ function ext2img($string_ext)
 {
 	return "<img width=20 height=20 border=0 src='../images/filetype/".$string_ext.".gif'></img>";
 }
+
+//*****************************upload file*********************************//
+function uploadFile($db,$config,$upfile_name,$upfile)
+{
+	// the max. size for uploading
+	$max_size = $config['max_size']; 
+	$my_upload = new file_upload('ch',$db);
+	$my_upload->upload_dir = $config['upload_dir'];
+	$my_upload->extensions = $config['allow_extension'];
+	$my_upload->max_length_filename = $config['max_length_filename'];
+	$my_upload->rename_file = true;
+
+	//if there are files need to be upload
+	if($upfile!="") {
+		$my_upload->the_temp_file = $upfile['tmp_name'];
+		$my_upload->the_file = $upfile['name'];
+		$my_upload->http_error = $upfile['error'];
+		$my_upload->replace = 'n'; 
+		$my_upload->do_filename_check = 'n';
+		$new_file_name = ($upfile_name!="") ? $upfile_name : $my_upload->the_file;
+		if ($my_upload->upload($new_file_name)) {
+			$full_path = $my_upload->upload_dir.$my_upload->file_sys_name;
+			$info = $my_upload->get_uploaded_file_info($full_path);
+			//insert into database
+			$file['upfile_name'] = $new_file_name;
+			$file['upfile_sysname'] = $my_upload->file_sys_name;
+			$file['upfile_time'] = time();
+			$file['upfile_user_id'] = $_SESSION['user_id'];
+			$file['upfile_ip'] = $_SERVER['REMOTE_ADDR'];
+			$file['upfile_ext'] = $my_upload->file_ext;
+			$doc_id = $db->query_insert("upfiles",$file);//insert the info into upfiles
+			return $doc_id;
+		}
+	}
+	return $my_upload->show_error_string();
+}
+//****************************end upload file******************************//
 ?>
