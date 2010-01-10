@@ -13,20 +13,26 @@ header("Content-Type: text/html; charset=utf-8");
     <script type="text/javascript" src="../js/lang/cn.js"></script>
   </head>
 <body>
+<div class="topbody">
+	<input class=btn type="button" name="filter" value="筛选数据" onclick="location.href='../firewall/firewall_search.php'"></input>
+	&nbsp;&nbsp;
+	<input class=btn type="button" name="filter" value="查看记录" onclick="location.href='../firewall/firewall_show.php'"></input>
+</div>
 <center>
-
 <!-- user input form -->
-<form name="firewallForm" enctype="multipart/form-data" action="../firewall/actions.php" method="post" onsubmit="return checkNull(this);">
+<form name="firewallForm" action="../firewall/actions.php" method="post" onsubmit="return checkNull(this);">
 <table class="mytable">
 	<tr>
 		<td align="right">姓名</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="f_user_id" id="f_user_id" value=<?php echo $_SESSION['user_name']?> readonly />
+		<td align="left">
+		<?php echo $_SESSION['user_name']?>
+		<INPUT type="hidden" name="f_user_id" id="f_user_id" value=<?php echo $_SESSION['user_id']?> />
 		</td>
 	</tr>
 	<tr>
 		<td align="right">所在工程组</td>
 		<td align="left">
-		<INPUT class=textbox type="textbox" name="user_depart_name" value=<?php echo $_SESSION['depart_name']?> id="user_depart_name" disabled />
+		<?php echo $_SESSION['depart_name']?>
 		</td>
 	</tr>
 	<tr>
@@ -59,10 +65,10 @@ header("Content-Type: text/html; charset=utf-8");
 	<tr>
 		<td colSpan="2" align="center">
 		<input class=btn type="submit" name="submit" value="提交"></input>
-		<input class=btn type="button" name="filter" value="筛选数据"></input>
 		</td>
 	</tr>
 </table>
+<input type="hidden" name="actions" value="insert_firewall" />
 </form>
 
 <script>

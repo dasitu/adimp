@@ -58,7 +58,6 @@ if(@$_SERVER["HTTP_REFERER"]) //Avoid to access directly
 		header('Content-Disposition: attachment; filename="' . $filename . '"');
 	}
 
-	//filename=\"".basename($file_name)."\";" );
 	header("Content-Transfer-Encoding: binary");
 	header("Content-Length: ".filesize($file_name));
 	exit;

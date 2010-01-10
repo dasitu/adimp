@@ -5,7 +5,7 @@ function checkNull(objForm)
 	{
 		if(inputs[i].alt=="NotNull" && inputs[i].value=="")
 		{
-			alert('该值不能为空！');
+			alert('请检查您的输入，确保填写完整之后提交！');
 			inputs[i].focus();
 			return false;
 		}

@@ -164,9 +164,11 @@ class file_upload {
 		if (function_exists("mime_content_type")) {
 			$str .= "Mime type: ".mime_content_type($name)."\n";
 		}
+		/*
 		if ($img_dim = getimagesize($name)) {
 			$str .= "Image dimensions: x = ".$img_dim[0]."px, y = ".$img_dim[1]."px\n";
 		}
+		*/
 		return $str;
 	}
 	// this method was first located inside the foto_upload extension

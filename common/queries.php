@@ -45,18 +45,6 @@ function getFileInfo($db,$file_id)
 	return $file;
 }
 
-//insert the upfile info, $file_info is an array
-function insertFileInfo($db,$file_info)
-{
-	return $db->query_insert("upfiles",$file_info);
-}
-
-function insertFirewallRule($db,$doc_id)
-{
-	$firewall_rule['rule_doc_id'] = $doc_id;
-	return $db->query_insert("firewall_rule",$firewall_rule);
-}
-
 //check file exsiting in both DB and upload folder
 function checkFileExsit($db,$file_name,$path)
 {

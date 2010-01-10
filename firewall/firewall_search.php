@@ -1,6 +1,6 @@
 <?php
 session_start();
-//require "../common/queries.php";
+require "../common/queries.php";
 header("Content-Type: text/html; charset=utf-8");
 ?>
 <html>
@@ -13,40 +13,64 @@ header("Content-Type: text/html; charset=utf-8");
     <script type="text/javascript" src="../js/lang/cn.js"></script>
   </head>
 <body>
+<div class="topbody"></div>
 <center>
 
 <!-- user input form -->
-<form name="firewallForm" enctype="multipart/form-data" action="../firewall/actions.php" method="post" >
+<form name="firewallForm" action="../firewall/firewall_show.php" method="post" >
 <table class="mytable">
 	<tr>
 		<td align="right">姓名</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="f_user_id" id="f_user_id"/>
+		<td align="left">
+		
+		<select name="f_user_id[]" id="f_user_id" SIZE="6" multiple>
+		<?php 
+		//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
+		echo listSelection($db,"user","user_name","user_id");
+		?>
+		</select>
 		</td>
 	</tr>
 	<tr>
 		<td align="right">所在工程组</td>
 		<td align="left">
-		<INPUT class=textbox type="textbox" name="user_depart_name" id="user_depart_name"/>
+		<select name="depart_id[]" id="depart_id" multiple>
+			<?php 
+			//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
+			echo listSelection($db,"department","depart_name","depart_id");
+			?>
+		</select>
 		</td>
 	</tr>
 
 	<tr>
-		<td align="right">时间</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="f_date" id="f_date"/></td>
+		<td align="right">起始时间</td>
+		<td align="left"><INPUT class=textbox type="textbox" name="f_date_start" id="f_date_start"/></td>
 	</tr>
 	
+	<tr>
+		<td align="right">结束时间</td>
+		<td align="left"><INPUT class=textbox type="textbox" name="f_date_end" id="f_date_end"/></td>
+	</tr>
+
 	<tr>
 		<td colSpan="2" align="center">
 		<input class=btn type="submit" name="submit" value="提交筛选"></input>
 		</td>
 	</tr>
 </table>
+<input type="hidden" name="actions" value="filter_firewall" />
 </form>
 
 <script>
-    Calendar.setup({
-        trigger    : "f_date",
-        inputField : "f_date",
+    var start = Calendar.setup({
+        trigger    : "f_date_start",
+        inputField : "f_date_start",
+		onSelect   : function() { this.hide() }
+    });
+	var end =  Calendar.setup({
+        trigger    : "f_date_end",
+        inputField : "f_date_end",
 		onSelect   : function() { this.hide() }
     });
 </script>
