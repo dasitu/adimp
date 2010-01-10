@@ -1851,7 +1851,7 @@
     }
 
    /* This function draw a bar graph */
-   function drawOverlayBarGraph($Data,$DataDescription,$Alpha=50)
+   function drawOverlayBarGraph($Data,$DataDescription,$DispText,$Alpha=50)
     {
      /* Validate the Data and DataDescription array */
      $this->validateDataDescription("drawOverlayBarGraph",$DataDescription);
@@ -1898,6 +1898,9 @@
               $this->addToImageMap($X1,min($Y1,$Y2),$X2,max($Y1,$Y2),$DataDescription["Description"][$ColName],$Data[$Key][$ColName].$DataDescription["Unit"]["Y"],"oBar");
 
              $this->drawLine($X1,$Y1,$X2,$Y1,$this->Palette[$ColorID]["R"],$this->Palette[$ColorID]["G"],$this->Palette[$ColorID]["B"],TRUE);
+
+			 //Draw the data discription at the top the bar
+			 $this->drawTextBox($X1,$YZero+$this->DivisionRatio+13,$X2,$YZero+$this->DivisionRatio+13,$DispText[$Key],$Angle=0,$R=0,$G=0,$B=0,$Align=ALIGN_TOP_CENTER,$Shadow=FALSE,$BgR=-1,$BgG=-1,$BgB=-1,$Alpha=100);
             }
           }
          $XPos = $XPos + $this->DivisionWidth;
