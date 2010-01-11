@@ -5,35 +5,68 @@ include("../lib/chart/pChart/pChart.class");
 
 header("Content-Type: text/html; charset=utf-8");
 
+if($_GET["t"] == 0)
+	$draw_type = "bar";
+else if($_GET["t"] == 1)
+	$draw_type = "pie";
+else
+	$draw_type = "bar";
+
+$Data = array(8,4,2,3,2);
+$DataDescription = array('张三','李四','王五','士大夫','搜房');
+
+$canvas_width = 400;
+$canvas_height = 300;
+$margin = 30;
+$radius = 5;
+$padding = $radius + 2;
+$bg_color_R = 240;
+$bg_color_G = 240;
+$bg_color_B = 240;
+$drawTicks = TRUE;
+$gridLine = 5;
+$title = "标题演示";
+
 // Dataset definition 
 $DataSet = new pData;
-$Data = array(8,4,2,3,2,1,7);
-$DataDescription = array('张三','王如','多大','士大夫','搜房','而更','阿德勒');
-$DataSet->AddPoint($Data,"Serie1",$DataDescription);
-//This will put a label containing the text "Important point!" on the 3rd point of Serie1 (-3)
+$DataSet->AddPoint($Data,"Serie1");
+$DataSet->AddPoint($DataDescription,"Serie2"); //this is for pie but no influence with bar
 $DataSet->AddAllSeries();
+$DataSet->SetAbsciseLabelSerie("Serie2");//this is for pie but no influence with bar
 
 // Initialise the graph
-$Test = new pChart(700,230);
-$Test->setFontProperties("../lib/chart/Fonts/tahoma.ttf",8);
-$Test->setGraphArea(50,30,650,200);
-$Test->drawFilledRoundedRectangle(7,7,693,223,5,240,240,240);
-$Test->drawRoundedRectangle(5,5,695,225,5,230,230,230);
-$Test->drawGraphArea(255,255,255,TRUE);
-$Test->drawScale($DataSet->GetData(),$DataSet->GetDataDescription(),SCALE_ADDALLSTART0,150,150,150,TRUE,0,2,TRUE,100);
-$Test->drawGrid(4,TRUE,230,230,230,50);
+$Test = new pChart($canvas_width,$canvas_height);
+$Test->setFontProperties("../lib/chart/Fonts/vistak.TTF",11);
+$Test->setGraphArea($margin,$margin,$canvas_width-$margin,$canvas_height-$margin);
+$Test->drawFilledRoundedRectangle($padding,$padding,$canvas_width-$padding,$canvas_height-$padding,$radius,$bg_color_R,$bg_color_G,$bg_color_B);
+$Test->drawRoundedRectangle($radius,$radius,$canvas_width-$radius,$canvas_height-$radius,$radius,$bg_color_R-15,$bg_color_G-15,$bg_color_B-15);
 
-// Draw the 0 line
-$Test->setFontProperties("../lib/chart/Fonts/JDJYCU.ttf",10);
-$Test->drawTreshold(0,143,55,72,TRUE,FALSE);
+//**************for bar image*****************//
+if($draw_type == "bar")
+{
+	$Test->drawGraphArea(255,255,255,TRUE);
+	$Test->drawScale($DataSet->GetData(),$DataSet->GetDataDescription(),SCALE_ADDALLSTART0,150,150,150,$drawTicks,0,2,TRUE,100);
+	$Test->drawGrid($gridLine,FALSE,$bg_color_R-10,$bg_color_G-10,$bg_color_B-10,50);
+	// Draw the 0 line
+	$Test->drawTreshold(0,143,55,72,FALSE,FALSE);
+	// Draw the bar graph
+	$Test->drawOverlayBarGraph($DataSet->GetData(),$DataSet->GetDataDescription(),$DataDescription);
+}
 
-// Draw the bar graph
-$Test->drawOverlayBarGraph($DataSet->GetData(),$DataSet->GetDataDescription(),$DataDescription);
+//*************For Pie image****************//
+if($draw_type == "pie")
+{
+	$thickness = 15;
+	$angle = 45;
+	$Test->AntialiasQuality = 0;
+	$Test->drawPieGraph($DataSet->GetData(),$DataSet->GetDataDescription(),$canvas_width/2,$canvas_height/2,$canvas_height/2-$margin,PIE_PERCENTAGE_LABEL,true,$angle,$thickness,5);
+	//$Test->drawPieLegend(330,15,$DataSet->GetData(),$DataSet->GetDataDescription(),250,250,250);
+}
 
-// Finish the graph
-$Test->setFontProperties("../lib/chart/Fonts/JDJYCU.ttf",8);
+//draw title
+$Test->setFontProperties("../lib/chart/Fonts/JDJYCU.TTF",15);
+$Test->drawTitle($margin-$padding,$margin-$padding,$title,50,50,50,$canvas_width-$margin);
 
-$Test->setFontProperties("../lib/chart/Fonts/JDJYCU.ttf",10);
-$Test->drawTitle(50,22,'演示',50,50,50,350);
+//render
 $Test->Stroke("export.png");
 ?>

@@ -1900,7 +1900,7 @@
              $this->drawLine($X1,$Y1,$X2,$Y1,$this->Palette[$ColorID]["R"],$this->Palette[$ColorID]["G"],$this->Palette[$ColorID]["B"],TRUE);
 
 			 //Draw the data discription at the top the bar
-			 $this->drawTextBox($X1,$YZero+$this->DivisionRatio+13,$X2,$YZero+$this->DivisionRatio+13,$DispText[$Key],$Angle=0,$R=0,$G=0,$B=0,$Align=ALIGN_TOP_CENTER,$Shadow=FALSE,$BgR=-1,$BgG=-1,$BgB=-1,$Alpha=100);
+			 $this->drawTextBox($X1,$YZero+$this->GArea_X1+2,$X2,$YZero+$this->GArea_X1+2,$DispText[$Key],$Angle=0,$R=0,$G=0,$B=0,$Align=ALIGN_TOP_CENTER,$Shadow=FALSE,$BgR=-1,$BgG=-1,$BgB=-1,$Alpha=100);
             }
           }
          $XPos = $XPos + $this->DivisionWidth;

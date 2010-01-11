@@ -15,7 +15,7 @@
  $DataSet->SetAbsciseLabelSerie("Serie2");
 
  // Initialise the graph
- $Test = new pChart(420,250);
+ $Test = new pChart(400,300);
  $Test->drawFilledRoundedRectangle(7,7,413,243,5,240,240,240);
  $Test->drawRoundedRectangle(5,5,415,245,5,230,230,230);
  $Test->createColorGradientPalette(195,204,56,223,110,41,5);
