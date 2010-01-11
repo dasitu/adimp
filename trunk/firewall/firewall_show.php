@@ -6,12 +6,6 @@ header("Content-Type: text/html; charset=utf-8");
 <div class="topbody"></div>
 <center>
 <?php
-$sql = "
-select * 
-from firewall f, user u, department d
-where f.f_user_id = u.user_id
-and d.depart_id = u.user_depart_id ";
-
 if(isset($_POST['actions']) && $_POST['actions'] == "filter_firewall")
 {
 	$and_cnt = 0;
@@ -66,24 +60,45 @@ if(isset($_POST['actions']) && $_POST['actions'] == "filter_firewall")
 	}
 
 	//formate the where
+	$where = "";
 	while($and_cnt > 0)
 	{
-		$sql .= " and ".$where_and[$and_cnt-1];
+		$where .= " and ".$where_and[$and_cnt-1];
 		$and_cnt--;
 	}
 }
 
-$head = array("ID","用户名","部门","事件","日期","证明人","处罚条款");
-$show_col = array("firewall_id","user_name","depart_name","f_content","f_date","f_refer_name","f_rules");//determin with column will be shown
+$sql_from = " FROM firewall f, user u, department d, firewall_content_type t
+WHERE f.f_user_id = u.user_id
+AND d.depart_id = u.user_depart_id
+AND f.f_type_id = t.f_c_type_id
+";
+
+//person-count 
+$sql_select_p_c = "SELECT count(f.firewall_id) as user_cnt, u.user_name";
+$sql_select_p_c = $sql_select_p_c.$sql_from.$where." GROUP by u.user_name";
+//echo $sql_select_p_c."<br>";
+
+//type-count
+$sql_select_t_c = "SELECT count(f.firewall_id) as t_type_cnt, t.f_c_type_name";
+$sql_select_t_c = $sql_select_t_c.$sql_from.$where." GROUP by t.f_c_type_name";
+//echo $sql_select_t_c;
+
+//show part
+$sql_select = " select * ";
+$sql = $sql_select.$sql_from.$where;
+$head = array("ID","用户名","部门","事件","事件类型","日期","证明人","处罚条款");
+$show_col = array("firewall_id","user_name","depart_name","f_content","f_c_type_name","f_date","f_refer_name","f_rules");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"f_date",false); 
 //convert the datetime to string, "true" means it is a dataset, "f_date" means the column name, "false" means the datetime format is not inlcude the time
+
 echo listInTable($head,$body,$show_col);
 ?>
 <br><br>
 <form action="../common/image.php" method="post" target="_blank">
-	<input class=btn type="submit" name="filter" value="人员 —— 次数 直方图" onclick="location.href='#'"></input>
+	<input class=btn type="button" name="filter" value="人员 —— 次数 直方图" onclick="location.href='../common/image.php?t=0'"></input>
 	&nbsp;&nbsp;&nbsp;&nbsp;
-	<input class=btn type="submit" name="filter" value="事件 —— 类型 直方图" onclick="location.href='#'"></input>
+	<input class=btn type="button" name="filter" value="类型 —— 次数 直方图" onclick="location.href='../common/image.php?t=1'"></input>
 </form>
 </center>
