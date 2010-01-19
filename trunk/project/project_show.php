@@ -7,7 +7,7 @@ header("Content-Type: text/html; charset=utf-8");
 <center>
 <?php
 $where = "";
-if(isset($_POST['actions']) && $_POST['actions'] == "filter_firewall")
+if(isset($_POST['actions']) && $_POST['actions'] == "filter_project")
 {
 	$and_cnt = 0;
 	$i=0;
@@ -68,11 +68,8 @@ if(isset($_POST['actions']) && $_POST['actions'] == "filter_firewall")
 	}
 }
 
-$sql_from = " FROM firewall f, user u, department d, firewall_content_type t
-WHERE f.f_user_id = u.user_id
-AND d.depart_id = u.user_depart_id
-AND f.f_type_id = t.f_c_type_id
-";
+$sql_from = " FROM project p, user u 
+where p.project_creator_id = u.user_id ";
 
 //person-count 
 $sql_select_p_c = "SELECT count(f.firewall_id) as user_cnt, u.user_name";
@@ -87,18 +84,12 @@ $sql_select_t_c = $sql_select_t_c.$sql_from.$where." GROUP by t.f_c_type_name";
 //show part
 $sql_select = " select * ";
 $sql = $sql_select.$sql_from.$where;
-$head = array("ID","用户名","部门","事件","事件类型","日期","证明人","处罚条款");
-$show_col = array("firewall_id","user_name","depart_name","f_content","f_c_type_name","f_date","f_refer_name","f_rules");//determin with column will be shown
+$head = array("ID","项目名称","项目代号","创建人","创建时间");
+$show_col = array("project_id","project_name","project_no","user_name","project_create_date");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
-$body = time2str($body,true,"f_date",false); 
-//convert the datetime to string, "true" means it is a dataset, "f_date" means the column name, "false" means the datetime format is not inlcude the time
+$body = time2str($body,true,"project_create_date",false); 
+//convert the datetime to string, "true" means it is a dataset, "project_creat_date" means the column name, "false" means the datetime format is not inlcude the time
 
 echo listInTable($head,$body,$show_col);
 ?>
-<br><br>
-<form action="../common/image.php" method="post" target="_blank">
-	<input class=btn type="button" name="filter" value="人员 —— 次数 直方图" onclick="location.href='../common/image.php?t=0'"></input>
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<input class=btn type="button" name="filter" value="类型 —— 次数 直方图" onclick="location.href='../common/image.php?t=1'"></input>
-</form>
 </center>

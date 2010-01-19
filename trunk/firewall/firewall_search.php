@@ -63,16 +63,11 @@ header("Content-Type: text/html; charset=utf-8");
 </form>
 
 <script>
-    var start = Calendar.setup({
-        trigger    : "f_date_start",
-        inputField : "f_date_start",
-		onSelect   : function() { this.hide() }
-    });
-	var end =  Calendar.setup({
-        trigger    : "f_date_end",
-        inputField : "f_date_end",
-		onSelect   : function() { this.hide() }
-    });
+  var cal = Calendar.setup({
+	  onSelect: function(cal) { cal.hide() }
+  });
+	cal.manageFields("f_date_start", "f_date_start", "%Y/%m/%d");
+	cal.manageFields("f_date_end", "f_date_end", "%Y/%m/%d");
 </script>
 </center>
 </body>

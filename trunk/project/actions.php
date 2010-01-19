@@ -19,39 +19,19 @@ if(!isset($_POST['actions']))
 $actions = $_POST['actions'];
 $msg = "";
 
-//******************actions for insert firewall_rule**************//
-if($actions == "insert_firewall_rule")
-{
-	$upfile_name = $_POST['upfile_name'];
-	$upfile = $_FILES['upfile'];
-	$doc_id = uploadFile($db,$config,$upfile_name,$upfile);
-	$msg = $doc_id;
-	if(is_numeric($doc_id))
-	{
-		$firewall_rule['rule_doc_id'] = $doc_id;
-		$insert_id = $db->query_insert("firewall_rule",$firewall_rule);
-		$msg = "添加成功！";
-	}
-}
-//*********************end insert firewall_rule******************//
-
-//*********************actions for insert firewall**************//
-else if($actions == "insert_firewall")
+//*********************actions for insert table**************//
+if($actions == "insert_project")
 {
 	$table_arr = "";
-	$table_name = "firewall";
+	$table_name = "project";
 	foreach($_POST as $key => $value)
 	{
 		if($key != "submit" && $key != "actions")
 		{
 			$table_arr["$key"] = $_POST["$key"];
 		}
-
-		if($key == "f_date")
-		{
-			$table_arr["$key"] = strtotime($_POST["$key"]);
-		}
 	}
+	$table_arr['project_create_date'] = time();
 	$insert_id = $db->query_insert($table_name,$table_arr);
 	$msg = "添加成功！";
 }

@@ -79,10 +79,10 @@ function listInTable($head,$body,$show_col)
 //when you use db_array, set the second paremeter to true and give the third paremter $col_name, then the function will convert all of the timestamp to time string 
 function time2str($epoch,$db_array=false,$col_name="",$longtime = true)
 {
-	$time_format = 'Y-m-d H:i:s';
+	$time_format = 'Y/m/d H:i:s';
 	if(!$longtime)
 	{
-		$time_format = 'Y-m-d';
+		$time_format = 'Y/m/d';
 	}
 
 	if(is_array($epoch)){
