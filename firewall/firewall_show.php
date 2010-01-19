@@ -3,8 +3,6 @@ require "../common/queries.php";
 header("Content-Type: text/html; charset=utf-8");
 ?>
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
-<div class="topbody"></div>
-<center>
 <?php
 $where = "";
 if(isset($_POST['actions']) && $_POST['actions'] == "filter_firewall")
@@ -92,13 +90,30 @@ $show_col = array("firewall_id","user_name","depart_name","f_content","f_c_type_
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"f_date",false); 
 //convert the datetime to string, "true" means it is a dataset, "f_date" means the column name, "false" means the datetime format is not inlcude the time
-
-echo listInTable($head,$body,$show_col);
 ?>
-<br><br>
-<form action="../common/image.php" method="post" target="_blank">
-	<input class=btn type="button" name="filter" value="人员 —— 次数 直方图" onclick="location.href='../common/image.php?t=0'"></input>
-	&nbsp;&nbsp;&nbsp;&nbsp;
-	<input class=btn type="button" name="filter" value="类型 —— 次数 直方图" onclick="location.href='../common/image.php?t=1'"></input>
-</form>
-</center>
+<div class="topbody">
+<table>
+	<tr>
+		<td height="30">
+			<form action="../common/image.php" method="post">
+				<input type="hidden" name="sql" value = "<?php echo $sql_select_p_c;?>"></input>
+				<input class=btn type="submit" name="submit" value="人员——次数 直方图"></input>
+				<input type="hidden" name="draw_type" value="bar"></input>
+				<input type="hidden" name="x_name" value="user_name"></input>
+				<input type="hidden" name="y_name" value="user_cnt"></input>
+			</form>
+		</td>
+		<td>
+			<form action="../common/image.php" method="post">
+				<input type="hidden" name="sql" value = "<?php echo $sql_select_t_c;?>"></input>
+				<input class=btn type="submit" name="submit" value="类型——次数 饼图"></input>
+				<input type="hidden" name="draw_type" value="pie"></input>
+				<input type="hidden" name="x_name" value="f_c_type_name"></input>
+				<input type="hidden" name="y_name" value="t_type_cnt"></input>
+			</form>
+		</td>
+	</tr>
+</table>
+</div>
+</br>
+<center><?php echo listInTable($head,$body,$show_col);?></center>
