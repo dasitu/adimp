@@ -1,19 +1,29 @@
 <?php
+include "../common/queries.php";
 // Standard inclusions   
 include("../lib/chart/pChart/pData.class");
 include("../lib/chart/pChart/pChart.class");
 
 header("Content-Type: text/html; charset=utf-8");
-
-if($_GET["t"] == 0)
-	$draw_type = "bar";
-else if($_GET["t"] == 1)
-	$draw_type = "pie";
-else
+if(!isset($_POST["draw_type"]))
 	$draw_type = "bar";
 
-$Data = array(8,4,2,3,2);
-$DataDescription = array('张三','李四','王五','士大夫','搜房');
+$draw_type = $_POST["draw_type"];
+$sql = stripslashes($_POST['sql']);
+$x_name = $_POST['x_name'];
+$y_name = $_POST['y_name'];
+$title = $_POST['submit'];
+
+$result  = $db->fetch_all_array($sql);
+for($i=0;$i<count($result);$i++)
+{
+	$row = $result[$i];
+	$Data[$i] = $row["$y_name"];
+	$DataDescription[$i] = $row["$x_name"];
+}
+
+//$Data = array(8,4,2,3,2);
+//$DataDescription = array('张三','李四','王五','士大夫','搜房');
 
 $canvas_width = 400;
 $canvas_height = 300;
@@ -25,7 +35,6 @@ $bg_color_G = 240;
 $bg_color_B = 240;
 $drawTicks = TRUE;
 $gridLine = 5;
-$title = "标题演示";
 
 // Dataset definition 
 $DataSet = new pData;
@@ -64,7 +73,7 @@ if($draw_type == "pie")
 }
 
 //draw title
-$Test->setFontProperties("../lib/chart/Fonts/JDJYCU.TTF",15);
+$Test->setFontProperties("../lib/chart/Fonts/JDJYCU.TTF",12);
 $Test->drawTitle($margin-$padding,$margin-$padding,$title,50,50,50,$canvas_width-$margin);
 
 //render

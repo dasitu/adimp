@@ -13,6 +13,7 @@ td,div,span {
 	
 .btn {
 	height: 20px;
+	width:130px;
 	padding-top: 2px;
 	border: 1px solid #AECDE7;
 	border-top: 1px solid #AECDE7;
@@ -31,5 +32,6 @@ td,div,span {
 	margin-top:2%;
 	margin-left:5%;
 	height:5%;
-	width:30%;
+	width:98%;
+	border: 0px solid #AECDE7;
 }
