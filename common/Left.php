@@ -42,30 +42,43 @@
 <SCRIPT type=text/javascript>
 var tree = null;
 var root = new TreeNode('系统菜单');
+var menu_cnt = 13;
 
 //the first level menu
-var node1 = new TreeNode('交流与培训管理');
-var node2 = new TreeNode('防火墙管理');
-var node3 = new TreeNode('技术情报管理');
-var node4 = new TreeNode('规范与标准管理');
-root.add(node1);
-root.add(node2);
-root.add(node3);
-root.add(node4);
+var node = new Array();
+for(var i=0;i<menu_cnt;i++)
+{
+	node[i] = new Array();
+}
 
-//the second level
-var node1_1 = new TreeNode('年度培训计划', 'BranchMgr.aspx', 'tree_node.gif', null, 'tree_node.gif', null);
-var node1_2 = new TreeNode('交流培训记录', 'BranchMgr.aspx', 'tree_node.gif', null, 'tree_node.gif', null);
-var node1_3 = new TreeNode('人员培训记录', 'BranchMgr.aspx', 'tree_node.gif', null, 'tree_node.gif', null);
-node1.add(node1_1);
-node1.add(node1_2);
-node1.add(node1_3);
+//the first node used to store the menu name
+node[0][0] = new TreeNode('交流与培训管理');
+node[0][1] = new TreeNode('年度培训计划', '#', 'tree_node.gif', null, 'tree_node.gif', null);
+node[0][2] = new TreeNode('交流培训记录', '#', 'tree_node.gif', null, 'tree_node.gif', null);
+node[0][3] = new TreeNode('人员培训记录', '#', 'tree_node.gif', null, 'tree_node.gif', null);
 
-var node2_1 = new TreeNode('防火墙条款', '../firewall/firewall_rule.php', 'tree_node.gif', null, 'tree_node.gif', null);
-var node2_2 = new TreeNode('防火墙事件', '../firewall/firewall.php', 'tree_node.gif', null, 'tree_node.gif', null);
-node2.add(node2_1);
-node2.add(node2_2);
+node[1][0] = new TreeNode('防火墙管理');
+node[1][1] = new TreeNode('防火墙条款', '../firewall/firewall_rule.php', 'tree_node.gif', null, 'tree_node.gif', null);
+node[1][2] = new TreeNode('防火墙事件', '../firewall/firewall.php', 'tree_node.gif', null, 'tree_node.gif', null);
 
+node[2][0] = new TreeNode('技术情报管理');
+node[3][0] = new TreeNode('规范与标准管理');
+node[4][0] = new TreeNode('出差管理', '../trip/trip.php');
+node[5][0] = new TreeNode('PBC管理', '../pbc/pbc.php');
+node[6][0] = new TreeNode('项目管理', '../project/project.php');
+
+
+for(var outer=0;outer<node.length;outer++)
+{
+	if(typeof(node[outer][0]) != 'undefined'){
+		var nodeL1 = node[outer][0];
+		root.add(node[outer][0]);
+		for(var inner=1;inner<node[outer].length;inner++)
+		{
+			nodeL1.add(node[outer][inner]);
+		}
+	}
+}
 tree = new Tree(root);
 tree.show('menuTree');
 </SCRIPT>

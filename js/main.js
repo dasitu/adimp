@@ -12,3 +12,7 @@ function checkNull(objForm)
 	}
 	return true;
 }
+
+function getDateDiff(start,end){
+	
+}

@@ -31,6 +31,7 @@ CREATE  TABLE IF NOT EXISTS `user` (
   `user_name` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `user_pwd` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `user_depart_id` INT NOT NULL ,
+  `user_active` INT NOT NULL DEFAULT 1 ,
   PRIMARY KEY (`user_id`) ,
   CONSTRAINT `FK_department`
     FOREIGN KEY (`user_depart_id` )
@@ -84,6 +85,33 @@ COLLATE = utf8_unicode_ci;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
+-- Table `project`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `project` ;
+
+SHOW WARNINGS;
+CREATE  TABLE IF NOT EXISTS `project` (
+  `project_id` INT NOT NULL AUTO_INCREMENT ,
+  `project_name` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
+  `project_no` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
+  `project_creator_id` INT NOT NULL ,
+  `project_create_date` INT NOT NULL ,
+  PRIMARY KEY (`project_id`) ,
+  CONSTRAINT `FK_project_user`
+    FOREIGN KEY (`project_creator_id` )
+    REFERENCES `ad_imp`.`user` (`user_id` )
+    ON DELETE CASCADE
+    ON UPDATE NO ACTION)
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+SHOW WARNINGS;
+CREATE INDEX `FK_project_user` ON `project` (`project_creator_id` ASC) ;
+
+SHOW WARNINGS;
+
+-- -----------------------------------------------------
 -- Table `trip`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `trip` ;
@@ -120,6 +148,11 @@ CREATE  TABLE IF NOT EXISTS `trip` (
     FOREIGN KEY (`trip_user_id` )
     REFERENCES `ad_imp`.`user` (`user_id` )
     ON DELETE CASCADE
+    ON UPDATE NO ACTION,
+  CONSTRAINT `FK_trip_project`
+    FOREIGN KEY (`trip_project_id` )
+    REFERENCES `ad_imp`.`project` (`project_id` )
+    ON DELETE CASCADE
     ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -136,21 +169,7 @@ SHOW WARNINGS;
 CREATE INDEX `FK_trip_user` ON `trip` (`trip_user_id` ASC) ;
 
 SHOW WARNINGS;
-
--- -----------------------------------------------------
--- Table `project`
--- -----------------------------------------------------
-DROP TABLE IF EXISTS `project` ;
-
-SHOW WARNINGS;
-CREATE  TABLE IF NOT EXISTS `project` (
-  `project_id` INT NOT NULL AUTO_INCREMENT ,
-  `project_name` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
-  `project_no` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
-  PRIMARY KEY (`project_id`) )
-ENGINE = InnoDB
-DEFAULT CHARACTER SET = utf8
-COLLATE = utf8_unicode_ci;
+CREATE INDEX `FK_trip_project` ON `trip` (`trip_project_id` ASC) ;
 
 SHOW WARNINGS;
 
@@ -404,7 +423,7 @@ CREATE  TABLE IF NOT EXISTS `standard` (
   `s_doc_id` INT NOT NULL ,
   PRIMARY KEY (`standard_id`) ,
   CONSTRAINT `FK_std_doc`
-    FOREIGN KEY (`standard_id` )
+    FOREIGN KEY (`s_doc_id` )
     REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
     ON DELETE CASCADE
     ON UPDATE NO ACTION)
@@ -413,7 +432,7 @@ DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
 SHOW WARNINGS;
-CREATE INDEX `FK_std_doc` ON `standard` (`standard_id` ASC) ;
+CREATE INDEX `FK_std_doc` ON `standard` (`s_doc_id` ASC) ;
 
 SHOW WARNINGS;
 
@@ -513,6 +532,20 @@ INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (2, '方案论证�
 INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (3, '航天及地面组');
 INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (4, '航空组');
 INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (5, '测试组');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `trip_type`
+-- -----------------------------------------------------
+SET AUTOCOMMIT=0;
+INSERT INTO `trip_type` (`trip_type_id`, `trip_type_name`) VALUES (1, '会议');
+INSERT INTO `trip_type` (`trip_type_id`, `trip_type_name`) VALUES (2, '外场');
+INSERT INTO `trip_type` (`trip_type_id`, `trip_type_name`) VALUES (3, '调研');
+INSERT INTO `trip_type` (`trip_type_id`, `trip_type_name`) VALUES (4, '协调');
+INSERT INTO `trip_type` (`trip_type_id`, `trip_type_name`) VALUES (5, '售后服务');
+INSERT INTO `trip_type` (`trip_type_id`, `trip_type_name`) VALUES (6, '培训');
+INSERT INTO `trip_type` (`trip_type_id`, `trip_type_name`) VALUES (7, '其它');
 
 COMMIT;
 
