@@ -75,19 +75,15 @@ AND t.trip_project_id = p.project_id
 AND t.trip_report_doc_id = uf.upfile_id 
 ";
 
-$body = $db->fetch_all_array($sql);
-$body = time2str($body,true,"upfile_time"); //convert the datetime to string, "true"means it is a dataset, "upfile_time" means the column name
-$body = addDownloadLink($body); //add the last image link for download files, the column name is "doc_link"
-echo listInTable($head,$body,$show_col);
-		
 //show part
 $sql_select = " select * ";
 $sql = $sql_select.$sql_from.$where;
-$head = array("ID","用户名","部门","事件","事件类型","日期","证明人","处罚条款");
+$head = array("ID","人员","项目代号","任务类型","出差时间","回所时间","出差天数","出差地点","派差单位","派差单位","派差人员","差旅费用","完成情况","联系人","联系方式","出差报告");
 $show_col = array("trip_id","user_name","depart_name","f_content","f_c_type_name","f_date","f_refer_name","f_rules");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"f_date",false); 
 //convert the datetime to string, "true" means it is a dataset, "f_date" means the column name, "false" means the datetime format is not inlcude the time
+$body = addDownloadLink($body); //add the last image link for download files, the column name is "doc_link"
 ?>
 <div class="topbody">
 <table>
