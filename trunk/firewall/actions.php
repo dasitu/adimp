@@ -24,7 +24,7 @@ if($actions == "insert_firewall_rule")
 {
 	$upfile_name = $_POST['upfile_name'];
 	$upfile = $_FILES['upfile'];
-	$doc_id = uploadFile($db,$config,$upfile_name,$upfile);
+	$doc_id = uploadFile($db,$config,$upfile,$upfile_name);
 	$msg = $doc_id;
 	if(is_numeric($doc_id))
 	{

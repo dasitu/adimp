@@ -9,6 +9,19 @@ function input($tablename,$use,$checkNull,$is_use = true)
 }
 */
 
+//create the show chart button
+function chartButton($sql,$btn_name,$draw_type,$x_col_name,$y_col_name){
+	echo "
+			<form action='../common/image.php' method=post>
+				<input type=hidden name=sql value = '$sql'></input>
+				<input class=btn type=submit name=submit value='$btn_name'></input>
+				<input type=hidden name=draw_type value='$draw_type'></input>
+				<input type=hidden name=x_name value='$x_col_name'></input>
+				<input type=hidden name=y_name value='$y_col_name'></input>
+			</form>
+	";
+}
+
 //return an auto redirect link HTML,$link should be the full address with protocol and $msg the what you want to show in the page.
 //it can be used in both FF and IE
 function goLink($msg, $link = "")
@@ -125,7 +138,7 @@ function ext2img($string_ext)
 }
 
 //*****************************upload file*********************************//
-function uploadFile($db,$config,$upfile_name,$upfile)
+function uploadFile($db,$config,$upfile,$upfile_name="")
 {
 	// the max. size for uploading
 	$max_size = $config['max_size']; 

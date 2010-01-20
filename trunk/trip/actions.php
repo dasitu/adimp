@@ -19,41 +19,38 @@ if(!isset($_POST['actions']))
 $actions = $_POST['actions'];
 $msg = "";
 
-//******************actions for insert firewall_rule**************//
-if($actions == "insert_firewall_rule")
+//******************actions for insert trip**************//
+if($actions == "insert_trip")
 {
-	$upfile_name = $_POST['upfile_name'];
+	//print_r($_POST);
+	//exit;
+	//upload the report doc file to upfiles
 	$upfile = $_FILES['upfile'];
-	$doc_id = uploadFile($db,$config,$upfile_name,$upfile);
+	$doc_id = uploadFile($db,$config,$upfile);
 	$msg = $doc_id;
+	$table_arr = "";
+	$table_name = "trip";
+	
+	//insert the record into table trip
 	if(is_numeric($doc_id))
 	{
-		$firewall_rule['rule_doc_id'] = $doc_id;
-		$insert_id = $db->query_insert("firewall_rule",$firewall_rule);
+		$table_arr['trip_report_doc_id'] = $doc_id;
+		foreach($_POST as $key => $value)
+		{
+			if($key != "submit" && $key != "actions")
+			{
+				$table_arr["$key"] = $_POST["$key"];
+			}
+
+			if($key == "trip_leaving_date" || $key == "trip_back_date")
+			{
+				$table_arr["$key"] = strtotime($_POST["$key"]);
+			}
+		}
+		print_r($table_arr);
+		$insert_id = $db->query_insert($table_name,$table_arr);
 		$msg = "添加成功！";
 	}
-}
-//*********************end insert firewall_rule******************//
-
-//*********************actions for insert firewall**************//
-else if($actions == "insert_firewall")
-{
-	$table_arr = "";
-	$table_name = "firewall";
-	foreach($_POST as $key => $value)
-	{
-		if($key != "submit" && $key != "actions")
-		{
-			$table_arr["$key"] = $_POST["$key"];
-		}
-
-		if($key == "f_date")
-		{
-			$table_arr["$key"] = strtotime($_POST["$key"]);
-		}
-	}
-	$insert_id = $db->query_insert($table_name,$table_arr);
-	$msg = "添加成功！";
 }
 //*********************end insert firewall**********************//
 
