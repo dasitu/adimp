@@ -28,7 +28,7 @@ for($i=0;$i<count($result);$i++)
 
 $canvas_width = 400;
 $canvas_height = 300;
-$margin = 30;
+$margin = 40;
 $radius = 5;
 $padding = $radius + 2;
 $bg_color_R = 240;
@@ -46,7 +46,7 @@ $DataSet->SetAbsciseLabelSerie("Serie2");//this is for pie but no influence with
 
 // Initialise the graph
 $Test = new pChart($canvas_width,$canvas_height);
-$Test->setFontProperties("../lib/chart/Fonts/vistak.TTF",11);
+$Test->setFontProperties("../lib/chart/Fonts/vistak.TTF",9);
 $Test->setGraphArea($margin,$margin,$canvas_width-$margin,$canvas_height-$margin);
 $Test->drawFilledRoundedRectangle($padding,$padding,$canvas_width-$padding,$canvas_height-$padding,$radius,$bg_color_R,$bg_color_G,$bg_color_B);
 $Test->drawRoundedRectangle($radius,$radius,$canvas_width-$radius,$canvas_height-$radius,$radius,$bg_color_R-15,$bg_color_G-15,$bg_color_B-15);

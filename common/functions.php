@@ -68,9 +68,10 @@ echo "<center>
 function listInTable($head,$body,$show_col)
 {
 	//create the header
-	for($header = "<tr>",$i=0;$i<count($head);$i++)
+	$col_cnt = count($head);
+	for($header = "<tr bgColor='#B0DFEF'>",$i=0;$i<$col_cnt;$i++)
 	{
-		$header .= "<td>".$head[$i]."</td>";
+		$header .= "<td><b>".$head[$i]."</b></td>";
 	}
 	$header .= "</tr>";
 
@@ -85,7 +86,10 @@ function listInTable($head,$body,$show_col)
 		}
 		$tr .= "</tr>";
 	}
-
+	if($tr=="")
+	{
+		$tr = "<tr><td colspan=$col_cnt align=center>没有记录！</td></tr>";
+	}
 	return "<table class=mytable>".$header.$tr."</table>";
 }
 
