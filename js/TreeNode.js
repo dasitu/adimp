@@ -158,12 +158,6 @@ function TreeNode(text, url, iconOpen, iconOpenHover, iconClosed, iconClosedHove
 		}
 	}
 	
-	this.node.onmouseup = function() {
-		if (event.button == 2) {
-			
-		}
-	}
-	
 	this.content.onselectstart = function() {
 		return false;	
 	}

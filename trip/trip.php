@@ -20,7 +20,7 @@ header("Content-Type: text/html; charset=utf-8");
 </div>
 <center>
 <!-- user input form -->
-<form name="tripForm" action="../trip/actions.php" method="post" onsubmit="return checkNull(this);">
+<form name="tripForm" enctype="multipart/form-data" action="../trip/actions.php" method="post" onsubmit="return checkNull(this);">
 <table class="mytable">
 	<tr>
 		<td align="right">出差人员</td>
@@ -101,15 +101,15 @@ header("Content-Type: text/html; charset=utf-8");
 		</td>
 	</tr>
 </table>
-<input type="hidden" name="actions" value="insert_firewall" />
+<input type="hidden" name="actions" value="insert_trip" />
 </form>
 
 <script>
-      var cal = Calendar.setup({
-          onSelect: function(cal) { cal.hide() }
-      });
-	cal.manageFields("trip_leaving_date", "trip_leaving_date", "%Y/%m/%d");
+	  var cal = Calendar.setup({
+		  onSelect: function(cal) { cal.hide(); getDateDiff('trip_leaving_date','trip_back_date','trip_day_off'); }
+	  });
 	cal.manageFields("trip_back_date", "trip_back_date", "%Y/%m/%d");
+	cal.manageFields("trip_leaving_date", "trip_leaving_date", "%Y/%m/%d");
 </script>
 </center>
 </body>

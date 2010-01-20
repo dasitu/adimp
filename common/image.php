@@ -4,6 +4,7 @@ include "../common/queries.php";
 include("../lib/chart/pChart/pData.class");
 include("../lib/chart/pChart/pChart.class");
 
+error_reporting(0);
 header("Content-Type: text/html; charset=utf-8");
 if(!isset($_POST["draw_type"]))
 	$draw_type = "bar";
