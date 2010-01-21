@@ -266,8 +266,10 @@ function uploadFile($db,$config,$upfile,$upfile_name="")
 		if ($my_upload->upload($new_file_name)) {
 			$full_path = $my_upload->upload_dir.$my_upload->file_sys_name;
 			$info = $my_upload->get_uploaded_file_info($full_path);
+			
 			//insert into database
-			$file['upfile_name'] = $new_file_name;
+			//delete the extension string if it has
+			$file['upfile_name'] = str_replace(".".$my_upload->file_ext,"",$new_file_name);  
 			$file['upfile_sysname'] = $my_upload->file_sys_name;
 			$file['upfile_time'] = time();
 			$file['upfile_user_id'] = $_SESSION['user_id'];
