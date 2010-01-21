@@ -1,5 +1,5 @@
 <?php
-require_once "../common/queries.php";
+require_once "../common/functions.php";
 require "../lib/upload.class.php"; //classes is the map where the class file is stored (one above the root)
 
 $max_size = 1024*250; // the max. size for uploading

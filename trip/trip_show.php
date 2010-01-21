@@ -1,28 +1,27 @@
 <?php
-require "../common/queries.php";
+require "../common/functions.php";
 header("Content-Type: text/html; charset=utf-8");
 ?>
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 <?php
 $where = "";
 
-/*
-if(isset($_POST['actions']) && $_POST['actions'] == "filter_firewall")
+if(isset($_POST['actions']) && $_POST['actions'] == "filter_trip")
 {
 	$and_cnt = 0;
 	$i=0;
 	$where_and = array();
 
 	//add the user filter
-	if(isset($_POST['f_user_id']))
+	if(isset($_POST['trip_user_id']))
 	{
 		$where_and[$and_cnt] = " ( ";
-		foreach($_POST['f_user_id'] as $uid)
+		foreach($_POST['trip_user_id'] as $uid)
 		{
 			if($i==0)
-				$where_and[$and_cnt] .= " (u.user_id = '$uid') ";
+				$where_and[$and_cnt] .= " (t.trip_user_id = '$uid') ";
 			else
-				$where_and[$and_cnt] .= " or (u.user_id = '$uid') ";
+				$where_and[$and_cnt] .= " or (t.trip_user_id = '$uid') ";
 			$i++;
 		}
 		$where_and[$and_cnt] .= ' ) ';
@@ -30,16 +29,33 @@ if(isset($_POST['actions']) && $_POST['actions'] == "filter_firewall")
 		$i=0;
 	}
 
-	//add the depart filter
-	if(isset($_POST['depart_id']))
+	//add the project filter
+	if(isset($_POST['trip_project_id']))
 	{
 		$where_and[$and_cnt] = " ( ";
-		foreach($_POST['depart_id'] as $depart_id)
+		foreach($_POST['trip_project_id'] as $trip_project_id)
 		{
 			if($i==0)
-				$where_and[$and_cnt] .= " (d.depart_id = '$depart_id') ";
+				$where_and[$and_cnt] .= " (t.trip_project_id = '$trip_project_id') ";
 			else
-				$where_and[$and_cnt] .= " or (d.depart_id = '$depart_id')";
+				$where_and[$and_cnt] .= " or (t.trip_project_id = '$trip_project_id')";
+			$i++;
+		}
+		$where_and[$and_cnt] .= ' ) ';
+		$and_cnt++;
+		$i=0;
+	}
+	
+	//add the trip type filter
+	if(isset($_POST['trip_type_id']))
+	{
+		$where_and[$and_cnt] = " ( ";
+		foreach($_POST['trip_type_id'] as $trip_type_id)
+		{
+			if($i==0)
+				$where_and[$and_cnt] .= " (t.trip_type_id = '$trip_type_id') ";
+			else
+				$where_and[$and_cnt] .= " or (t.trip_type_id = '$trip_type_id')";
 			$i++;
 		}
 		$where_and[$and_cnt] .= ' ) ';
@@ -47,16 +63,16 @@ if(isset($_POST['actions']) && $_POST['actions'] == "filter_firewall")
 		$i=0;
 	}
 
-	//add the data filter
-	if($_POST['f_date_start']!="")
+	//add the leaving date time filter
+	if($_POST['trip_leaving_date_start']!="")
 	{
-		$where_and[$and_cnt] = " f.f_date > '".strtotime($_POST['f_date_start'])."' ";
+		$where_and[$and_cnt] = " t.trip_leaving_date > '".strtotime($_POST['trip_leaving_date_start'])."' ";
 		$and_cnt++;
 	}
 
-	if($_POST['f_date_end']!="")
+	if($_POST['trip_leaving_date_end']!="")
 	{
-		$where_and[$and_cnt]= " f.f_date < '".strtotime($_POST['f_date_end'])."' ";
+		$where_and[$and_cnt]= " t.trip_leaving_date < '".strtotime($_POST['trip_leaving_date_end'])."' ";
 		$and_cnt++;
 	}
 
@@ -67,7 +83,6 @@ if(isset($_POST['actions']) && $_POST['actions'] == "filter_firewall")
 		$and_cnt--;
 	}
 }
-*/
 
 $sql_from = " FROM trip t, trip_type tt, user u, project p, upfiles uf 
 WHERE t.trip_type_id = tt.trip_type_id 

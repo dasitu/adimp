@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../common/queries.php";
+require "../common/functions.php";
 $msg = "";
 if(isset($_SESSION['user_id']))
 {
