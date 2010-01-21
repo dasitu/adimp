@@ -1,4 +1,94 @@
 <?php
+require_once "../lib/database.class.php";
+require_once "../common/config.inc.php";
+
+$db = new Database($config['server'],$config['user'],$config['pass'],$config['database'],$config['tablePrefix']);
+$db->connect();
+
+
+//*****************************login**************************************//
+function login($db,$login,$pass)
+{
+	$sql = "select u.*,d.depart_name from user u, department d where u.user_login='$login' and u.user_pwd=password('$pass') and u.user_depart_id=d.depart_id";
+	$user = $db->query_first($sql);
+	if($user){
+		return $user;
+	}
+	return false;
+}
+//************************************************************************//
+
+//*****************insert one user to table user*************************//
+function insertUser($db,$user)
+{
+	print $db->query_insert("user",$user);
+	print "<BR>";
+}
+//***********************************************************************//
+
+
+//********give the options for selectbox according to the parameters****//
+//*************************return html code****************************//
+function listSelection($db,$table_name,$col_name,$col_value)
+{
+	$sql = "select $col_name,$col_value from $table_name";
+	$rs = $db->fetch_all_array($sql);
+	$options = "";
+	foreach ($rs as $record)
+	{
+		$options .= "<option value='".$record["$col_value"]."'>".$record["$col_name"]."</option>";
+	}
+	return $options;
+}
+//**********************************************************************//
+
+
+//************get the upfile info, the return value is an array**********//
+function getFileInfo($db,$file_id)
+{
+	$sql = "select * from upfiles where upfile_id = $file_id";
+	$file = $db->query_first($sql);
+	return $file;
+}
+//**********************************************************************//
+
+
+//**********check file exsiting in both DB and upload folder*************//
+function checkFileExsit($db,$file_name,$path)
+{
+	$sql = "select * from upfiles where upfile_name='$file_name'";
+	$rs = $db->query_first($sql);
+	if(isset($rs))
+	{
+		$full_sysfile_name = $path.$rs['upfile_sysname'];
+		$del_sql = "delete from upfiles where upfile_sysname = '".$rs['upfile_sysname']."'";
+
+		//exsiting in DB and in folder
+		if($rs['upfile_sysname'] && file_exists($full_sysfile_name))
+		{
+			return true;
+		}
+		else if($rs['upfile_sysname'] && !file_exists($full_sysfile_name))
+		{
+			$db->query($del_sql);
+			return false;
+		}
+	}
+	return false;
+}
+//**********************************************************************//
+
+
+//******************list all of the users in table***********************//
+function listUser($db){
+	$sql = "select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id";
+	$head = array("ID","登录名","用户名","部门");
+	$show_col = array("user_id","user_login","user_name","depart_name");//determin with column will be shown
+	$body = $db->fetch_all_array($sql);
+	return listInTable($head,$body,$show_col);
+}
+//**********************************************************************//
+
 
 //need to be completed. used to create the input
 /*
@@ -9,21 +99,24 @@ function input($tablename,$use,$checkNull,$is_use = true)
 }
 */
 
-//create the show chart button
+//********************create the show chart button**********************//
 function chartButton($sql,$btn_name,$draw_type,$x_col_name,$y_col_name){
-	echo "
-			<form action='../common/image.php' method=post>
-				<input type=hidden name=sql value = '$sql'></input>
-				<input class=btn type=submit name=submit value='$btn_name'></input>
-				<input type=hidden name=draw_type value='$draw_type'></input>
-				<input type=hidden name=x_name value='$x_col_name'></input>
-				<input type=hidden name=y_name value='$y_col_name'></input>
+	echo '
+			<form action="../common/image.php" method=post>
+				<input type=hidden name=sql value = "'.$sql.'"></input>
+				<input class=btn type=submit name=submit value="'.$btn_name.'"></input>
+				<input type=hidden name=draw_type value="'.$draw_type.'"></input>
+				<input type=hidden name=x_name value="'.$x_col_name.'"></input>
+				<input type=hidden name=y_name value="'.$y_col_name.'"></input>
 			</form>
-	";
+	';
 }
+//**********************************************************************//
 
-//return an auto redirect link HTML,$link should be the full address with protocol and $msg the what you want to show in the page.
-//it can be used in both FF and IE
+
+//********return an auto redirect link HTML*****************************//
+//***$link should be the full address with protocol and $msg the what you want to show in the page****//
+//**********it can be used in both FF and IE***************************//
 function goLink($msg, $link = "")
 {
 echo "<center>
@@ -62,6 +155,8 @@ echo "<center>
 	</center>
 	";
 }
+//**********************************************************************//
+
 
 //used to show the dataset in table. $head and $show_col are array. $body is the dataset generate by "$db->fetch_all_array"
 //$show_col means what column will be shown in table, $head and $show_col should have the same size
@@ -92,6 +187,7 @@ function listInTable($head,$body,$show_col)
 	}
 	return "<table class=mytable>".$header.$tr."</table>";
 }
+//**********************************************************************//
 
 //when you use db_array, set the second paremeter to true and give the third paremter $col_name, then the function will convert all of the timestamp to time string 
 function time2str($epoch,$db_array=false,$col_name="",$longtime = true)
@@ -123,8 +219,11 @@ function time2str($epoch,$db_array=false,$col_name="",$longtime = true)
 	}
 	return date($time_format, $epoch);	
 }
+//**********************************************************************//
 
-//add the download file link into the dataset, then it can be listed in the table by listInTable function
+
+//************add the download file link into the dataset***************//
+//*********then it can be listed in the table by listInTable function***//
 function addDownloadLink($upfiles)
 {	
 	for($i=0;$i<count($upfiles);$i++)
@@ -134,12 +233,16 @@ function addDownloadLink($upfiles)
 	}
 	return $upfiles;
 }
+//**********************************************************************//
 
-//convert the extension string to images
+
+//******************convert the extension string to images****************//
 function ext2img($string_ext)
 {
 	return "<img width=20 height=20 border=0 src='../images/filetype/".$string_ext.".gif'></img>";
 }
+//**********************************************************************//
+
 
 //*****************************upload file*********************************//
 function uploadFile($db,$config,$upfile,$upfile_name="")

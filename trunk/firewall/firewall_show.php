@@ -1,5 +1,5 @@
 <?php
-require "../common/queries.php";
+require "../common/functions.php";
 header("Content-Type: text/html; charset=utf-8");
 ?>
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
@@ -85,7 +85,7 @@ $sql_select_t_c = $sql_select_t_c.$sql_from.$where." GROUP by t.f_c_type_name";
 //show part
 $sql_select = " select * ";
 $sql = $sql_select.$sql_from.$where;
-$head = array("ID","用户名","部门","事件","事件类型","日期","证明人","处罚条款");
+$head = array("ID","姓名","部门","事件","事件类型","日期","证明人","处罚条款");
 $show_col = array("firewall_id","user_name","depart_name","f_content","f_c_type_name","f_date","f_refer_name","f_rules");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"f_date",false); 

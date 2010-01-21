@@ -25,13 +25,15 @@ FORM {
 <BODY style="BACKGROUND-IMAGE: url(../images/bg.gif); MARGIN: 0px; BACKGROUND-REPEAT: repeat-x">
 <form id="form1">
   <DIV id=logo style="BACKGROUND-IMAGE: url(../images/logo.png); BACKGROUND-REPEAT: no-repeat">
-    <DIV style="PADDING-RIGHT: 50px; BACKGROUND-POSITION: right 50%; DISPLAY: block; PADDING-LEFT: 0px; BACKGROUND-IMAGE: url(../images/bg_banner_menu.gif); PADDING-BOTTOM: 0px; PADDING-TOP: 3px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 30px; TEXT-ALIGN: right">
+    <DIV style="PADDING-RIGHT: 50px; BACKGROUND-POSITION: right 50%; DISPLAY: block; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; PADDING-TOP: 3px; BACKGROUND-REPEAT: no-repeat; HEIGHT: 33px; TEXT-ALIGN: right">
+	<!--
 	<A href="http://localhost:1479/Web/sys/Top.aspx#">
 	<IMG src="../images/mail.gif" align=absMiddle border=0>
 	</A> 您有新消息
 	<A id=HyperLink1 href="http://localhost:1479/Web/sys/Top.aspx#">5</A>
 	条 <IMG src="../images/menu_seprator.gif" align=absMiddle>
 	<A id=HyperLink3 href="javascript:parent.close();window.opener=null;">退出系统</A>
+	-->
 	</DIV>
 	<DIV style="DISPLAY: block; HEIGHT: 54px"></DIV>
     <DIV style="BACKGROUND-IMAGE: url(../images/bg_nav.gif); BACKGROUND-REPEAT: repeat-x; HEIGHT: 30px">
@@ -52,7 +54,7 @@ FORM {
 				<A href="../common/logout.php" target=_top>
 				<IMG src="../images/nav_changePassword.gif" align=absMiddle border=0>重新登录</A> 
 				<A href="#" target=mainFrame>
-				<IMG src="../images/nav_resetPassword.gif" align=absMiddle border=0>修改密码</A> 
+				<IMG src="../images/nav_resetPassword.gif" align=absMiddle border=0>修改密码</A>
 				<IMG src="../images/menu_seprator.gif" align=absMiddle> 
 				<SPAN id=clock></SPAN>
 			</SPAN>

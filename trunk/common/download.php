@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: text/html; charset=utf-8");
-require "../common/queries.php";
+require "../common/functions.php";
 $file_id = $_GET['id'];
 
 if(@$_SERVER["HTTP_REFERER"]) //Avoid to access directly

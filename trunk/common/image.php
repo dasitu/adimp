@@ -1,5 +1,5 @@
 <?php
-include "../common/queries.php";
+include "../common/functions.php";
 // Standard inclusions   
 include("../lib/chart/pChart/pData.class");
 include("../lib/chart/pChart/pChart.class");
@@ -26,9 +26,9 @@ for($i=0;$i<count($result);$i++)
 //$Data = array(8,4,2,3,2);
 //$DataDescription = array('张三','李四','王五','士大夫','搜房');
 
-$canvas_width = 400;
-$canvas_height = 300;
-$margin = 40;
+$canvas_width = 600;
+$canvas_height = 400;
+$margin = 50;
 $radius = 5;
 $padding = $radius + 2;
 $bg_color_R = 240;

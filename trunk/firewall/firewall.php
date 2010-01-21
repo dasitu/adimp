@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../common/queries.php";
+require "../common/functions.php";
 header("Content-Type: text/html; charset=utf-8");
 ?>
 <html>
@@ -25,14 +25,12 @@ header("Content-Type: text/html; charset=utf-8");
 	<tr>
 		<td align="right">姓名</td>
 		<td align="left">
-		<?php echo $_SESSION['user_name']?>
-		<INPUT type="hidden" name="f_user_id" id="f_user_id" value=<?php echo $_SESSION['user_id']?> />
-		</td>
-	</tr>
-	<tr>
-		<td align="right">所在工程组</td>
-		<td align="left">
-		<?php echo $_SESSION['depart_name']?>
+			<select name="f_user_id" id="f_user_id" alt="NotNull">
+				<?php 
+				//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
+				echo listSelection($db,"user","user_name","user_id");
+				?>
+			</select>
 		</td>
 	</tr>
 	<tr>

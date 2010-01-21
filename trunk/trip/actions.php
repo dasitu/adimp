@@ -1,7 +1,6 @@
 <?php
 session_start();
 header("Content-Type: text/html; charset=utf-8");
-require_once "../common/queries.php";
 require_once "../common/functions.php";
 require "../lib/upload.class.php"; //classes is the map where the class file is stored (one above the root)
 ?>
@@ -47,7 +46,6 @@ if($actions == "insert_trip")
 				$table_arr["$key"] = strtotime($_POST["$key"]);
 			}
 		}
-		print_r($table_arr);
 		$insert_id = $db->query_insert($table_name,$table_arr);
 		$msg = "添加成功！";
 	}

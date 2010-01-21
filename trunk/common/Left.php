@@ -53,9 +53,9 @@ for(var i=0;i<menu_cnt;i++)
 
 //the first node used to store the menu name
 node[0][0] = new TreeNode('交流与培训管理');
-node[0][1] = new TreeNode('年度培训计划', '#', 'tree_node.gif', null, 'tree_node.gif', null);
-node[0][2] = new TreeNode('交流培训记录', '#', 'tree_node.gif', null, 'tree_node.gif', null);
-node[0][3] = new TreeNode('人员培训记录', '#', 'tree_node.gif', null, 'tree_node.gif', null);
+node[0][1] = new TreeNode('年度培训计划', '', 'tree_node.gif', null, 'tree_node.gif', null);
+node[0][2] = new TreeNode('交流培训记录', '', 'tree_node.gif', null, 'tree_node.gif', null);
+node[0][3] = new TreeNode('人员培训记录', '', 'tree_node.gif', null, 'tree_node.gif', null);
 
 node[1][0] = new TreeNode('防火墙管理');
 node[1][1] = new TreeNode('防火墙条款', '../firewall/firewall_rule.php', 'tree_node.gif', null, 'tree_node.gif', null);

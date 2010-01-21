@@ -1,6 +1,6 @@
 <?php
 session_start();
-require "../common/queries.php";
+require "../common/functions.php";
 header("Content-Type: text/html; charset=utf-8");
 ?>
 <html>
