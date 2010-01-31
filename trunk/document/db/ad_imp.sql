@@ -2,6 +2,7 @@ SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL';
 
+SHOW WARNINGS;
 
 -- -----------------------------------------------------
 -- Table `department`
@@ -20,6 +21,36 @@ COLLATE = utf8_unicode_ci;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
+-- Table `pbc_template`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `pbc_template` ;
+
+SHOW WARNINGS;
+CREATE  TABLE IF NOT EXISTS `pbc_template` (
+  `pbc_template_id` INT NOT NULL ,
+  `pbc_template_name` VARCHAR(45) NOT NULL ,
+  `pbc_template_desc` VARCHAR(45) NULL ,
+  PRIMARY KEY (`pbc_template_id`) )
+ENGINE = InnoDB;
+
+SHOW WARNINGS;
+
+-- -----------------------------------------------------
+-- Table `user_role`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `user_role` ;
+
+SHOW WARNINGS;
+CREATE  TABLE IF NOT EXISTS `user_role` (
+  `user_role_id` INT NOT NULL ,
+  `role_name` VARCHAR(45) NOT NULL ,
+  `role_desc` VARCHAR(45) NULL ,
+  PRIMARY KEY (`user_role_id`) )
+ENGINE = InnoDB;
+
+SHOW WARNINGS;
+
+-- -----------------------------------------------------
 -- Table `user`
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS `user` ;
@@ -32,18 +63,21 @@ CREATE  TABLE IF NOT EXISTS `user` (
   `user_pwd` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `user_depart_id` INT NOT NULL ,
   `user_active` INT NOT NULL DEFAULT 1 ,
-  PRIMARY KEY (`user_id`) ,
-  CONSTRAINT `FK_department`
-    FOREIGN KEY (`user_depart_id` )
-    REFERENCES `ad_imp`.`department` (`depart_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
+  `user_pbc_template_id` INT NOT NULL ,
+  `user_role_id` INT NOT NULL ,
+  PRIMARY KEY (`user_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
 
 SHOW WARNINGS;
 CREATE INDEX `FK_department` ON `user` (`user_depart_id` ASC) ;
+
+SHOW WARNINGS;
+CREATE INDEX `FK_pbc_template` ON `user` (`user_pbc_template_id` ASC) ;
+
+SHOW WARNINGS;
+CREATE INDEX `FK_user_role` ON `user` (`user_role_id` ASC) ;
 
 SHOW WARNINGS;
 
@@ -96,12 +130,7 @@ CREATE  TABLE IF NOT EXISTS `project` (
   `project_no` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `project_creator_id` INT NOT NULL ,
   `project_create_date` INT NOT NULL ,
-  PRIMARY KEY (`project_id`) ,
-  CONSTRAINT `FK_project_user`
-    FOREIGN KEY (`project_creator_id` )
-    REFERENCES `ad_imp`.`user` (`user_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`project_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -133,27 +162,7 @@ CREATE  TABLE IF NOT EXISTS `trip` (
   `trip_contact` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL ,
   `trip_phone` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL ,
   `trip_report_doc_id` INT NOT NULL ,
-  PRIMARY KEY (`trip_id`) ,
-  CONSTRAINT `FK_trip_type`
-    FOREIGN KEY (`trip_type_id` )
-    REFERENCES `ad_imp`.`trip_type` (`trip_type_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_trip_doc`
-    FOREIGN KEY (`trip_report_doc_id` )
-    REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_trip_user`
-    FOREIGN KEY (`trip_user_id` )
-    REFERENCES `ad_imp`.`user` (`user_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_trip_project`
-    FOREIGN KEY (`trip_project_id` )
-    REFERENCES `ad_imp`.`project` (`project_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`trip_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci
@@ -185,17 +194,7 @@ CREATE  TABLE IF NOT EXISTS `training_plan` (
   `tplan_doc_id` INT NOT NULL ,
   `tplan_user_id` INT NOT NULL ,
   `tplan_modify_date` INT NOT NULL ,
-  PRIMARY KEY (`tplan_id`) ,
-  CONSTRAINT `FK_tplan_doc`
-    FOREIGN KEY (`tplan_doc_id` )
-    REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_tplan_user`
-    FOREIGN KEY (`tplan_user_id` )
-    REFERENCES `ad_imp`.`user` (`user_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`tplan_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -257,22 +256,7 @@ CREATE  TABLE IF NOT EXISTS `training` (
   `t_grade` INT NOT NULL ,
   `t_period` INT NOT NULL ,
   `t_doc_id` INT NOT NULL ,
-  PRIMARY KEY (`training_id`) ,
-  CONSTRAINT `FK_training_content_type`
-    FOREIGN KEY (`t_content_type_id` )
-    REFERENCES `ad_imp`.`training_content_type` (`t_content_type_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_training_type`
-    FOREIGN KEY (`t_type_id` )
-    REFERENCES `ad_imp`.`training_type` (`ttype_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_training_doc`
-    FOREIGN KEY (`t_doc_id` )
-    REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`training_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -304,17 +288,7 @@ CREATE  TABLE IF NOT EXISTS `personal_training` (
   `p_training_fee` INT NOT NULL ,
   `p_register_doc_id` INT NOT NULL ,
   `p_training_wish` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
-  PRIMARY KEY (`p_training_id`) ,
-  CONSTRAINT `FK_p_training_doc`
-    FOREIGN KEY (`p_register_doc_id` )
-    REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_o_training_user`
-    FOREIGN KEY (`p_training_user_id` )
-    REFERENCES `ad_imp`.`user` (`user_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`p_training_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -357,17 +331,7 @@ CREATE  TABLE IF NOT EXISTS `firewall` (
   `f_date` INT NOT NULL ,
   `f_refer_name` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `f_rules` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
-  PRIMARY KEY (`firewall_id`) ,
-  CONSTRAINT `FK_firewall_content_type`
-    FOREIGN KEY (`f_type_id` )
-    REFERENCES `ad_imp`.`firewall_content_type` (`f_c_type_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_firewall_user`
-    FOREIGN KEY (`f_user_id` )
-    REFERENCES `ad_imp`.`user` (`user_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`firewall_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -389,12 +353,7 @@ SHOW WARNINGS;
 CREATE  TABLE IF NOT EXISTS `firewall_rule` (
   `f_rule_id` INT NOT NULL AUTO_INCREMENT ,
   `rule_doc_id` INT NOT NULL ,
-  PRIMARY KEY (`f_rule_id`) ,
-  CONSTRAINT `FK_firewall_rule_doc`
-    FOREIGN KEY (`rule_doc_id` )
-    REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`f_rule_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -421,12 +380,7 @@ CREATE  TABLE IF NOT EXISTS `standard` (
   `s_publish_date` INT NOT NULL ,
   `s_doc_version` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `s_doc_id` INT NOT NULL ,
-  PRIMARY KEY (`standard_id`) ,
-  CONSTRAINT `FK_std_doc`
-    FOREIGN KEY (`s_doc_id` )
-    REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`standard_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -484,27 +438,7 @@ CREATE  TABLE IF NOT EXISTS `infomation` (
   `info_abstract` TEXT CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `info_keywords` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
   `info_doc_id` INT NOT NULL ,
-  PRIMARY KEY (`info_id`) ,
-  CONSTRAINT `FK_info_source`
-    FOREIGN KEY (`info_source_id` )
-    REFERENCES `ad_imp`.`info_source` (`info_source_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_info_type`
-    FOREIGN KEY (`info_type_id` )
-    REFERENCES `ad_imp`.`info_type` (`info_type_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_info_user`
-    FOREIGN KEY (`info_user_id` )
-    REFERENCES `ad_imp`.`user` (`user_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION,
-  CONSTRAINT `FK_info_doc`
-    FOREIGN KEY (`info_doc_id` )
-    REFERENCES `ad_imp`.`upfiles` (`upfile_id` )
-    ON DELETE CASCADE
-    ON UPDATE NO ACTION)
+  PRIMARY KEY (`info_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
 COLLATE = utf8_unicode_ci;
@@ -524,6 +458,117 @@ CREATE INDEX `FK_info_doc` ON `infomation` (`info_doc_id` ASC) ;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
+-- Table `pbc_biz_type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `pbc_biz_type` ;
+
+SHOW WARNINGS;
+CREATE  TABLE IF NOT EXISTS `pbc_biz_type` (
+  `pbc_biz_type_id` INT NOT NULL AUTO_INCREMENT ,
+  `pbc_biz_type_name` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`pbc_biz_type_id`) )
+ENGINE = InnoDB;
+
+SHOW WARNINGS;
+
+-- -----------------------------------------------------
+-- Table `pbc`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `pbc` ;
+
+SHOW WARNINGS;
+CREATE  TABLE IF NOT EXISTS `pbc` (
+  `pbc_id` INT NOT NULL ,
+  `pbc_user_id` INT NOT NULL ,
+  `pbc_time` INT NULL ,
+  `pbc_reward` INT NULL ,
+  `pbc_grade` INT NULL ,
+  `pbc_status` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`pbc_id`) )
+ENGINE = InnoDB;
+
+SHOW WARNINGS;
+CREATE INDEX `FK_pbc_user` ON `pbc` (`pbc_user_id` ASC) ;
+
+SHOW WARNINGS;
+
+-- -----------------------------------------------------
+-- Table `pbc_data`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `pbc_data` ;
+
+SHOW WARNINGS;
+CREATE  TABLE IF NOT EXISTS `pbc_data` (
+  `pbc_data_id` INT NOT NULL AUTO_INCREMENT ,
+  `pbc_biz_type_id` INT NOT NULL ,
+  `pbc_active_type` VARCHAR(45) NULL ,
+  `pbc_active` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL ,
+  `pbc_end_tag` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL ,
+  `pbc_planned_end_date` INT NULL ,
+  `pbc_refer_task` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL ,
+  `pbc_weights` INT NULL ,
+  `pbc_evaluator` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL ,
+  `pbc_rule` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL ,
+  `pbc_grade_self` INT NULL ,
+  `pbc_grade` INT NULL ,
+  `pbc_comment` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL ,
+  `pbc_id` INT NOT NULL COMMENT 'Which month this record belong to' ,
+  PRIMARY KEY (`pbc_data_id`) )
+ENGINE = InnoDB;
+
+SHOW WARNINGS;
+CREATE INDEX `FK_pbc_biz_type` ON `pbc_data` (`pbc_biz_type_id` ASC) ;
+
+SHOW WARNINGS;
+CREATE INDEX `FK_pbc_data_pbc` ON `pbc_data` (`pbc_id` ASC) ;
+
+SHOW WARNINGS;
+
+-- -----------------------------------------------------
+-- Table `pbc_active_type`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `pbc_active_type` ;
+
+SHOW WARNINGS;
+CREATE  TABLE IF NOT EXISTS `pbc_active_type` (
+  `pbc_active_type_id` INT NOT NULL ,
+  `pbc_active_name` VARCHAR(45) NOT NULL ,
+  `pbc_biz_type_id` INT NOT NULL ,
+  PRIMARY KEY (`pbc_active_type_id`) )
+ENGINE = InnoDB;
+
+SHOW WARNINGS;
+CREATE INDEX `FK_active_type_biz_type` ON `pbc_active_type` (`pbc_biz_type_id` ASC) ;
+
+SHOW WARNINGS;
+
+-- -----------------------------------------------------
+-- Table `pbc_temp_biz`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `pbc_temp_biz` ;
+
+SHOW WARNINGS;
+CREATE  TABLE IF NOT EXISTS `pbc_temp_biz` (
+  `pbc_temp_biz_id` INT NOT NULL ,
+  `pbc_biz_type_id` INT NOT NULL ,
+  `pbc_template_id` INT NOT NULL ,
+  PRIMARY KEY (`pbc_temp_biz_id`) )
+ENGINE = InnoDB;
+
+SHOW WARNINGS;
+CREATE INDEX `FK_pbc_template` ON `pbc_temp_biz` (`pbc_template_id` ASC) ;
+
+SHOW WARNINGS;
+CREATE INDEX `FK_pbc_biz_type` ON `pbc_temp_biz` (`pbc_biz_type_id` ASC) ;
+
+SHOW WARNINGS;
+
+
+SET SQL_MODE=@OLD_SQL_MODE;
+SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
+SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+
+-- -----------------------------------------------------
 -- Data for table `department`
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
@@ -532,6 +577,16 @@ INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (2, '方案论证�
 INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (3, '航天及地面组');
 INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (4, '航空组');
 INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (5, '测试组');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `user_role`
+-- -----------------------------------------------------
+SET AUTOCOMMIT=0;
+INSERT INTO `user_role` (`user_role_id`, `role_name`, `role_desc`) VALUES (1, '超级管理员', '超级管理员，拥有最高权限，可以修改系统配置信息等');
+INSERT INTO `user_role` (`user_role_id`, `role_name`, `role_desc`) VALUES (2, '一般管理员', '一般管理员');
+INSERT INTO `user_role` (`user_role_id`, `role_name`, `role_desc`) VALUES (3, '组长', '每个组通常会有两个组长');
 
 COMMIT;
 
@@ -563,7 +618,59 @@ INSERT INTO `firewall_content_type` (`f_c_type_id`, `f_c_type_name`) VALUES (7, 
 
 COMMIT;
 
+-- -----------------------------------------------------
+-- Data for table `pbc_biz_type`
+-- -----------------------------------------------------
+SET AUTOCOMMIT=0;
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (1, '项目开发任务');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (2, '联试保障任务');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (3, '文档编制、整理');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (4, '评审');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (5, '学习和培训');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (6, '其它');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (7, '防火墙');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (8, '计划管理');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (9, '综合管理及决策支持');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (10, '资源管理');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (11, '成本管理');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (12, '所办公会及各委员会要求');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (13, '管理项目');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (14, '目标制定与任务分解');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (15, '监督与管理');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (16, '组织与流程建设');
+INSERT INTO `pbc_biz_type` (`pbc_biz_type_id`, `pbc_biz_type_name`) VALUES (17, '团队建设');
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `pbc_active_type`
+-- -----------------------------------------------------
+SET AUTOCOMMIT=0;
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (1, '方案论证阶段', 1);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (2, '详细设计阶段', 1);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (3, '测试、测试移交阶段', 1);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (4, '计划制定', 8);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (5, '计划监控与预警', 8);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (6, '计划变更控制', 8);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (7, '外部计划协调', 9);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (8, '计划考核沟通', 9);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (9, '资源协调、统筹', 10);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (10, '项目排序', 10);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (11, '经验数据库', 10);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (12, '预算', 11);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (13, '所级（机制改革）', 13);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (14, '部门', 13);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (15, '预算制定', 15);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (16, '成本控制', 15);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (17, '经营分析及预警监控', 15);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (18, '资源配置', 15);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (19, '风险管理', 15);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (20, '岗位分析及组织建设', 16);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (21, '流程、制度制定及文化', 16);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (22, '企业文化建设', 16);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (23, '人才招聘', 17);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (24, '人才培养', 17);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (25, '绩效管理', 17);
+INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (26, '任职资格管理', 17);
+
+COMMIT;
