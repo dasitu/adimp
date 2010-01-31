@@ -20,19 +20,18 @@ header("Content-Type: text/html; charset=utf-8");
 </div>
 <center>
 <!-- user input form -->
-<form name="tripForm" enctype="multipart/form-data" action="../trip/actions.php" method="post" onsubmit="return checkNull(this);">
+<form name="pbcForm" enctype="multipart/form-data" action="../pbc/actions.php" method="post" onsubmit="return checkNull(this);">
 <table class="mytable">
 	<tr>
-		<td align="right">出差人员</td>
+		<td align="right">业务类别</td>
 		<td align="left">
-		<?php echo $_SESSION['user_name']?>
-		<INPUT type="hidden" name="trip_user_id" id="trip_user_id" value=<?php echo $_SESSION['user_id']?> />
+		<select name="pbc_biz_type_id" id="pbc_biz_type_id"  />
 		</td>
 	</tr>
 	<tr>
-		<td align="right">项目代号</td>
+		<td align="right">活动分类</td>
 		<td align="left">
-		<select name="trip_project_id" id="trip_project_id" alt="NotNull">
+		<select name="pbc_active_type" id="pbc_active_type" alt="NotNull">
 				<?php 
 				//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
 				echo listSelection($db,"project","project_no","project_id");
@@ -41,9 +40,9 @@ header("Content-Type: text/html; charset=utf-8");
 		</td>
 	</tr>
 	<tr>
-		<td align="right">任务类型</td>
+		<td align="right">活动内容</td>
 		<td align="left">
-			<select name="trip_type_id" id="trip_type_id" alt="NotNull">
+			<select name="pbc_active" id="pbc_active" alt="NotNull">
 				<?php 
 				//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
 				echo listSelection($db,"trip_type","trip_type_name","trip_type_id");
@@ -52,49 +51,61 @@ header("Content-Type: text/html; charset=utf-8");
 		</td>
 	</tr>
 	<tr>
-		<td align="right">出差时间</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="trip_leaving_date" id="trip_leaving_date" alt="NotNull" /></td>
+		<td align="right">关联任务</td>
+		<td align="left"><INPUT class=textbox type="textbox" name="pbc_refer_task" id="pbc_refer_task" alt="NotNull" readonly /></td>
 	</tr>
 	<tr>
-		<td align="right">回所时间</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="trip_back_date" id="trip_back_date" alt="NotNull" /></td>
+		<td align="right">权重</td>
+		<td align="left">
+		   <select name="pbc_weights" id="pbc_weights" alt="NotNull" >
+		      <option value = "10"> 10% </option>
+			  <option value = "20"> 20% </option>
+			  <option value = "30"> 30% </option>
+			  <option value = "40"/> 40% </option>
+			  <option value = "50"/> 50% </option>
+			  <option value = "60"/> 60% </option>
+			  <option value = "70"/> 70% </option>
+			  <option value = "80"/> 80% </option>
+			  <option value = "90"/> 90% </option>
+		   </select>
+		</td>
 	</tr>
 	<tr>
-		<td align="right">出差天数</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="trip_day_off" id="trip_day_off" alt="NotNull" readonly /></td>
+		<td align="right">考核主体</td>
+		<td align="left"><INPUT class=textbox type="textbox" name="pbc_evaluator" id="pbc_evaluator" alt="NotNull" /></td>
 	</tr>
 	<tr>
-		<td align="right">出差地点</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="trip_location" id="trip_location" alt="NotNull" /></td>
+		<td align="right">评分规则</td>
+		<td align="left">
+		  <select name="pbc_rule" id="pbc_rule" alt="NotNull" >
+		      <option value = "1"> 0与1 </option>
+			  <option value = "2"> 实现程度得分 </option>
+			  <option value = "3"> 分层得分 </option>
+			  <option value = "4"/> 扣分 </option> 
+		  </select>
+		</td>
+	<tr>
+		<td align="right">完成标志</td>
+		<td align="left"><INPUT class=textbox type="textbox" name="pbc_end_tag" id="pbc_end_tag" alt="NotNull" /></td>
+	</tr>
+	</tr>
+		<tr>
+		<td align="right">计划完成时间</td>
+		<td align="left"><INPUT class=textbox type="textbox" name="pbc_planned_end_date" id="pbc_planned_end_date" alt="NotNull" /></td>
 	</tr>
 	<tr>
-		<td align="right">派差单位</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="trip_sender_depart" id="trip_sender_depart" alt="NotNull" /></td>
+		<td align="right">自评得分</td>
+		<td align="left"><INPUT class=textbox type="textbox" name="pbc_grade_self" id="pbc_grade_self" alt="NotNull" /></td>
 	</tr>
 	<tr>
-		<td align="right">派差人员</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="trip_sender" id="trip_sender" alt="NotNull" /></td>
+		<td align="right">评分</td>
+		<td align="left"><INPUT class=textbox type="textbox" name="pbc_grade" id="pbc_grade" alt="NotNull" /></td>
 	</tr>
 	<tr>
-		<td align="right">差旅费用</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="trip_fee" id="trip_fee" alt="NotNull" /></td>
+		<td align="right">备注</td>
+		<td align="left"><INPUT class=textbox type="textbox" name="pbc_comment" id="pbc_comment" alt="NotNull" /></td>
 	</tr>
-	<tr>
-		<td align="right">完成情况</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="trip_result" id="trip_result" alt="NotNull" /></td>
-	</tr>
-	<tr>
-		<td align="right">联系人</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="trip_contact" id="trip_contact" alt="NotNull" /></td>
-	</tr>
-	<tr>
-		<td align="right">联系方式</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="trip_phone" id="trip_phone" alt="NotNull" /></td>
-	</tr>
-	<tr>
-		<td align="right">出差报告</td>
-		<td align="left"><INPUT type="file" name="upfile" id="upfile" alt="NotNull" /></td>
-	</tr>
+	
 	<tr>
 		<td colSpan="2" align="center">
 		<input class=btn type="submit" name="submit" value="提交"></input>
@@ -106,10 +117,10 @@ header("Content-Type: text/html; charset=utf-8");
 
 <script>
 	  var cal = Calendar.setup({
-		  onSelect: function(cal) { cal.hide(); getDateDiff('trip_leaving_date','trip_back_date','trip_day_off'); }
+		  onSelect: function(cal) { cal.hide();  }
 	  });
-	cal.manageFields("trip_back_date", "trip_back_date", "%Y/%m/%d");
-	cal.manageFields("trip_leaving_date", "trip_leaving_date", "%Y/%m/%d");
+	cal.manageFields("pbc_planned_end_date", "pbc_planned_end_date", "%Y/%m/%d");
+
 </script>
 </center>
 </body>
