@@ -9,10 +9,5 @@ $config['allow_extension'] = array(".rar",".gif",".png", ".zip", ".pdf", ".doc",
 $config['max_length_filename'] = 50;
 $config['max_size'] = 1024*250; // the max. size for uploading
 
-//database server
-$config['server'] = "localhost";
-$config['user'] = "root";
-$config['pass'] = "test123";
-$config['database'] = "ad_imp";
-$config['tablePrefix'] = "";
+//database server configured in Database class
 ?>

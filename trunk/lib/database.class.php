@@ -35,11 +35,10 @@
 ###################################################################################################
 class database {
 
-
-var $server   = ""; //database server
-var $user     = ""; //database login name
-var $pass     = ""; //database login password
-var $database = ""; //database name
+var $server   = "localhost"; //database server
+var $user     = "root"; //database login name
+var $pass     = "test123"; //database login password
+var $database = "ad_imp"; //database name
 var $pre      = ""; //table prefix
 var $debug	  = "0"; //1 if you would like to see the sql
 var $logfile  = "../log/dblog.log";
@@ -60,17 +59,6 @@ var $affected_rows = 0;
 
 var $link_id = 0;
 var $query_id = 0;
-
-
-#-#############################################
-# desc: constructor
-function database($server, $user, $pass, $database, $pre=''){
-	$this->server=$server;
-	$this->user=$user;
-	$this->pass=$pass;
-	$this->database=$database;
-	$this->pre=$pre;
-}#-#constructor()
 
 
 #-#############################################

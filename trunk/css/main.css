@@ -1,5 +1,5 @@
 body {
-	margin: 0px;
+	margin: 5px;
 	font-size:12px;
 	}
 	
@@ -13,7 +13,6 @@ td,div,span {
 	
 .btn {
 	height: 20px;
-	width:130px;
 	padding-top: 2px;
 	border: 1px solid #AECDE7;
 	border-top: 1px solid #AECDE7;
