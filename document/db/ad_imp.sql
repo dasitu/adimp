@@ -27,7 +27,7 @@ DROP TABLE IF EXISTS `pbc_template` ;
 
 SHOW WARNINGS;
 CREATE  TABLE IF NOT EXISTS `pbc_template` (
-  `pbc_template_id` INT NOT NULL ,
+  `pbc_template_id` INT NOT NULL AUTO_INCREMENT ,
   `pbc_template_name` VARCHAR(45) NOT NULL ,
   `pbc_template_desc` VARCHAR(45) NULL ,
   PRIMARY KEY (`pbc_template_id`) )
@@ -36,16 +36,16 @@ ENGINE = InnoDB;
 SHOW WARNINGS;
 
 -- -----------------------------------------------------
--- Table `user_role`
+-- Table `pbc_user_role`
 -- -----------------------------------------------------
-DROP TABLE IF EXISTS `user_role` ;
+DROP TABLE IF EXISTS `pbc_user_role` ;
 
 SHOW WARNINGS;
-CREATE  TABLE IF NOT EXISTS `user_role` (
-  `user_role_id` INT NOT NULL ,
-  `role_name` VARCHAR(45) NOT NULL ,
-  `role_desc` VARCHAR(45) NULL ,
-  PRIMARY KEY (`user_role_id`) )
+CREATE  TABLE IF NOT EXISTS `pbc_user_role` (
+  `pbc_user_role_id` INT NOT NULL AUTO_INCREMENT ,
+  `pbc_role_name` VARCHAR(45) NOT NULL ,
+  `pbc_role_desc` VARCHAR(45) NULL ,
+  PRIMARY KEY (`pbc_user_role_id`) )
 ENGINE = InnoDB;
 
 SHOW WARNINGS;
@@ -64,7 +64,7 @@ CREATE  TABLE IF NOT EXISTS `user` (
   `user_depart_id` INT NOT NULL ,
   `user_active` INT NOT NULL DEFAULT 1 ,
   `user_pbc_template_id` INT NOT NULL ,
-  `user_role_id` INT NOT NULL ,
+  `user_pbc_role_id` INT NOT NULL ,
   PRIMARY KEY (`user_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -77,7 +77,7 @@ SHOW WARNINGS;
 CREATE INDEX `FK_pbc_template` ON `user` (`user_pbc_template_id` ASC) ;
 
 SHOW WARNINGS;
-CREATE INDEX `FK_user_role` ON `user` (`user_role_id` ASC) ;
+CREATE INDEX `FK_user_role` ON `user` (`user_pbc_role_id` ASC) ;
 
 SHOW WARNINGS;
 
@@ -478,12 +478,14 @@ DROP TABLE IF EXISTS `pbc` ;
 
 SHOW WARNINGS;
 CREATE  TABLE IF NOT EXISTS `pbc` (
-  `pbc_id` INT NOT NULL ,
+  `pbc_id` INT NOT NULL AUTO_INCREMENT ,
   `pbc_user_id` INT NOT NULL ,
-  `pbc_time` INT NULL ,
+  `pbc_time` INT NOT NULL ,
   `pbc_reward` INT NULL ,
   `pbc_grade` INT NULL ,
   `pbc_status` VARCHAR(45) NOT NULL ,
+  `pbc_change_time` INT NOT NULL ,
+  `pbc_change_by` VARCHAR(45) NOT NULL ,
   PRIMARY KEY (`pbc_id`) )
 ENGINE = InnoDB;
 
@@ -512,7 +514,7 @@ CREATE  TABLE IF NOT EXISTS `pbc_data` (
   `pbc_grade_self` INT NULL ,
   `pbc_grade` INT NULL ,
   `pbc_comment` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL ,
-  `pbc_id` INT NOT NULL COMMENT 'Which month this record belong to' ,
+  `pbc_id` INT NOT NULL ,
   PRIMARY KEY (`pbc_data_id`) )
 ENGINE = InnoDB;
 
@@ -531,7 +533,7 @@ DROP TABLE IF EXISTS `pbc_active_type` ;
 
 SHOW WARNINGS;
 CREATE  TABLE IF NOT EXISTS `pbc_active_type` (
-  `pbc_active_type_id` INT NOT NULL ,
+  `pbc_active_type_id` INT NOT NULL AUTO_INCREMENT ,
   `pbc_active_name` VARCHAR(45) NOT NULL ,
   `pbc_biz_type_id` INT NOT NULL ,
   PRIMARY KEY (`pbc_active_type_id`) )
@@ -549,7 +551,7 @@ DROP TABLE IF EXISTS `pbc_temp_biz` ;
 
 SHOW WARNINGS;
 CREATE  TABLE IF NOT EXISTS `pbc_temp_biz` (
-  `pbc_temp_biz_id` INT NOT NULL ,
+  `pbc_temp_biz_id` INT NOT NULL AUTO_INCREMENT ,
   `pbc_biz_type_id` INT NOT NULL ,
   `pbc_template_id` INT NOT NULL ,
   PRIMARY KEY (`pbc_temp_biz_id`) )
@@ -581,12 +583,23 @@ INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (5, '测试组');
 COMMIT;
 
 -- -----------------------------------------------------
--- Data for table `user_role`
+-- Data for table `pbc_template`
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
-INSERT INTO `user_role` (`user_role_id`, `role_name`, `role_desc`) VALUES (1, '超级管理员', '超级管理员，拥有最高权限，可以修改系统配置信息等');
-INSERT INTO `user_role` (`user_role_id`, `role_name`, `role_desc`) VALUES (2, '一般管理员', '一般管理员');
-INSERT INTO `user_role` (`user_role_id`, `role_name`, `role_desc`) VALUES (3, '组长', '每个组通常会有两个组长');
+INSERT INTO `pbc_template` (`pbc_template_id`, `pbc_template_name`, `pbc_template_desc`) VALUES (1, '技术人员', '技术人员的模板，大多数人的模板');
+INSERT INTO `pbc_template` (`pbc_template_id`, `pbc_template_name`, `pbc_template_desc`) VALUES (2, '部门主任', '部门主任的模板');
+INSERT INTO `pbc_template` (`pbc_template_id`, `pbc_template_name`, `pbc_template_desc`) VALUES (3, '计划及行政助理', '计划及行政助理');
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `pbc_user_role`
+-- -----------------------------------------------------
+SET AUTOCOMMIT=0;
+INSERT INTO `pbc_user_role` (`pbc_user_role_id`, `pbc_role_name`, `pbc_role_desc`) VALUES (1, '管理人员', '通常为办公室的用户');
+INSERT INTO `pbc_user_role` (`pbc_user_role_id`, `pbc_role_name`, `pbc_role_desc`) VALUES (2, '组长', '每个组通常会有两个组长，组长负责组员');
+INSERT INTO `pbc_user_role` (`pbc_user_role_id`, `pbc_role_name`, `pbc_role_desc`) VALUES (3, '组员', '一般用户');
+INSERT INTO `pbc_user_role` (`pbc_user_role_id`, `pbc_role_name`, `pbc_role_desc`) VALUES (4, '超级管理员', '主任用户，不需填写pbc，但有权限为其他人打分');
 
 COMMIT;
 
@@ -672,5 +685,32 @@ INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz
 INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (24, '人才培养', 17);
 INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (25, '绩效管理', 17);
 INSERT INTO `pbc_active_type` (`pbc_active_type_id`, `pbc_active_name`, `pbc_biz_type_id`) VALUES (26, '任职资格管理', 17);
+
+COMMIT;
+
+-- -----------------------------------------------------
+-- Data for table `pbc_temp_biz`
+-- -----------------------------------------------------
+SET AUTOCOMMIT=0;
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (1, 1, 1);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (2, 2, 1);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (3, 3, 1);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (4, 4, 1);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (5, 5, 1);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (6, 6, 1);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (7, 7, 1);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (8, 12, 2);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (9, 13, 2);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (10, 14, 2);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (11, 15, 2);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (12, 16, 2);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (13, 17, 2);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (14, 7, 2);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (15, 8, 3);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (16, 9, 3);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (17, 10, 3);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (18, 11, 3);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (19, 6, 3);
+INSERT INTO `pbc_temp_biz` (`pbc_temp_biz_id`, `pbc_biz_type_id`, `pbc_template_id`) VALUES (20, 7, 3);
 
 COMMIT;

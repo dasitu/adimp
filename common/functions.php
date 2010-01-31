@@ -2,9 +2,8 @@
 require_once "../lib/database.class.php";
 require_once "../common/config.inc.php";
 
-$db = new Database($config['server'],$config['user'],$config['pass'],$config['database'],$config['tablePrefix']);
+$db = new database();
 $db->connect();
-
 
 //*****************************login**************************************//
 function login($db,$login,$pass)
@@ -29,11 +28,17 @@ function insertUser($db,$user)
 
 //********give the options for selectbox according to the parameters****//
 //*************************return html code****************************//
-function listSelection($db,$table_name,$col_name,$col_value)
+function listSelection($db,$table_name,$col_name,$col_value,$where="")
 {
-	$sql = "select $col_name,$col_value from $table_name";
+	$sql = "select $col_name,$col_value from $table_name $where";
 	$rs = $db->fetch_all_array($sql);
 	$options = "";
+
+	//if the col_value used in multi-table queries, it will contain the table name before '.' like "user.username",
+	// but when you use the name in the array, it should be "username", so do the things followed.
+	$col_value = strrchr($col_value, ".")? str_replace('.','', strrchr($col_value, ".")) : $col_value;
+	$col_name = strrchr($col_name, ".")? str_replace('.','', strrchr($col_name, ".")) : $col_name;
+	
 	foreach ($rs as $record)
 	{
 		$options .= "<option value='".$record["$col_value"]."'>".$record["$col_name"]."</option>";
