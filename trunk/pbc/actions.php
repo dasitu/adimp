@@ -15,6 +15,9 @@ if(!isset($_POST['actions']))
 	exit;
 }
 
+print_r($_POST);
+exit;
+
 $actions = $_POST['actions'];
 $msg = "";
 

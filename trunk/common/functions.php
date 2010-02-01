@@ -5,6 +5,46 @@ require_once "../common/config.inc.php";
 $db = new database();
 $db->connect();
 
+//**********rule for check the user can evaluate the grade of itself******//
+function isSelfCanEvaluate($db,$user_id,$pbc_time)
+{
+	$current_month = date("n");
+	$current_year = date('Y');
+	//You can only evaluate the pbc of last month
+	if( (date('n',$pbc_time) == ($current_month - 1)) && (date('Y',$pbc_time) == $current_year) )
+	{
+		//check the time range
+		$start_date = mktime(0,0,0,$current_month,1);//the 1st day of the current month
+		$end_date = mktime(23,59,59,$current_month,1);//the 1st day of the current month
+		$current = time();
+
+		//echo time2str($start_date)."<br>";
+		//echo time2str($end_date)."<br>";
+		//echo time2str($current)."<br>";
+
+		if($current >= $start_date && $current <= $end_date)
+		{
+			//check the current status of pbc
+			$sql = "SELECT p.pbc_status
+					FROM	user u, pbc p
+					WHERE	u.user_id = '$user_id'
+					AND		p.pbc_user_id = u.user_id 
+					AND		MONTH(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $current_month 
+					AND		YEAR(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $current_year";
+			//echo $sql;
+			$pbc = $db->query_first($sql);
+			$pbc_status = $pbc['pbc_status'];
+			//pbc process "initial->submitted->closed"
+			if($pbc_status == "submitted")
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+//************************************************************************//
+
 //*****************************login**************************************//
 function login($db,$login,$pass)
 {
@@ -287,4 +327,25 @@ function uploadFile($db,$config,$upfile,$upfile_name="")
 	return $my_upload->show_error_string();
 }
 //****************************end upload file******************************//
+
+//*****************************explain the 评分规则 **********************//
+function parseGradeRule($rule_num)
+{
+	switch ($rule_num) {
+		case 1:
+			return "0与1";
+			break;
+		case 2:
+			return "实现程度得分";
+			break;
+		case 3:
+			return "分层得分";
+			break;
+		case 4:
+			return "扣分";
+			break;
+		default:
+			return false;
+	}
+}
 ?>

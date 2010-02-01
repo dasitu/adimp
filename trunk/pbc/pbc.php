@@ -17,8 +17,6 @@ $xajax->printJavascript();
   </head>
 <body>
 <div class="topbody">
-	<input class=btn type="button" name="filter" value="筛选数据" onclick="location.href='../pbc/pbc_search.php'"></input>
-	&nbsp;&nbsp;
 	<input class=btn type="button" name="filter" value="查看记录" onclick="location.href='../pbc/pbc_show.php'"></input>
 </div>
 <center>
@@ -97,10 +95,6 @@ $xajax->printJavascript();
 		<tr>
 		<td align="right">计划完成时间</td>
 		<td align="left"><INPUT class=textbox type="textbox" name="pbc_planned_end_date" id="pbc_planned_end_date" alt="NotNull" /></td>
-	</tr>
-	<tr>
-		<td align="right">自评得分</td>
-		<td align="left"><INPUT class=textbox type="textbox" name="pbc_grade_self" id="pbc_grade_self" alt="NotNull" /></td>
 	</tr>
 	<tr>
 		<td align="right">备注</td>
