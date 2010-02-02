@@ -6,7 +6,7 @@ $db = new database();
 $db->connect();
 
 //**********rule for check the user can evaluate the grade of itself******//
-function isSelfCanEvaluate($db,$user_id,$pbc_time)
+function isSelfCanEvaluate($pbc_status,$pbc_time)
 {
 	$current_month = date("n");
 	$current_year = date('Y');
@@ -24,18 +24,40 @@ function isSelfCanEvaluate($db,$user_id,$pbc_time)
 
 		if($current >= $start_date && $current <= $end_date)
 		{
-			//check the current status of pbc
-			$sql = "SELECT p.pbc_status
-					FROM	user u, pbc p
-					WHERE	u.user_id = '$user_id'
-					AND		p.pbc_user_id = u.user_id 
-					AND		MONTH(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $current_month 
-					AND		YEAR(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $current_year";
-			//echo $sql;
-			$pbc = $db->query_first($sql);
-			$pbc_status = $pbc['pbc_status'];
+			//check the status of pbc
 			//pbc process "initial->submitted->closed"
 			if($pbc_status == "submitted")
+			{
+				return true;
+			}
+		}
+	}
+	return false;
+}
+//************************************************************************//
+
+//***********check the condition of submit the current PBC ***************//
+function isCanSubmitPBC($pbc_status,$pbc_time)
+{
+	$current_month = date("n");
+	$current_year = date('Y');
+	//You can only evaluate the pbc of last month
+	if( (date('n',$pbc_time) == $current_month) && (date('Y',$pbc_time) == $current_year) )
+	{
+		//check the time range
+		$start_date = mktime(0,0,0,$current_month,1);//the 1st day of the current month
+		$end_date = mktime(23,59,59,$current_month,1);//the 1st day of the current month
+		$current = time();
+
+		//echo time2str($start_date)."<br>";
+		//echo time2str($end_date)."<br>";
+		//echo time2str($current)."<br>";
+
+		if($current >= $start_date && $current <= $end_date)
+		{
+			//check the current status of pbc
+			//pbc process "initial->submitted->closed"
+			if($pbc_status == "initial")
 			{
 				return true;
 			}
@@ -348,4 +370,47 @@ function parseGradeRule($rule_num)
 			return false;
 	}
 }
+//**************************************************************************//
+
+//*******************************expain PBC状态*****************************//
+function parsePBCStatus($pbc_status)
+{
+	switch ($pbc_status) {
+		case "initial":
+			return "已保存";
+			break;
+		case "submitted":
+			return "已提交";
+			break;
+		case "self_scored":
+			return "已自评";
+			break;
+		case "scored":
+			return "已评分";
+			break;
+		case "closed":
+			return "已结束";
+			break;
+		default:
+			return false;
+	}
+}
+//**************************************************************************//
+
+//***********************************计算PBC总分*****************************//
+function calculatePBC($pbc_data_arr)
+{
+	$total = 0;
+	
+	foreach($pbc_data_arr as $pbc_data)
+	{
+		$weight = $pbc_data['pbc_weights'];
+		$grade = $pbc_data['pbc_grade'];
+		if($pbc_data['pbc_rule'] == 4)// 扣分
+			$grade = 0 - $grade;
+		$total += $grade*$weight;
+	}
+	return $total/100;
+}
+//***************************************************************************//
 ?>
