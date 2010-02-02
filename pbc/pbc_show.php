@@ -43,12 +43,16 @@ and pd.pbc_id = p.pbc_id
 and pd.pbc_biz_type_id = pbt.pbc_biz_type_id
 and p.pbc_user_id = u.user_id  
 and u.user_depart_id = depart_id
+order by pbt.pbc_biz_type_id
 ";
+//echo $sql."<br>";
 $head = array("业务类型","活动分类","活动内容","完成标志","计划完成时间","关联任务","权重","考核主体","评分规则","自评分","评分","备注");
 $show_col = array("pbc_biz_type_name","pbc_active_type","pbc_active","pbc_end_tag","pbc_planned_end_date","pbc_refer_task","pbc_weights","pbc_evaluator","pbc_rule","pbc_grade_self","pbc_grade","pbc_comment");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"pbc_planned_end_date",false);
 //convert the datetime to string, "true" means it is a dataset, "f_date" means the column name, "false" means the datetime format is not inlcude the time
+
+$pbc_status = @$body[0]['pbc_status'];
 
 //show the table title
 if(@$body[0])
@@ -57,7 +61,14 @@ if(@$body[0])
 			"——".$body[0]['user_name'].
 			"——".$year."年".$month."月"."
 			</b>
-		 </font>";
+		 </font>
+<br><br>
+<div align='left' style='margin-left:25px;'>
+<b>上一次更改时间: </b>".time2str(@$body[0]['pbc_change_time'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>更改人: </b>".@$body[0]['pbc_change_by']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>状态: </b><font color=red>".parsePBCStatus($pbc_status)."</font>
+</div>";
+
 //show the table itself
 ?>
 <form name="pbcSubmitForm" action="../pbc/actions.php" method="post" >
@@ -70,19 +81,23 @@ if(@$body[0])
 		
 		$current_pbc_time = @$body[0]['pbc_time'];
 		$current_pbc_id   = @$body[0]['pbc_id'];
-		$is_evaluate = isSelfCanEvaluate($db,$_SESSION['user_id'],$current_pbc_time);
+		$pbc_reward = @$body[0]['pbc_reward'];
+		$is_evaluate = isSelfCanEvaluate($pbc_status,$current_pbc_time);
+		$is_submit = isCanSubmitPBC($pbc_status,$current_pbc_time);
 		$final_btn = "";
 		$action = "";
 
 		if($is_evaluate)
 		{
+			
 			$action = "self_evaluate"; //used to indentify the action in the "../pbc/actions.php"
 			$final_btn = "<input class='btn' type='submit' name='submit' value='提交自评分'></input>";
 		}
 
-		if (date("n",$current_pbc_time) == date('n'))
+		if ($is_submit)
 		{
 			$action = "pbc_submit";
+			$pbc_reward = "<input name='pbc_reward' type='textbox' maxlength=6 size='4'></input>";
 			$is_evaluate = false;
 			$final_btn = "
 			<input class='btn' type='button' name='back' value='继续录入' onclick=\"location.href='../pbc/pbc.php'\"></input>
@@ -128,6 +143,15 @@ if(@$body[0])
 		if($tr=="")
 		{
 			$tr = "<tr><td colspan=$col_cnt align=center>没有记录！</td></tr>";
+		}
+		else
+		{
+			$tr .= "<tr>
+						<td colspan=3 align=right>本月预计绩效奖:</td><td colspan=3>
+						$pbc_reward
+						</td>
+						<td colspan=3 align=right>PBC合计得分:</td><td colspan=3>".calculatePBC($body)."</td>
+					</tr>";
 		}
 		echo $header.$tr."
 		</table>

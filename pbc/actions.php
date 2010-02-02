@@ -14,12 +14,8 @@ if(!isset($_POST['actions']))
 	golink($msg,$config['index']);//print a js for automatic redirect
 	exit;
 }
-
-print_r($_POST);
-exit;
-
 $actions = $_POST['actions'];
-$msg = "";
+$msg = "操作失败";
 
 //*********************actions for insert table**************//
 if($actions == "insert_pbc")
@@ -40,7 +36,7 @@ if($actions == "insert_pbc")
 		$table_arr['pbc_time'] = time();
 		$table_arr['pbc_status'] = "initial";
 		$table_arr['pbc_change_time'] = time();
-		$table_arr['pbc_change_by'] = $_POST['user_name'];
+		$table_arr['pbc_change_by'] = $_SESSION['user_name'];
 		$pbc_id = $db->query_insert($table_name,$table_arr);
 	}
 	
@@ -62,8 +58,49 @@ if($actions == "insert_pbc")
 	$insert_id = $db->query_insert($table_name,$table_arr);
 	$msg = "添加成功！";
 }
-//*********************end insert firewall**********************//
+//*********************end insert**********************//
 
+//********************submit the pbc*******************//
+else if($actions == "pbc_submit")
+{
+	$pbc_id = $_POST['pbc_id'];
+	$sql = "UPDATE pbc 
+			SET pbc_status = 'submitted',
+				pbc_reward = ".$_POST['pbc_reward'].",
+				pbc_change_time = '".time()."',
+				pbc_change_by = '".$_SESSION['user_name']."'
+			WHERE pbc_id = '$pbc_id'";
+	//echo $sql;
+	if($db->query($sql))
+		$msg = "提交成功！";
+}
+//*****************************************************//
+else if($actions == "self_evaluate")
+{
+	$pbc_id = $_POST['pbc_id'];
+	foreach($_POST as $key => $value)
+	{
+		if(substr($key, 0, 14) == 'pbc_grade_self')
+		{
+			$arr = explode("#",$key);
+			$col_name = $arr[0];
+			$col_where = $arr[1];
+			$sql = "update pbc_data set $col_name='$value' where pbc_data_id='$col_where'";
+			//echo $sql."<br>";
+			$db->query($sql);
+		}
+	}
+	$sql = "UPDATE pbc 
+		SET pbc_status= 'self_scored',
+			pbc_change_time = '".time()."',
+			pbc_change_by = '".$_SESSION['user_name']."'
+		WHERE pbc_id = '$pbc_id'";
+	//echo $sql;
+	if($db->query($sql))
+		$msg = "提交成功！";
+}
+//***************submit the self grade*****************//
+//*****************************************************//
 //direct back to the page with the info
 golink($msg,$_SERVER["HTTP_REFERER"]);//print a js for automatic redirect
 
