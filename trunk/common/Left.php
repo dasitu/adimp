@@ -64,7 +64,10 @@ node[1][2] = new TreeNode('防火墙事件', '../firewall/firewall.php', 'tree_n
 node[2][0] = new TreeNode('技术情报管理');
 node[3][0] = new TreeNode('规范与标准管理');
 node[4][0] = new TreeNode('出差管理', '../trip/trip.php');
+
 node[5][0] = new TreeNode('PBC管理', '../pbc/pbc.php');
+node[5][1] = new TreeNode('管理PBC', '../pbc/pbc_group.php');
+
 node[6][0] = new TreeNode('项目管理', '../project/project.php');
 
 

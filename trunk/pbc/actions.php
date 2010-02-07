@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once("../common/session.php");
 header("Content-Type: text/html; charset=utf-8");
 require_once "../common/functions.php";
 error_reporting(-1);
