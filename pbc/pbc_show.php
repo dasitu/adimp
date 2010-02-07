@@ -1,34 +1,35 @@
 <?php
-session_start();
+require_once("../common/session.php");
 require "../common/functions.php";
 header("Content-Type: text/html; charset=utf-8");
 ?>
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 <?php
-$where = "";
+$user_id = @$_GET['uid'];
 @$month = $_GET['m'];
 @$year = $_GET['y'];
 if($month=="")
-{
 	$month = date('n');
-}
 if($year=="")
-{
 	$year = date('Y');
-}
+if($user_id=="")
+	$user_id = $_SESSION['user_id'];
 ?>
 <div class="topbody">
 <form action='#' method="get">
-<input class=btn type='button' onclick="location.href='?m=<?php echo $month-1;?>'" value="上个月"></input>
 <?php
+echo "<input class=btn type='button' onclick=\"location.href='?m=".($month-1)."&uid=".$user_id."'\" value='上个月'></input>";
 if($month != date('n',time()) || $year != date('Y',time()) )
-	echo "<input class=btn type='button' onclick=\"location.href='?m=".date('n',time())."'\" value='当月'></input> ";
+	echo "<input class=btn type='button' onclick=\"location.href='?m=".date('n',time())."&uid=$user_id'\" value='当月'></input> ";
 if($month < date('n',time()) && $year <= date('Y',time()) )
-	echo '<input class=btn type=button onclick="location.href=\'?m=' .($month+1). '\'" value="下个月"></input> ';
-?>
-年份：<input name=y type=textbox size='4' value=<?php echo $year?>></input>
+	echo '<input class=btn type=button onclick="location.href=\'?m='.($month+1).'&uid=$user_id\'" value="下个月"></input> ';
+echo "
+年份：<input name=y type=textbox size='4' value=".$year."></input>
 月份：<input name=m type=textbox size='3'></input>
-<input class=btn type="submit" value='GO'></input>
+<input name=uid type=hidden value=".$user_id."></input>
+<input class=btn type=submit value='GO'></input>
+";
+?>
 </form>
 </div>
 </br>
@@ -36,7 +37,7 @@ if($month < date('n',time()) && $year <= date('Y',time()) )
 <?php
 //全部显示
 $sql = "select * FROM pbc_data pd, user u, pbc p, pbc_biz_type pbt, department dp
-WHERE u.user_id = ".$_SESSION['user_id']." 
+WHERE u.user_id = ".$user_id." 
 and MONTH(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $month 
 and YEAR(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $year 
 and pd.pbc_id = p.pbc_id

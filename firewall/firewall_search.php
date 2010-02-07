@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once("../common/session.php");
 require "../common/functions.php";
 header("Content-Type: text/html; charset=utf-8");
 ?>

@@ -19,7 +19,9 @@ if(isset($_POST['btnLogin']))
 		$_SESSION['user_login'] = $user['user_login'];
 		$_SESSION['user_id'] = $user['user_id'];
 		$_SESSION['depart_name'] = $user['depart_name'];
-		$msg = "succesessful";
+		$_SESSION['depart_id'] = $user['user_depart_id'];
+		$_SESSION['pbc_role_id'] = $user['user_pbc_role_id'];
+		$msg = "login succesessfully";
 		header("location:../index/index.php");
 	}
 }

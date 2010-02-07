@@ -1,5 +1,5 @@
 <?php
-session_start();
+require_once("../common/session.php");
 error_reporting(0);
 require "../common/xajax_server.php";
 require_once ("../common/functions.php");
