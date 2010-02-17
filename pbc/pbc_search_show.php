@@ -48,13 +48,13 @@ if(isset($_POST['actions']) && $_POST['actions'] == "filter_pbc")
 	//add the data filter
 	if($_POST['pbc_date_start']!="")
 	{
-		$where_and[$and_cnt] = " pbc.pbc_time > '".strtotime($_POST['pbc_date_start'])."' ";
+		$where_and[$and_cnt] = " p.pbc_time > '".strtotime($_POST['pbc_date_start'])."' ";
 		$and_cnt++;
 	}
 
 	if($_POST['pbc_date_end']!="")
 	{
-		$where_and[$and_cnt]= " pbc.pbc_time < '".strtotime($_POST['pbc_date_end'])."' ";
+		$where_and[$and_cnt]= " p.pbc_time < '".strtotime($_POST['pbc_date_end'])."' ";
 		$and_cnt++;
 	}
 
