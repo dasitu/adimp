@@ -35,6 +35,7 @@ $sql[2] = $sql_common." AND dp.depart_id=".$_SESSION['depart_id'];
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 <div class="topbody">
 <form action='#' method="get">
+    
 	<input class=btn type='button' onclick="location.href='?m=<?php echo $month-1;?>'" value="上个月"></input>
 	<?php
 	if($month != date('n',time()) || $year != date('Y',time()) )
