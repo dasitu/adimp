@@ -192,7 +192,7 @@ function goLink($msg, $link = "")
 echo "<center>
 	<font color='red'>$msg</font>
 	<br />
-	页面将在 <span style='color: red; font-size:18px;' id=\"totalSecond\">3</span> 秒后跳转至以下地址,如果没有自动跳转，请尝试点击链接 <br><br>
+	页面将在 <span style='color: red; font-size:18px;' id=\"totalSecond\">2</span> 秒后跳转至以下地址,如果没有自动跳转，请尝试点击链接 <br><br>
 	<a href='$link'>$link</a><br>
 	<script language=\"javascript\" type=\"text/javascript\">
 		var second = document.getElementById('totalSecond').textContent;
@@ -404,10 +404,11 @@ function parsePBCStatus($pbc_status)
 //**************************************************************************//
 
 //***********************************计算PBC总分*****************************//
-function calculatePBC($pbc_data_arr)
+function calculatePBC($pbc_id,$db)
 {
 	$total = 0;
-	
+	$sql = "select * from pbc_data where pbc_id='".$pbc_id."'";
+	$pbc_data_arr = $db->fetch_all_array($sql);
 	foreach($pbc_data_arr as $pbc_data)
 	{
 		$weight = $pbc_data['pbc_weights'];
@@ -416,7 +417,7 @@ function calculatePBC($pbc_data_arr)
 			$grade = 0 - $grade;
 		$total += $grade*$weight;
 	}
-	return $total/100;
+	return number_format($total/100, 2, '.', '');
 }
 //***************************************************************************//
 

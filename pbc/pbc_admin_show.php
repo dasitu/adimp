@@ -91,10 +91,8 @@ echo "
 		$is_submit = isCanSubmitPBC($pbc_config,$pbc_status,$current_pbc_time,'1');	//#admin = 1
 		$final_btn = "";
 		$action = "";
-
 		if($is_evaluate)
 		{
-			
 			$action = "pbc_evaluate"; //used to indentify the action in the "../pbc/actions.php"
 			$final_btn = "<input class='btn' type='submit' name='submit' value='提交评分'></input>";
 		}
@@ -153,7 +151,7 @@ echo "
 						<td colspan=3 align=right>本月预计绩效奖:</td><td colspan=3>
 						$pbc_reward
 						</td>
-						<td colspan=3 align=right>PBC合计得分:</td><td colspan=3>".calculatePBC($body)."</td>
+						<td colspan=3 align=right>PBC合计得分:</td><td colspan=3>".$body[0]['pbc_total_grade']."</td>
 					</tr>";
 		}
 		echo $header.$tr."
