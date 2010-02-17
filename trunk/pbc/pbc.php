@@ -1,6 +1,5 @@
 <?php
 require_once("../common/session.php");
-error_reporting(0);
 require "../common/xajax_server.php";
 require_once ("../common/functions.php");
 header("Content-Type: text/html; charset=utf-8");
