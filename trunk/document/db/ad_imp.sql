@@ -482,7 +482,7 @@ CREATE  TABLE IF NOT EXISTS `pbc` (
   `pbc_user_id` INT NOT NULL ,
   `pbc_time` INT NOT NULL ,
   `pbc_reward` INT NULL ,
-  `pbc_total_grade` INT NULL ,
+  `pbc_total_grade` FLOAT NULL ,
   `pbc_status` VARCHAR(45) NOT NULL ,
   `pbc_change_time` INT NOT NULL ,
   `pbc_change_by` VARCHAR(45) NOT NULL ,

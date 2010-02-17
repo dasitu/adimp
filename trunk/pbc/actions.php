@@ -111,7 +111,7 @@ else if($actions == "pbc_evaluate")
 	$pbc_id = $_POST['pbc_id'];
 	foreach($_POST as $key => $value)
 	{
-		if(substr($key, 0, 14) == 'pbc_grade')
+		if(substr($key, 0, 9) == 'pbc_grade')
 		{
 			$arr = explode("#",$key);
 			$col_name = $arr[0];
@@ -121,14 +121,21 @@ else if($actions == "pbc_evaluate")
 			$db->query($sql);
 		}
 	}
+
 	$pbc_status = 'scored';
 	$update_user = $_SESSION['user_name'];
-	if(	updatePBCStatus($pbc_id,$pbc_status,$update_user,$db))
+	$pbc_total = calculatePBC($pbc_id,$db);
+	$sql = "UPDATE pbc 
+	SET pbc_status= '".$pbc_status."',
+		pbc_total_grade = '".$pbc_total."',
+		pbc_change_time = '".time()."',
+		pbc_change_by = '".$update_user."'
+	WHERE pbc_id = '".$pbc_id."'";
+	if($db->query($sql))
 		$msg = "提交成功！";
 }
 //*****************************************************//
 
 //direct back to the page with the info
 golink($msg,$_SERVER["HTTP_REFERER"]);//print a js for automatic redirect
-
 ?>

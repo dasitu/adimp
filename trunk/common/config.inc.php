@@ -14,7 +14,7 @@ $config['max_size'] = 1024*250; // the max. size for uploading
 //pbc related config
 //the current day is inclued
 $pbc_config['start_evaluate_day'] = 1;
-$pbc_config['last_evaluate_day'] = 1;
+$pbc_config['last_evaluate_day'] = 30;
 $pbc_config['start_submit_day'] = 1;
 $pbc_config['last_submit_day'] = 30;
 
