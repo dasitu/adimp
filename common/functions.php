@@ -4,32 +4,36 @@ require_once "../common/config.inc.php";
 
 $db = new database();
 $db->connect();
-
+//*********************************println********************************//
+function echoln($msg)
+{
+	echo $msg."<br>";
+}
+//************************************************************************//
 //**********rule for check the user can evaluate the grade of itself******//
-function isSelfCanEvaluate($pbc_status,$pbc_time)
+function isCanEvaluate($pbc_config,$pbc_status,$pbc_time,$admin=0)
 {
 	$current_month = date("n");
 	$current_year = date('Y');
+	//echoln('e1');
 	//You can only evaluate the pbc of last month
 	if( (date('n',$pbc_time) == ($current_month - 1)) && (date('Y',$pbc_time) == $current_year) )
 	{
+		//echoln('e2');
 		//check the time range
-		$start_date = mktime(0,0,0,$current_month,1);//the 1st day of the current month
-		$end_date = mktime(23,59,59,$current_month,1);//the 1st day of the current month
+		$start_date = mktime(0,0,0,$current_month,$pbc_config['start_evaluate_day']);//the 1st day of the current month
+		$end_date = mktime(23,59,59,$current_month,$pbc_config['last_evaluate_day']);//the 1st day of the current month
 		$current = time();
-
-		//echo time2str($start_date)."<br>";
-		//echo time2str($end_date)."<br>";
-		//echo time2str($current)."<br>";
 
 		if($current >= $start_date && $current <= $end_date)
 		{
+			//echoln('e3');
 			//check the status of pbc
-			//pbc process "initial->submitted->closed"
-			if($pbc_status == "submitted")
-			{
+			//pbc process "initial->submitted->approved->self_scored->scored->closed"
+			if($admin==0 && $pbc_status == "approved")
 				return true;
-			}
+			if($admin==1 && $pbc_status == "self_scored")
+				return true;
 		}
 	}
 	return false;
@@ -37,30 +41,29 @@ function isSelfCanEvaluate($pbc_status,$pbc_time)
 //************************************************************************//
 
 //***********check the condition of submit the current PBC ***************//
-function isCanSubmitPBC($pbc_status,$pbc_time)
+function isCanSubmitPBC($pbc_config,$pbc_status,$pbc_time,$admin=0)
 {
 	$current_month = date("n");
 	$current_year = date('Y');
+	//echoln('s1');
 	//You can only evaluate the pbc of last month
 	if( (date('n',$pbc_time) == $current_month) && (date('Y',$pbc_time) == $current_year) )
 	{
+		//echoln('s2');
 		//check the time range
-		$start_date = mktime(0,0,0,$current_month,1);//the 1st day of the current month
-		$end_date = mktime(23,59,59,$current_month,1);//the 1st day of the current month
+		$start_date = mktime(0,0,0,$current_month,$pbc_config['start_submit_day']);//the 1st day of the current month
+		$end_date = mktime(23,59,59,$current_month,$pbc_config['last_submit_day']);//the 1st day of the current month
 		$current = time();
-
-		//echo time2str($start_date)."<br>";
-		//echo time2str($end_date)."<br>";
-		//echo time2str($current)."<br>";
 
 		if($current >= $start_date && $current <= $end_date)
 		{
+			//echoln('s3');
 			//check the current status of pbc
-			//pbc process "initial->submitted->closed"
-			if($pbc_status == "initial")
-			{
+			//pbc process "initial->submitted->approved->self_scored->scored->closed"
+			if($admin==0 && $pbc_status == "initial")
 				return true;
-			}
+			if($admin==1 && $pbc_status == "submitted")
+				return true;
 		}
 	}
 	return false;
@@ -372,7 +375,7 @@ function parseGradeRule($rule_num)
 }
 //**************************************************************************//
 
-//*******************************expain PBC状态*****************************//
+//*******************************explain PBC状态*****************************//
 function parsePBCStatus($pbc_status)
 {
 	switch ($pbc_status) {
@@ -381,6 +384,9 @@ function parsePBCStatus($pbc_status)
 			break;
 		case "submitted":
 			return "已提交";
+			break;
+		case "approved":
+			return "已批准";
 			break;
 		case "self_scored":
 			return "已自评";
@@ -413,4 +419,25 @@ function calculatePBC($pbc_data_arr)
 	return $total/100;
 }
 //***************************************************************************//
+
+//*********************************获得用户信息******************************//
+function getUser($user_id,$db)
+{
+	$sql = "select * from user u, department d where d.depart_id = u.user_depart_id and u.user_id=$user_id";
+	$user = $db->query_first($sql);
+	return $user;
+}
+//***************************************************************************//
+
+//**********************************update PBC status************************//
+function updatePBCStatus($pbc_id,$pbc_status,$user_name,$db)
+{
+	$sql = "UPDATE pbc 
+		SET pbc_status= '".$pbc_status."',
+			pbc_change_time = '".time()."',
+			pbc_change_by = '".$user_name."'
+		WHERE pbc_id = '".$pbc_id."'";
+	//echo $sql;
+	return $db->query($sql);
+}
 ?>

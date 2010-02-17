@@ -5,17 +5,21 @@ header("Content-Type: text/html; charset=utf-8");
 ?>
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 <?php
-$user_id = @$_SESSION['user_id'];
+$user_id = @$_GET['uid'];
 @$month = $_GET['m'];
 @$year = $_GET['y'];
 if($month=="")
 	$month = date('n');
 if($year=="")
 	$year = date('Y');
+if($user_id=="")
+	$user_id = $_SESSION['user_id'];
 ?>
 <div class="topbody">
 <form action='#' method="get">
 <?php
+echo 
+"<input class='btn' type='button' name='back' value='<< 返回列表' onclick=\"location.href='../pbc/pbc_admin.php'\"></input> ";
 echo "<input class=btn type='button' onclick=\"location.href='?m=".($month-1)."&uid=".$user_id."'\" value='上个月'></input>";
 if($month != date('n',time()) || $year != date('Y',time()) )
 	echo "<input class=btn type='button' onclick=\"location.href='?m=".date('n',time())."&uid=$user_id'\" value='当月'></input> ";
@@ -51,58 +55,58 @@ $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"pbc_planned_end_date",false);
 //convert the datetime to string, "true" means it is a dataset, "f_date" means the column name, "false" means the datetime format is not inlcude the time
 
-//show the table title
+$pbc_status = @$body[0]['pbc_status']; //about the status, please refer to the function parsePBCStatus
+
+$user = getUser($user_id,$db);
 	echo "<font size=4>
-			<b>".$_SESSION['depart_name'].
-			"——".$_SESSION['user_name'].
+			<b>".$user['depart_name'].
+			"——".$user['user_name'].
 			"——".$year."年".$month."月"."
 			</b>
-		 </font>
-<br><br>";
+		 </font>";
+//show the table title
 if(@$body[0])
-{
-	$pbc_status = @$body[0]['pbc_status'];
-	echo "
-		<div align='left' style='margin-left:25px;'>
-		<b>上一次更改时间: </b>".time2str(@$body[0]['pbc_change_time'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<b>更改人: </b>".@$body[0]['pbc_change_by']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-		<b>状态: </b><font color=red>".parsePBCStatus($pbc_status)."</font>
-		</div>";
-
-	//check what this page is used for
-	// 1. just a view of the data $action = "null"
-	// 2. Submit the self evaluate grade of last month $action = "self_evaluate"
-	// 3. Submit the pbc of current month $action = "pbc_submit"
-	$current_pbc_time = @$body[0]['pbc_time'];
-	$current_pbc_id   = @$body[0]['pbc_id'];
-	$pbc_reward = @$body[0]['pbc_reward'];
-	$is_evaluate = isCanEvaluate($pbc_config,$pbc_status,$current_pbc_time);
-	$is_submit = isCanSubmitPBC($pbc_config,$pbc_status,$current_pbc_time);
-	$final_btn = "";
-	$action = "";
-	if($is_evaluate)
-	{
-		
-		$action = "self_evaluate"; //used to indentify the action in the "../pbc/actions.php"
-		$final_btn = "<input class='btn' type='submit' name='submit' value='提交自评分'></input>";
-	}
-
-	if ($is_submit)
-	{
-		$action = "pbc_submit";
-		$pbc_reward = "<input name='pbc_reward' type='textbox' maxlength=6 size='4'></input>";
-		$is_evaluate = false;
-		$final_btn = "
-		<input class='btn' type='button' name='back' value='继续录入' onclick=\"location.href='../pbc/pbc.php'\"></input>
-		<input class='btn' type='submit' name='submit' value='提交PBC'></input>";
-	}
-}
+echo "
+<br><br>
+<div align='left' style='margin-left:25px;'>
+<b>上一次更改时间: </b>".time2str(@$body[0]['pbc_change_time'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>更改人: </b>".@$body[0]['pbc_change_by']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<b>状态: </b><font color=red>".parsePBCStatus($pbc_status)."</font>
+</div>";
 
 //show the table itself
 ?>
 <form name="pbcSubmitForm" action="../pbc/actions.php" method="post" >
 <table class=mytable>
 	<?php
+		//check what this page is used for
+		// 1. just a view of the data $action = ""
+		// 2. Submit the evaluate grade of last month $action = "pbc_evaluate"
+		// 3. Submit the pbc of current month $action = "pbc_approve"
+		
+		$current_pbc_time = @$body[0]['pbc_time'];
+		$current_pbc_id   = @$body[0]['pbc_id'];
+		$pbc_reward = @$body[0]['pbc_reward'];
+		$is_evaluate = isCanEvaluate($pbc_config,$pbc_status,$current_pbc_time,'1'); //$admin = 1
+		$is_submit = isCanSubmitPBC($pbc_config,$pbc_status,$current_pbc_time,'1');	//#admin = 1
+		$final_btn = "";
+		$action = "";
+
+		if($is_evaluate)
+		{
+			
+			$action = "pbc_evaluate"; //used to indentify the action in the "../pbc/actions.php"
+			$final_btn = "<input class='btn' type='submit' name='submit' value='提交评分'></input>";
+		}
+
+		if ($is_submit)
+		{
+			$action = "pbc_approve";
+			$is_evaluate = false;
+			$final_btn = "
+			<input class='btn' type='submit' name='submit' value='批准PBC'></input>";
+		}
+
 		//create the header
 		$col_cnt = count($head);
 		for($header = "<tr bgColor='#B0DFEF'>",$i=0;$i<$col_cnt;$i++)
@@ -121,10 +125,10 @@ if(@$body[0])
 				$td_value = $record["$show_col[$i]"];
 
 				//if the month is the used to submit the grade it self, add the input
-				if($show_col[$i] == "pbc_grade_self" && $is_evaluate)
+				if($show_col[$i] == "pbc_grade" && $is_evaluate)
 				{
 					$pbc_data_id = $record['pbc_data_id'];
-					$td_value = "<input maxlength=3 size=3 type='textbox' name='pbc_grade_self#$pbc_data_id'></input>";
+					$td_value = "<input maxlength=3 size=3 type='textbox' name='pbc_grade#$pbc_data_id'></input>";
 				}
 
 				//parse the grade rule
@@ -142,8 +146,6 @@ if(@$body[0])
 		if($tr=="")
 		{
 			$tr = "<tr><td colspan=$col_cnt align=center>没有记录！</td></tr>";
-			if($month == date('n') && $year = date('Y'))
-				$final_btn .= "<input class='btn' type='button' name='back' value='录入' onclick=\"location.href='../pbc/pbc.php'\"></input>";
 		}
 		else
 		{

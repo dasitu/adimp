@@ -64,17 +64,25 @@ if($actions == "insert_pbc")
 else if($actions == "pbc_submit")
 {
 	$pbc_id = $_POST['pbc_id'];
-	$sql = "UPDATE pbc 
-			SET pbc_status = 'submitted',
-				pbc_reward = ".$_POST['pbc_reward'].",
-				pbc_change_time = '".time()."',
-				pbc_change_by = '".$_SESSION['user_name']."'
-			WHERE pbc_id = '$pbc_id'";
-	//echo $sql;
-	if($db->query($sql))
+	$pbc_status = 'submitted';
+	$update_user = $_SESSION['user_name'];
+	if(	updatePBCStatus($pbc_id,$pbc_status,$update_user,$db))
 		$msg = "提交成功！";
 }
 //*****************************************************//
+
+//********************approve the pbc*******************//
+else if($actions == "pbc_approve")
+{
+	$pbc_id = $_POST['pbc_id'];
+	$pbc_status = 'approved';
+	$update_user = $_SESSION['user_name'];
+	if(	updatePBCStatus($pbc_id,$pbc_status,$update_user,$db))
+		$msg = "提交成功！";
+}
+//*****************************************************//
+
+//***************submit the self grade*****************//
 else if($actions == "self_evaluate")
 {
 	$pbc_id = $_POST['pbc_id'];
@@ -90,17 +98,36 @@ else if($actions == "self_evaluate")
 			$db->query($sql);
 		}
 	}
-	$sql = "UPDATE pbc 
-		SET pbc_status= 'self_scored',
-			pbc_change_time = '".time()."',
-			pbc_change_by = '".$_SESSION['user_name']."'
-		WHERE pbc_id = '$pbc_id'";
-	//echo $sql;
-	if($db->query($sql))
+	$pbc_status = 'self_scored';
+	$update_user = $_SESSION['user_name'];
+	if(	updatePBCStatus($pbc_id,$pbc_status,$update_user,$db))
 		$msg = "提交成功！";
 }
-//***************submit the self grade*****************//
 //*****************************************************//
+
+//***************submit the grade*****************//
+else if($actions == "pbc_evaluate")
+{
+	$pbc_id = $_POST['pbc_id'];
+	foreach($_POST as $key => $value)
+	{
+		if(substr($key, 0, 14) == 'pbc_grade')
+		{
+			$arr = explode("#",$key);
+			$col_name = $arr[0];
+			$col_where = $arr[1];
+			$sql = "update pbc_data set $col_name='$value' where pbc_data_id='$col_where'";
+			//echo $sql."<br>";
+			$db->query($sql);
+		}
+	}
+	$pbc_status = 'scored';
+	$update_user = $_SESSION['user_name'];
+	if(	updatePBCStatus($pbc_id,$pbc_status,$update_user,$db))
+		$msg = "提交成功！";
+}
+//*****************************************************//
+
 //direct back to the page with the info
 golink($msg,$_SERVER["HTTP_REFERER"]);//print a js for automatic redirect
 

@@ -30,7 +30,7 @@ AND p.pbc_user_id = u.user_id
 AND u.user_depart_id = dp.depart_id 
 AND u.user_id <> ".$_SESSION['user_id'];
 $sql[0] = $sql_common;
-$sql[3] = $sql_common." AND dp.depart_id=".$_SESSION['depart_id'];
+$sql[2] = $sql_common." AND dp.depart_id=".$_SESSION['depart_id'];
 ?>
 <link rel="stylesheet" type="text/css" href="../css/main.css" />
 <div class="topbody">
@@ -80,7 +80,7 @@ $body = time2str($body,true,"pbc_change_time");
 				//add the link to show the detail info
 				if($show_col[$i] == "user_name")
 					$td_value = "<a href=
-				'pbc_show.php?m=".$month."&y=".$year."&uid=".$user_id."'>
+				'pbc_admin_show.php?m=".$month."&y=".$year."&uid=".$user_id."'>
 				".$td_value."</a>";
 
 				$tr .= "<td>".$td_value."</td>";
