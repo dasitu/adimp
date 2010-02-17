@@ -1,3 +1,6 @@
+<?php
+include "../common/session.php";
+?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD>
@@ -65,8 +68,11 @@ node[2][0] = new TreeNode('技术情报管理');
 node[3][0] = new TreeNode('规范与标准管理');
 node[4][0] = new TreeNode('出差管理', '../trip/trip.php');
 
-node[5][0] = new TreeNode('PBC管理', '../pbc/pbc.php');
-node[5][1] = new TreeNode('管理PBC', '../pbc/pbc_group.php');
+node[5][0] = new TreeNode('PBC管理', '../pbc/pbc_show.php');
+
+<?php if($_SESSION['pbc_role_id'] != 3 ) {?>
+	node[5][1] = new TreeNode('管理PBC', '../pbc/pbc_admin.php', 'tree_node.gif', null, 'tree_node.gif', null);
+<?php }?>
 
 node[6][0] = new TreeNode('项目管理', '../project/project.php');
 
