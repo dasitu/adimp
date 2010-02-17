@@ -72,13 +72,13 @@ AND d.depart_id = u.user_depart_id
 ";
 
 //person-count 
-$sql_select_p_c = "SELECT count(p.pbc_user_id) as user_cnt, u.user_name";
+$sql_select_p_c = "SELECT count(p.pbc_user_id) as user_cnt, u.user_name, p.pbc_time, p.pbc_total_grade";
 $sql_select_p_c = $sql_select_p_c.$sql_from.$where." GROUP by u.user_name";
 //echo $sql_select_p_c."<br>";
 
 //time-count
-$sql_select_t_c = "SELECT count(p.pbc_time) as time_cnt, p.pbc_time";
-$sql_select_t_c = $sql_select_t_c.$sql_from.$where." GROUP by p.pbc_time";
+//$sql_select_t_c = "SELECT count(p.pbc_time) as time_cnt, p.pbc_time";
+//$sql_select_t_c = $sql_select_t_c.$sql_from.$where." GROUP by p.pbc_time";
 //echo $sql_select_t_c;
 
 //show part
@@ -94,11 +94,9 @@ $body = time2str($body,true,"pbc_time",false);
 <table>
 	<tr>
 		<td height="30">
-			<?php echo chartButton($sql_select_p_c,'人员——时间——分数 直方图','bar','user_name','user_cnt');?>
+			<?php echo pbcChartButton($sql_select_p_c,'人员——时间——分数 直方图','bar','user_name','pbc_total_grade','pbc_time');?>
 		</td>
-		<td>
-			<?php echo chartButton($sql_select_t_c,'类型——次数 饼图','pie','pbc_time','time_cnt');?>
-		</td>
+		
 	</tr>
 </table>
 </div>
