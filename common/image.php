@@ -16,15 +16,16 @@ $y_name = $_POST['y_name'];
 $title = $_POST['submit'];
 
 $result  = $db->fetch_all_array($sql);
+
+// Dataset definition 
+$DataSet = new pData;
 for($i=0;$i<count($result);$i++)
 {
 	$row = $result[$i];
-	$Data[$i] = $row["$y_name"];
-	$DataDescription[$i] = $row["$x_name"];
+	$data_x[$i] = $row["$x_name"];
+	$data_y[$i] = $row["$y_name"];
+	$DataSet->AddPoint($data_y[$i],'Serie1',$data_x[$i]);
 }
-
-//$Data = array(8,4,2,3,2);
-//$DataDescription = array('张三','李四','王五','士大夫','搜房');
 
 $canvas_width = 600;
 $canvas_height = 400;
@@ -37,13 +38,13 @@ $bg_color_B = 240;
 $drawTicks = TRUE;
 $gridLine = 5;
 
-// Dataset definition 
-$DataSet = new pData;
-$DataSet->AddPoint($Data,"Serie1");
-$DataSet->AddPoint($DataDescription,"Serie2"); //this is for pie but no influence with bar
-$DataSet->AddAllSeries();
-$DataSet->SetAbsciseLabelSerie("Serie2");//this is for pie but no influence with bar
+if($draw_type == "pie")
+{
+	$DataSet->AddPoint($data_x,"PieLabel"); //this is for pie but no influence with bar
+	$DataSet->SetAbsciseLabelSerie("PieLabel");//this is for pie but no influence with bar
+}
 
+$DataSet->AddAllSeries();
 // Initialise the graph
 $Test = new pChart($canvas_width,$canvas_height);
 $Test->setFontProperties("../lib/chart/Fonts/vistak.TTF",9);
@@ -55,12 +56,12 @@ $Test->drawRoundedRectangle($radius,$radius,$canvas_width-$radius,$canvas_height
 if($draw_type == "bar")
 {
 	$Test->drawGraphArea(255,255,255,TRUE);
-	$Test->drawScale($DataSet->GetData(),$DataSet->GetDataDescription(),SCALE_ADDALLSTART0,150,150,150,$drawTicks,0,2,TRUE,100);
+	$Test->drawScale($DataSet->GetData(),$DataSet->GetDataDescription(),SCALE_ADDALLSTART0,150,150,150,$drawTicks,0,2,TRUE);
 	$Test->drawGrid($gridLine,FALSE,$bg_color_R-10,$bg_color_G-10,$bg_color_B-10,50);
 	// Draw the 0 line
 	$Test->drawTreshold(0,143,55,72,FALSE,FALSE);
 	// Draw the bar graph
-	$Test->drawOverlayBarGraph($DataSet->GetData(),$DataSet->GetDataDescription(),$DataDescription);
+	$Test->drawBarGraph($DataSet->GetData(),$DataSet->GetDataDescription(),FALSE);
 }
 
 //*************For Pie image****************//
@@ -69,7 +70,7 @@ if($draw_type == "pie")
 	$thickness = 15;
 	$angle = 45;
 	$Test->AntialiasQuality = 0;
-	$Test->drawPieGraph($DataSet->GetData(),$DataSet->GetDataDescription(),$canvas_width/2,$canvas_height/2,$canvas_height/2-$margin,PIE_PERCENTAGE_LABEL,true,$angle,$thickness,5);
+	$Test->drawPieGraph($DataSet->GetData(),$DataSet->GetDataDescription(),$canvas_width/2,$canvas_height/2,$canvas_height/2,PIE_PERCENTAGE_LABEL,true,$angle,$thickness,5);
 	//$Test->drawPieLegend(330,15,$DataSet->GetData(),$DataSet->GetDataDescription(),250,250,250);
 }
 

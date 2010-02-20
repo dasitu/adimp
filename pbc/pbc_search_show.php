@@ -72,14 +72,9 @@ AND d.depart_id = u.user_depart_id
 ";
 
 //person-count 
-$sql_select_p_c = "SELECT count(p.pbc_user_id) as user_cnt, u.user_name, p.pbc_time, p.pbc_total_grade";
-$sql_select_p_c = $sql_select_p_c.$sql_from.$where." GROUP by u.user_name";
+$sql_select_p_c = "SELECT u.user_name, p.pbc_time, p.pbc_total_grade";
+$sql_select_p_c = $sql_select_p_c.$sql_from.$where." ";
 //echo $sql_select_p_c."<br>";
-
-//time-count
-//$sql_select_t_c = "SELECT count(p.pbc_time) as time_cnt, p.pbc_time";
-//$sql_select_t_c = $sql_select_t_c.$sql_from.$where." GROUP by p.pbc_time";
-//echo $sql_select_t_c;
 
 //show part
 $sql_select = " select * ";
