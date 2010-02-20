@@ -59,6 +59,9 @@ $body = time2str($body,true,"pbc_planned_end_date",false);
 			</b>
 		 </font>
 <br><br>";
+$final_btn = "";
+$action = "";
+$current_pbc_id = "";
 if(@$body[0])
 {
 	$pbc_status = @$body[0]['pbc_status'];
@@ -78,8 +81,7 @@ if(@$body[0])
 	$pbc_reward = @$body[0]['pbc_reward'];
 	$is_evaluate = isCanEvaluate($pbc_config,$pbc_status,$current_pbc_time);
 	$is_submit = isCanSubmitPBC($pbc_config,$pbc_status,$current_pbc_time);
-	$final_btn = "";
-	$action = "";
+
 	if($is_evaluate)
 	{
 		
