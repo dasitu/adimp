@@ -111,7 +111,7 @@ echo "
 		{
 			$header .= "<td><b>".$head[$i]."</b></td>";
 		}
-		$header .= "</tr>";
+		$header .= "<td>&nbsp;</td></tr>";
 
 		//create the body
 		$tr = "";
@@ -139,7 +139,7 @@ echo "
 
 				$tr .= "<td>".$td_value."</td>";
 			}
-			$tr .= "</tr>";
+			$tr .= "<td>删除 修改</td></tr>";
 		}
 		if($tr=="")
 		{

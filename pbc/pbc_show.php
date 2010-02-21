@@ -45,7 +45,7 @@ and u.user_depart_id = depart_id
 order by pbt.pbc_biz_type_id
 ";
 //echo $sql."<br>";
-$head = array("业务类型","活动分类","活动内容","完成标志","计划完成时间","关联任务","权重","考核主体","评分规则","自评分","评分","备注");
+$head = array("业务类型","活动分类","活动内容","完成标志","计划完成时间","关联任务","权重","考核主体","评分规则","自评分","评分","备注","操作");
 $show_col = array("pbc_biz_type_name","pbc_active_type","pbc_active","pbc_end_tag","pbc_planned_end_date","pbc_refer_task","pbc_weights","pbc_evaluator","pbc_rule","pbc_grade_self","pbc_grade","pbc_comment");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"pbc_planned_end_date",false);
@@ -117,6 +117,7 @@ if(@$body[0])
 		$tr = "";
 		foreach ($body as $record)
 		{
+			$pbc_data_id = $record['pbc_data_id'];
 			$tr .= "<tr>";
 			for($i=0;$i<count($show_col);$i++)
 			{
@@ -125,7 +126,6 @@ if(@$body[0])
 				//if the month is the used to submit the grade it self, add the input
 				if($show_col[$i] == "pbc_grade_self" && $is_evaluate)
 				{
-					$pbc_data_id = $record['pbc_data_id'];
 					$td_value = "<input maxlength=3 size=3 type='textbox' name='pbc_grade_self#$pbc_data_id'></input>";
 				}
 
@@ -139,7 +139,12 @@ if(@$body[0])
 
 				$tr .= "<td>".$td_value."</td>";
 			}
-			$tr .= "</tr>";
+			$tr .= "<td>
+						<a href='pbc_del.php?id=$pbc_data_id&pbc_id=$current_pbc_id'>删除</a>
+						<BR>
+						<a href='pbc_modify.php?id=$pbc_data_id&pbc_id=$current_pbc_id'>修改</a>
+					</td>
+			</tr>";
 		}
 		if($tr=="")
 		{
@@ -153,7 +158,7 @@ if(@$body[0])
 						<td colspan=3 align=right>本月预计绩效奖:</td><td colspan=3>
 						$pbc_reward
 						</td>
-						<td colspan=3 align=right>PBC合计得分:</td><td colspan=3>".calculatePBC($body)."</td>
+						<td colspan=3 align=right>PBC合计得分:</td><td colspan=3>".$body[0]['pbc_total_grade']."</td>
 					</tr>";
 		}
 		echo $header.$tr."

@@ -1,0 +1,28 @@
+$sql = ""
+$result_arr = $db->fetch_all_array($sql);
+
+array
+{
+	[0]=> array("active_biz_type"=>1a,"sdf"=>2a,"sdf"=3,"dddd"=>4)
+	[1]=> array("yewuleibie"=>1b,"sdf"=>2b,"sdf"=3)
+}
+
+foreach ($result_arr as $record)
+{
+	$biz = $record['active_biz_type'];
+	$active = $record['active_type'];
+	unset($record['active_type']);
+	unset($record['active_biz_type']);
+	data[$biz][$active] = $record;
+}
+data[active_biz_type][2a][$i] = array("sdf"=3,"dddd"=>4);
+data[1b][2b][$j] = array("sdf"=3,"dddd"=>4);
+
+for()
+{
+	A1
+	B1
+	if(isset($data[$i."a"][$j."a"]))
+		$data[$i."a"][$j."a"] = array('','','','');
+	
+}
