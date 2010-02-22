@@ -136,6 +136,38 @@ else if($actions == "pbc_evaluate")
 }
 //*****************************************************//
 
+//*********************actions for update table**************//
+if($actions == "modify_pbc")
+{
+	//update pbc_data 
+	$table_arr="";
+	$table_name = "pbc_data";
+	$pbc_data_id = $_POST['pbc_data_id'];
+	$pbc_id = $_POST['pbc_id'];
+	$_POST["pbc_planned_end_date"] = strtotime($_POST["pbc_planned_end_date"]);
+	unset($_POST['pbc_data_id']);
+	unset($_POST['pbc_id']);
+	unset($_POST['submit']);
+	unset($_POST['actions']);
+	
+	foreach($_POST as $key => $value)
+	{
+		$table_arr["$key"] = $_POST["$key"];
+	}
+
+	$update_user = $_SESSION['user_name'];
+	$where="pbc_data_id=$pbc_data_id";
+	$update_id = $db->query_update($table_name,$table_arr,$where);
+	$sql = 
+		"UPDATE pbc 
+		SET	pbc_change_time = '".time()."',
+			pbc_change_by = '".$update_user."'
+		WHERE pbc_id = '".$pbc_id."'";
+	if($db->query($sql))
+		echo "<script>history.go(-2);</script>";
+}
+//*********************end insert**********************//
+
 //direct back to the page with the info
 golink($msg,$_SERVER["HTTP_REFERER"]);//print a js for automatic redirect
 ?>

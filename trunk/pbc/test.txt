@@ -3,8 +3,11 @@ $result_arr = $db->fetch_all_array($sql);
 
 array
 {
-	[0]=> array("active_biz_type"=>1a,"sdf"=>2a,"sdf"=3,"dddd"=>4)
-	[1]=> array("yewuleibie"=>1b,"sdf"=>2b,"sdf"=3)
+	[0]=> array("active_biz_type"=>a1,"active_type"=>a11,"sdf"=3,"dddd"=>4)
+	[1]=> array("active_biz_type"=>a1,"active_type"=>a11,"sdf"=34,"dddd"=>6666)
+	[2]=> array("active_biz_type"=>a1,"active_type"=>a12,"sdf"=34,"dddd"=>6666)
+	[3]=> array("active_biz_type"=>b1,"active_type"=>b11,"sdf"=34,"dddd"=>6666)
+	[4]=> array("active_biz_type"=>c1,"active_type"=>c11,"sdf"=34,"dddd"=>6666)
 }
 
 foreach ($result_arr as $record)
@@ -13,16 +16,30 @@ foreach ($result_arr as $record)
 	$active = $record['active_type'];
 	unset($record['active_type']);
 	unset($record['active_biz_type']);
-	data[$biz][$active] = $record;
+	data[$biz][$active][] = $record;
 }
-data[active_biz_type][2a][$i] = array("sdf"=3,"dddd"=>4);
-data[1b][2b][$j] = array("sdf"=3,"dddd"=>4);
 
-for()
+data[a1][a11][0] = array("sdf"=3,"dddd"=>4);
+data[a1][a11][1] = array("sdf"=3,"dddd"=>4);
+data[a1][a12][0] = array("sdf"=3,"dddd"=>4);
+data[b1][b11][0] = array("sdf"=3,"dddd"=>4);
+data[c1][c11][0] = array("sdf"=3,"dddd"=>4);
+
+
+$col = "A";
+$row = "1";
+
+for($i=a...c;)
 {
-	A1
-	B1
-	if(isset($data[$i."a"][$j."a"]))
-		$data[$i."a"][$j."a"] = array('','','','');
-	
+	for($j<count(a))
+	{
+		$cnt = count($data[$i][$j])
+		for($k<=$cnt)
+		{
+			if(isset($data[$i][$j][$k]))
+				$data[$i][$j][$k] = array('','','','');
+
+			cell[$col][$row] = 
+		}
+	}
 }
