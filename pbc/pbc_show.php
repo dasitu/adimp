@@ -45,7 +45,7 @@ and u.user_depart_id = depart_id
 order by pbt.pbc_biz_type_id
 ";
 //echo $sql."<br>";
-$head = array("业务类型","活动分类","活动内容","完成标志","计划完成时间","关联任务","权重","考核主体","评分规则","自评分","评分","备注","操作");
+$head = array("业务类型","活动分类","活动内容","完成标志","计划完成时间","关联任务","权重","考核主体","评分规则","自评分","评分","备注");
 $show_col = array("pbc_biz_type_name","pbc_active_type","pbc_active","pbc_end_tag","pbc_planned_end_date","pbc_refer_task","pbc_weights","pbc_evaluator","pbc_rule","pbc_grade_self","pbc_grade","pbc_comment");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"pbc_planned_end_date",false);
@@ -62,6 +62,7 @@ $body = time2str($body,true,"pbc_planned_end_date",false);
 $final_btn = "";
 $action = "";
 $current_pbc_id = "";
+$modify_td = "";
 if(@$body[0])
 {
 	$pbc_status = @$body[0]['pbc_status'];
@@ -81,6 +82,7 @@ if(@$body[0])
 	$pbc_reward = @$body[0]['pbc_reward'];
 	$is_evaluate = isCanEvaluate($pbc_config,$pbc_status,$current_pbc_time);
 	$is_submit = isCanSubmitPBC($pbc_config,$pbc_status,$current_pbc_time);
+	$is_modify = isModifyPBC($pbc_config,$pbc_status,$current_pbc_time);
 
 	if($is_evaluate)
 	{
@@ -97,6 +99,10 @@ if(@$body[0])
 		$final_btn = "
 		<input class='btn' type='button' name='back' value='继续录入' onclick=\"location.href='../pbc/pbc.php'\"></input>
 		<input class='btn' type='submit' name='submit' value='提交PBC'></input>";
+	}
+	if($is_modify)
+	{
+		array_push($head,'操作');
 	}
 }
 
@@ -139,12 +145,16 @@ if(@$body[0])
 
 				$tr .= "<td>".$td_value."</td>";
 			}
-			$tr .= "<td>
+			if($is_modify)
+			{
+				$tr.="
+					<td>
 						<a href='pbc_del.php?id=$pbc_data_id&pbc_id=$current_pbc_id'>删除</a>
 						<BR>
 						<a href='pbc_modify.php?id=$pbc_data_id&pbc_id=$current_pbc_id'>修改</a>
-					</td>
-			</tr>";
+					</td>";
+			}
+			$tr .= "</tr>";
 		}
 		if($tr=="")
 		{

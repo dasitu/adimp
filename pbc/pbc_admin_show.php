@@ -87,8 +87,10 @@ echo "
 		$current_pbc_time = @$body[0]['pbc_time'];
 		$current_pbc_id   = @$body[0]['pbc_id'];
 		$pbc_reward = @$body[0]['pbc_reward'];
-		$is_evaluate = isCanEvaluate($pbc_config,$pbc_status,$current_pbc_time,'1'); //$admin = 1
-		$is_submit = isCanSubmitPBC($pbc_config,$pbc_status,$current_pbc_time,'1');	//#admin = 1
+		$admin = 1;
+		$is_evaluate = isCanEvaluate($pbc_config,$pbc_status,$current_pbc_time,$admin); //$admin = 1
+		$is_submit = isCanSubmitPBC($pbc_config,$pbc_status,$current_pbc_time,$admin);	//#admin = 1
+		$is_modify = isModifyPBC($pbc_config,$pbc_status,$current_pbc_time,$admin);
 		$final_btn = "";
 		$action = "";
 		if($is_evaluate)
@@ -104,6 +106,10 @@ echo "
 			$final_btn = "
 			<input class='btn' type='submit' name='submit' value='批准PBC'></input>";
 		}
+		if($is_modify)
+		{
+			array_push($head,'操作');
+		}
 
 		//create the header
 		$col_cnt = count($head);
@@ -111,13 +117,14 @@ echo "
 		{
 			$header .= "<td><b>".$head[$i]."</b></td>";
 		}
-		$header .= "<td>&nbsp;</td></tr>";
+		$header .= "</tr>";
 
 		//create the body
 		$tr = "";
 		foreach ($body as $record)
 		{
 			$tr .= "<tr>";
+			$pbc_data_id = $record['pbc_data_id'];
 			for($i=0;$i<count($show_col);$i++)
 			{
 				$td_value = $record["$show_col[$i]"];
@@ -139,7 +146,18 @@ echo "
 
 				$tr .= "<td>".$td_value."</td>";
 			}
-			$tr .= "<td>删除 修改</td></tr>";
+
+			//add the modify colomn
+			if($is_modify)
+			{
+				$tr.="
+					<td>
+						<a href='pbc_del.php?id=$pbc_data_id&pbc_id=$current_pbc_id'>删除</a>
+						<BR>
+						<a href='pbc_modify.php?id=$pbc_data_id&pbc_id=$current_pbc_id&uid=$user_id'>修改</a>
+					</td>";
+			}
+			$tr .= "</tr>";
 		}
 		if($tr=="")
 		{

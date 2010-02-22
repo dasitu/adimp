@@ -10,6 +10,35 @@ function echoln($msg)
 	echo $msg."<br>";
 }
 //************************************************************************//
+
+//**********rule for check the user can modify or delete pbc******//
+function isModifyPBC($pbc_config,$pbc_status,$pbc_time,$admin=0)
+{
+	$current_month = date("n");
+	$current_year = date('Y');
+	//echoln('m1');
+	//You can only evaluate the pbc of last month
+	if( (date('n',$pbc_time) == $current_month) && (date('Y',$pbc_time) == $current_year) )
+	{
+		//echoln('m2');
+		//check the time range
+		$start_date = mktime(0,0,0,$current_month,$pbc_config['start_evaluate_day']);//the 1st day of the current month
+		$end_date = mktime(23,59,59,$current_month,$pbc_config['last_evaluate_day']);//the 1st day of the current month
+		$current = time();
+
+		if($current >= $start_date && $current <= $end_date)
+		{
+			//echoln('m3');
+			//check the status of pbc
+			//pbc process "initial->submitted->approved->self_scored->scored->closed"
+			if(($admin==0 && $pbc_status == "initial") || ($admin==1 && $pbc_status == "submitted"))
+				return true;
+		}
+	}
+	return false;
+}
+//************************************************************************//
+
 //**********rule for check the user can evaluate the grade of itself******//
 function isCanEvaluate($pbc_config,$pbc_status,$pbc_time,$admin=0)
 {
@@ -93,7 +122,7 @@ function insertUser($db,$user)
 
 //********give the options for selectbox according to the parameters****//
 //*************************return html code****************************//
-function listSelection($db,$table_name,$col_name,$col_value,$where="")
+function listSelection($db,$table_name,$col_name,$col_value,$where="",$selected="impossible_value")
 {
 	$sql = "select $col_name,$col_value from $table_name $where";
 	$rs = $db->fetch_all_array($sql);
@@ -106,7 +135,10 @@ function listSelection($db,$table_name,$col_name,$col_value,$where="")
 	
 	foreach ($rs as $record)
 	{
-		$options .= "<option value='".$record["$col_value"]."'>".$record["$col_name"]."</option>";
+		$select = "";
+		if($record["$col_value"] == $selected)
+			$select = "selected";
+		$options .= "<option value='".$record["$col_value"]."' $select>".$record["$col_name"]."</option>";
 	}
 	return $options;
 }
@@ -456,4 +488,27 @@ function updatePBCStatus($pbc_id,$pbc_status,$user_name,$db)
 	//echo $sql;
 	return $db->query($sql);
 }
+//**************************************************************************//
+
+//*****************************解析pbc评分规则******************************//
+function parsePBCRule($pbc_rule)
+{
+	switch ($pbc_rule) {
+		case "1":
+			return "0与1";
+			break;
+		case "2":
+			return "实现程度得分";
+			break;
+		case "3":
+			return "分层得分";
+			break;
+		case "4":
+			return "扣分";
+			break;
+		default:
+			return false;
+	}
+}
+//***************************************************************************//
 ?>
