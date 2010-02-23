@@ -55,17 +55,20 @@ for(var i=0;i<menu_cnt;i++)
 }
 
 //the first node used to store the menu name
+/*
 node[0][0] = new TreeNode('交流与培训管理');
 node[0][1] = new TreeNode('年度培训计划', '', 'tree_node.gif', null, 'tree_node.gif', null);
 node[0][2] = new TreeNode('交流培训记录', '', 'tree_node.gif', null, 'tree_node.gif', null);
 node[0][3] = new TreeNode('人员培训记录', '', 'tree_node.gif', null, 'tree_node.gif', null);
+*/
 
 node[1][0] = new TreeNode('防火墙管理');
 node[1][1] = new TreeNode('防火墙条款', '../firewall/firewall_rule.php', 'tree_node.gif', null, 'tree_node.gif', null);
 node[1][2] = new TreeNode('防火墙事件', '../firewall/firewall.php', 'tree_node.gif', null, 'tree_node.gif', null);
 
-node[2][0] = new TreeNode('技术情报管理');
-node[3][0] = new TreeNode('规范与标准管理');
+//node[2][0] = new TreeNode('技术情报管理');
+//node[3][0] = new TreeNode('规范与标准管理');
+
 node[4][0] = new TreeNode('出差管理', '../trip/trip.php');
 
 node[5][0] = new TreeNode('PBC管理', '../pbc/pbc_show.php');

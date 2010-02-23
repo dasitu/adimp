@@ -79,4 +79,5 @@ $Test->drawTitle($margin-$padding,$margin-$padding,$title,50,50,50,$canvas_width
 
 //render
 $Test->Stroke("export.png");
+
 ?>

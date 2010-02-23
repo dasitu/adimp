@@ -106,7 +106,7 @@ $data = $db->query_first($sql);
 			  <?php 
 			  for($i=1;$i<5;$i++)
 			  {
-				$rule_value = parsePBCRule("$i");
+				$rule_value = parseGradeRule("$i");
 				if($i == $data['pbc_rule'])
 					echo " <option value = ".$i." selected> ".$rule_value." </option>";
 				else

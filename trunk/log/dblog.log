@@ -5252,3 +5252,27 @@
 2010-01-09 14:55:27 query:Set names UTF8
 2010-01-09 14:55:27 query:Set names UTF8
 2010-01-09 14:55:27 query:Set names UTF8
+2010-02-23 22:09:26 Success update pbc status to submitted: 1 rows was updated(UPDATE pbc 
+		SET pbc_status = 'submitted' 
+		WHERE MONTH(FROM_UNIXTIME(pbc_time,'%Y-%m-%d')) = MONTH('2010-02-23') 
+		AND YEAR(FROM_UNIXTIME(pbc_time,'%Y-%m-%d')) = YEAR('2010-02-23')
+		AND pbc_status = 'initial';
+		)
+2010-02-23 22:09:53 Success update pbc status to submitted: 0 rows was updated(UPDATE pbc 
+		SET pbc_status = 'submitted' 
+		WHERE MONTH(FROM_UNIXTIME(pbc_time,'%Y-%m-%d')) = MONTH('2010-02-23') 
+		AND YEAR(FROM_UNIXTIME(pbc_time,'%Y-%m-%d')) = YEAR('2010-02-23')
+		AND pbc_status = 'initial';
+		)
+2010-02-23 22:10:39 Success update pbc status to submitted: 0 rows was updated(UPDATE pbc 
+		SET pbc_status = 'submitted' 
+		WHERE MONTH(FROM_UNIXTIME(pbc_time,'%Y-%m-%d')) = MONTH('2010-02-23') 
+		AND YEAR(FROM_UNIXTIME(pbc_time,'%Y-%m-%d')) = YEAR('2010-02-23')
+		AND pbc_status = 'initial';
+		)
+2010-02-23 23:21:48 Success update pbc status to submitted: 0 rows was updated(UPDATE pbc 
+		SET pbc_status = 'submitted' 
+		WHERE MONTH(FROM_UNIXTIME(pbc_time,'%Y-%m-%d')) = MONTH('2010-02-23') 
+		AND YEAR(FROM_UNIXTIME(pbc_time,'%Y-%m-%d')) = YEAR('2010-02-23') 
+		AND pbc_status = 'initial';
+		)
