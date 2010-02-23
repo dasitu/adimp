@@ -490,25 +490,18 @@ function updatePBCStatus($pbc_id,$pbc_status,$user_name,$db)
 }
 //**************************************************************************//
 
-//*****************************解析pbc评分规则******************************//
-function parsePBCRule($pbc_rule)
+//**********************************update PBC status by crontab************************//
+function updatePBCStatus_cron($pbc_from_status,$pbc_to_status,$where,$db)
 {
-	switch ($pbc_rule) {
-		case "1":
-			return "0与1";
-			break;
-		case "2":
-			return "实现程度得分";
-			break;
-		case "3":
-			return "分层得分";
-			break;
-		case "4":
-			return "扣分";
-			break;
-		default:
-			return false;
-	}
+	$sql = "UPDATE pbc 
+		SET pbc_status= '".$pbc_to_status."',
+			pbc_change_time = '".time()."',
+			pbc_change_by = 'system'
+		WHERE pbc_status = '".$pbc_from_status."'
+		AND $where";
+	//echo $sql;
+	return $db->query($sql);
 }
-//***************************************************************************//
+//**************************************************************************//
+
 ?>
