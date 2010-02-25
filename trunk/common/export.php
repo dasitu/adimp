@@ -9,7 +9,7 @@ $objPHPExcel->setActiveSheetIndex(0)
             ->setCellValue('A2', '中文汉字');
 
 // Rename sheet
-$objPHPExcel->getActiveSheet()->setTitle('Simple');
+$objPHPExcel->getActiveSheet()->setTitle('中文');
 // Set active sheet index to the first sheet, so Excel opens this as the first sheet
 $objPHPExcel->setActiveSheetIndex(0);
 
