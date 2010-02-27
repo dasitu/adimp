@@ -2,6 +2,12 @@
 require_once("../common/session.php");
 require "../common/functions.php";
 header("Content-Type: text/html; charset=utf-8");
+
+if($_SESSION['depart_id']!='1')
+{
+	header("Location:firewall_show.php");
+}
+
 ?>
 <html>
   <head>

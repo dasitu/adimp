@@ -29,6 +29,8 @@ echo "
 ";
 ?>
 </form>
+<input class=btn type="button" name="export" value="导出到Excel" 
+onclick="location.href='../pbc/pbc_export.php?m=<?php echo $month;?>&y=<?php echo $year?>&u=<?php echo $user_id?>'"></input>
 </div>
 </br>
 <center>

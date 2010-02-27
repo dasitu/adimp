@@ -47,7 +47,8 @@ $sql[2] = $sql_common." AND dp.depart_id=".$_SESSION['depart_id'];
 	月份：<input name=m type=textbox size='3'></input>
 	<input class=btn type="submit" value='GO'></input>
 </form>
-<input class=btn type="button" name="export" value="导出到Excel" onclick="location.href='../pbc/pbc_export.php'"></input>
+<input class=btn type="button" name="export" value="导出到Excel" 
+onclick="location.href='../pbc/pbc_export.php?m=<?php echo $month;?>&y=<?php echo $year?>'"></input>
 </div>
 <center>
 <?php
