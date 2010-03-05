@@ -8,6 +8,7 @@ require_once("../common/functions.php");
 @$month = $_GET['m'];
 @$year = $_GET['y'];
 $user_id = $_GET['u'];
+$depart_id = $_GET['d'];
 if($month=="")
 	$month = date('n');
 if($year=="")
@@ -26,6 +27,10 @@ AND			p.pbc_user_id = u.user_id";
 if($user_id!="")
 {
 	$sql_pbc .= " AND u.user_id=".$user_id;
+}
+if($depart_id!="")
+{
+	$sql_pbc .= " AND u.user_depart_id=".$depart_id;
 }
 $sql_pbc .=" ORDER BY	u.user_name";
 
@@ -67,6 +72,10 @@ AND		pbt.pbc_biz_type_id = pd.pbc_biz_type_id ";
 if($user_id!="")
 {
 	$sql_data .= " AND u.user_id=".$user_id;
+}
+if($depart_id!="")
+{
+	$sql_pbc .= " AND u.user_depart_id=".$depart_id;
 }
 $sql_data .= " ORDER BY u.user_name, pbt.pbc_biz_type_name";
 $result_arr = $db->fetch_all_array($sql_data);

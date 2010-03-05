@@ -1,4 +1,5 @@
 <?php
+require "../common/session.php";
 require "../common/functions.php";
 header("Content-Type: text/html; charset=utf-8");
 ?>
@@ -11,6 +12,7 @@ header("Content-Type: text/html; charset=utf-8");
 <center>
 	<div style="width:70%">
 		<div style="display:block;">
+		<?php if($_SESSION['depart_id'] == '1'){?>
 		<!-- upload section -->
 		<form name="uploadForm" enctype="multipart/form-data" action="../firewall/actions.php" method="post">
 		<table class="mytable">
@@ -26,6 +28,7 @@ header("Content-Type: text/html; charset=utf-8");
 		</table>
 		<input type="hidden" name="actions" value="insert_firewall_rule"></input>
 		</form>
+		<?php }?>
 		</div>
 
 		<div>

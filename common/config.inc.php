@@ -13,9 +13,20 @@ $config['max_size'] = 1024*250; // the max. size for uploading
 
 //pbc related config
 //the current day is inclued
-$pbc_config['start_evaluate_day'] = 1;
-$pbc_config['last_evaluate_day'] = 30;
-$pbc_config['start_submit_day'] = 1;
-$pbc_config['last_submit_day'] = 30;
 
+//the data range for group member to evaluate there self score
+$pbc_config['start_evaluate_day'] = '-1#25';//-1 means last month and 25 means 25th day of the month
+$pbc_config['last_evaluate_day'] = '0#1';
+
+//the date range for group members to submit there pbc
+$pbc_config['start_submit_day'] = '-1#25';
+$pbc_config['last_submit_day'] = '0#3';
+
+//the date range of group manager to approve the pbc
+$pbc_config['start_approve_day'] = '0#1';
+$pbc_config['last_approve_day'] = '0#4';
+
+//the date range of group manager to approve the pbc
+$pbc_config['start_score_day'] = '0#1';
+$pbc_config['last_score_day'] = '0#4';
 ?>

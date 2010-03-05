@@ -49,7 +49,7 @@ $xajax->printJavascript();
 	<tr>
 		<td align="right">活动内容</td>
 		<td align="left">
-			<input class=textbox name="pbc_active" id="pbc_active" alt="NotNull"></input>
+			<textarea rows='4' name="pbc_active" id="pbc_active" alt="NotNull"></textarea>
 		</td>
 	</tr>
 	<tr>

@@ -90,7 +90,6 @@ echo "
 		$admin = 1;
 		$is_evaluate = isCanEvaluate($pbc_config,$pbc_status,$current_pbc_time,$admin); //$admin = 1
 		$is_submit = isCanSubmitPBC($pbc_config,$pbc_status,$current_pbc_time,$admin);	//#admin = 1
-		$is_modify = isModifyPBC($pbc_config,$pbc_status,$current_pbc_time,$admin);
 		$final_btn = "";
 		$action = "";
 		if($is_evaluate)
@@ -105,9 +104,6 @@ echo "
 			$is_evaluate = false;
 			$final_btn = "
 			<input class='btn' type='submit' name='submit' value='批准PBC'></input>";
-		}
-		if($is_modify)
-		{
 			array_push($head,'操作');
 		}
 
@@ -148,7 +144,7 @@ echo "
 			}
 
 			//add the modify colomn
-			if($is_modify)
+			if($is_submit)
 			{
 				$tr.="
 					<td>
