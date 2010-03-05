@@ -84,7 +84,6 @@ if(@$body[0])
 	$pbc_reward = @$body[0]['pbc_reward'];
 	$is_evaluate = isCanEvaluate($pbc_config,$pbc_status,$current_pbc_time);
 	$is_submit = isCanSubmitPBC($pbc_config,$pbc_status,$current_pbc_time);
-	$is_modify = isModifyPBC($pbc_config,$pbc_status,$current_pbc_time);
 
 	if($is_evaluate)
 	{
@@ -101,9 +100,6 @@ if(@$body[0])
 		$final_btn = "
 		<input class='btn' type='button' name='back' value='继续录入' onclick=\"location.href='../pbc/pbc.php'\"></input>
 		<input class='btn' type='submit' name='submit' value='提交PBC'></input>";
-	}
-	if($is_modify)
-	{
 		array_push($head,'操作');
 	}
 }
@@ -147,7 +143,7 @@ if(@$body[0])
 
 				$tr .= "<td>".$td_value."</td>";
 			}
-			if($is_modify)
+			if($is_submit)
 			{
 				$tr.="
 					<td>

@@ -60,6 +60,7 @@ if(@$_SERVER["HTTP_REFERER"]) //Avoid to access directly
 
 	header("Content-Transfer-Encoding: binary");
 	header("Content-Length: ".filesize($file_name));
+	readfile($file_name);
 	exit;
 }
 else

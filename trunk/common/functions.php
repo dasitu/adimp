@@ -11,60 +11,39 @@ function echoln($msg)
 }
 //************************************************************************//
 
-//**********rule for check the user can modify or delete pbc******//
-function isModifyPBC($pbc_config,$pbc_status,$pbc_time,$admin=0)
-{
-	$current_month = date("n");
-	$current_year = date('Y');
-	//echoln('m1');
-	//You can only evaluate the pbc of last month
-	if( (date('n',$pbc_time) == $current_month) && (date('Y',$pbc_time) == $current_year) )
-	{
-		//echoln('m2');
-		//check the time range
-		$start_date = mktime(0,0,0,$current_month,$pbc_config['start_evaluate_day']);//the 1st day of the current month
-		$end_date = mktime(23,59,59,$current_month,$pbc_config['last_evaluate_day']);//the 1st day of the current month
-		$current = time();
-
-		if($current >= $start_date && $current <= $end_date)
-		{
-			//echoln('m3');
-			//check the status of pbc
-			//pbc process "initial->submitted->approved->self_scored->scored->closed"
-			if(($admin==0 && $pbc_status == "initial") || ($admin==1 && $pbc_status == "submitted"))
-				return true;
-		}
-	}
-	return false;
-}
-//************************************************************************//
-
 //**********rule for check the user can evaluate the grade of itself******//
 function isCanEvaluate($pbc_config,$pbc_status,$pbc_time,$admin=0)
 {
 	$current_month = date("n");
 	$current_year = date('Y');
-	//echoln('e1');
-	//You can only evaluate the pbc of last month
-	if( (date('n',$pbc_time) == ($current_month - 1)) && (date('Y',$pbc_time) == $current_year) )
+	$pbc_month = date('n',$pbc_time);
+	$start_evaluate = explode('#',$pbc_config['start_evaluate_day']); 
+	$last_evaluate = explode('#',$pbc_config['last_evaluate_day']); 
+	
+	//this is for group manager to evaluate
+	if($admin==1) 
 	{
-		//echoln('e2');
-		//check the time range
-		$start_date = mktime(0,0,0,$current_month,$pbc_config['start_evaluate_day']);//the 1st day of the current month
-		$end_date = mktime(23,59,59,$current_month,$pbc_config['last_evaluate_day']);//the 1st day of the current month
-		$current = time();
-
-		if($current >= $start_date && $current <= $end_date)
-		{
-			//echoln('e3');
-			//check the status of pbc
-			//pbc process "initial->submitted->approved->self_scored->scored->closed"
-			if($admin==0 && $pbc_status == "approved")
-				return true;
-			if($admin==1 && $pbc_status == "self_scored")
-				return true;
-		}
+		$start_submit = explode('#',$pbc_config['start_score_day']); 
+		$last_submit = explode('#',$pbc_config['last_score_day']);	
 	}
+	
+	//echoln('e1');
+	//check the time range
+	$start_date = mktime(0,0,0,($pbc_month+$start_evaluate[0]),$start_evaluate[1]);//the 1st day of the pbc month
+	$end_date = mktime(23,59,59,($pbc_month+$last_evaluate[0]),$last_evaluate[1]);//the 1st day of the pbc month
+	$current = time();
+
+	if($current >= $start_date && $current <= $end_date)
+	{
+		//echoln('e3');
+		//check the status of pbc
+		//pbc process "initial->submitted->approved->self_scored->scored->closed"
+		if($admin==0 && $pbc_status == "approved")
+			return true;
+		if($admin==1 && $pbc_status == "self_scored")
+			return true;
+	}
+	
 	return false;
 }
 //************************************************************************//
@@ -74,26 +53,28 @@ function isCanSubmitPBC($pbc_config,$pbc_status,$pbc_time,$admin=0)
 {
 	$current_month = date("n");
 	$current_year = date('Y');
-	//echoln('s1');
-	//You can only evaluate the pbc of last month
-	if( (date('n',$pbc_time) == $current_month) && (date('Y',$pbc_time) == $current_year) )
+	$start_submit = explode('#',$pbc_config['start_submit_day']); 
+	$last_submit = explode('#',$pbc_config['last_submit_day']);
+	if($admin==1)
 	{
-		//echoln('s2');
-		//check the time range
-		$start_date = mktime(0,0,0,$current_month,$pbc_config['start_submit_day']);//the 1st day of the current month
-		$end_date = mktime(23,59,59,$current_month,$pbc_config['last_submit_day']);//the 1st day of the current month
-		$current = time();
-
-		if($current >= $start_date && $current <= $end_date)
-		{
-			//echoln('s3');
-			//check the current status of pbc
-			//pbc process "initial->submitted->approved->self_scored->scored->closed"
-			if($admin==0 && $pbc_status == "initial")
-				return true;
-			if($admin==1 && $pbc_status == "submitted")
-				return true;
-		}
+		$start_submit = explode('#',$pbc_config['start_approve_day']); 
+		$last_submit = explode('#',$pbc_config['last_approve_day']);	
+	}
+	$pbc_month = date('n',$pbc_time);
+	//echoln('s1');
+	//check the time range
+	$start_date = mktime(0,0,0,($pbc_month+$start_submit[0]),$start_submit[1]);//the 1st day of the pbc month
+	$end_date = mktime(23,59,59,($pbc_month+$last_submit[0]),$last_submit[1]);//the 1st day of the pbc month
+	$current = time();
+	if($current >= $start_date && $current <= $end_date)
+	{
+		//echoln('s3');
+		//check the current status of pbc
+		//pbc process "initial->submitted->approved->self_scored->scored->closed"
+		if($admin==0 && $pbc_status == "initial")
+			return true;
+		if($admin==1 && $pbc_status == "submitted")
+			return true;
 	}
 	return false;
 }

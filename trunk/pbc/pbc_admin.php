@@ -7,11 +7,6 @@ header("Content-Type: text/html; charset=utf-8");
 //when pbc_role = 2, it is the team leader of his department
 //when pbc_role = 3, it is the common user, he could not access this page
 //when pbc_role = 4, it is the super admin
-$pbc_role = $_SESSION['pbc_role_id'];
-if($pbc_role == 1 || $pbc_role == 4)
-{
-	$pbc_role = 0;
-}
 
 $month = @$_GET['m'];
 $year = @$_GET['y'];
@@ -22,6 +17,13 @@ if($month=="")
 if($year=="")
 {
 	$year = date('Y');
+}
+$pbc_role = $_SESSION['pbc_role_id'];
+$export_link = "?m=$month&y=$year&d=".$_SESSION['depart_id'];
+if($pbc_role == 1 || $pbc_role == 4)
+{
+	$pbc_role = 0;
+	$export_link = "?m=$month&y=$year";
 }
 $sql_common = "SELECT * FROM user u, pbc p, department dp
 WHERE MONTH(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $month 
@@ -48,7 +50,7 @@ $sql[2] = $sql_common." AND dp.depart_id=".$_SESSION['depart_id'];
 	<input class=btn type="submit" value='GO'></input>
 </form>
 <input class=btn type="button" name="export" value="导出到Excel" 
-onclick="location.href='../pbc/pbc_export.php?m=<?php echo $month;?>&y=<?php echo $year?>'"></input>
+onclick="location.href='../pbc/pbc_export.php<?php echo $export_link;?>'"></input>
 </div>
 <center>
 <?php
