@@ -5276,3 +5276,16 @@
 		AND YEAR(FROM_UNIXTIME(pbc_time,'%Y-%m-%d')) = YEAR('2010-02-23') 
 		AND pbc_status = 'initial';
 		)
+2010-03-06 23:51:29 Failed update pbc status to approved: 0 rows was updated
+2010-03-06 23:55:47 Failed update pbc status to approved: 0 rows was updated
+2010-03-06 23:55:47 Success update 1 's pbc status to SCORED.
+2010-03-06 23:55:47 Success update 3 's pbc status to SCORED.
+2010-03-06 23:57:34 Failed update pbc status to approved: 0 rows was updated
+2010-03-06 23:57:34 Success update 1 's pbc status to SCORED.
+2010-03-06 23:57:34 Success update 3 's pbc status to SCORED.
+2010-03-06 23:59:21 Failed update pbc status to approved: 0 rows was updated
+2010-03-06 23:59:21 Success update 1 's pbc status to SCORED.
+2010-03-06 23:59:21 Success update 3 's pbc status to SCORED.
+2010-03-07 00:00:51 Failed update pbc status to approved: 0 rows was updated
+2010-03-07 00:00:52 Success update 1 's pbc status to SCORED.
+2010-03-07 00:00:52 Success update 3 's pbc status to SCORED.
