@@ -11,7 +11,7 @@ $where = "WHERE MONTH(FROM_UNIXTIME(pbc_time,'%Y-%m-%d')) = MONTH('".$now."')
 $msg = updatePBCStatus_cron($pbc_from_status,$pbc_to_status,$where,$db);
 echoln($where);
 $affected_rows = 0;
-$msg = "Failed update pbc status to $pbc_status: $affected_rows rows was updated";
+$msg = "Failed update pbc status to $pbc_to_status: $affected_rows rows was updated";
 if($r)
 {
 	$affected_rows = $db->affected_rows;
