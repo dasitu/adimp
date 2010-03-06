@@ -62,9 +62,7 @@ $data = $db->query_first($sql);
 	<tr>
 		<td align="right">活动内容</td>
 		<td align="left">
-			<textarea rows='4' name="pbc_active" id="pbc_active" alt="NotNull">
-			<?php echo $data['pbc_active'];?>
-			</textarea>
+			<textarea rows='4' name="pbc_active" id="pbc_active" alt="NotNull"><?php echo $data['pbc_active'];?></textarea>
 		</td>
 	</tr>
 	<tr>

@@ -4,6 +4,11 @@ require "../common/xajax_server.php";
 require_once ("../common/functions.php");
 header("Content-Type: text/html; charset=utf-8");
 $xajax->printJavascript();
+$user_id = $_GET['uid'];
+if($user_id=="")
+{
+	$user_id = $_SESSION['user_id'];
+}
 ?>
 <html>
   <head>
@@ -20,7 +25,7 @@ $xajax->printJavascript();
 </div>
 <center>
 <!-- user input form -->
-<form name="pbcForm" enctype="multipart/form-data" action="../pbc/actions.php" method="post" onsubmit="return checkNull(this);">
+<form name="pbcForm" enctype="multipart/form-data" action="../pbc/actions.php?uid=<?php echo $user_id;?>" method="post" onsubmit="return checkNull(this);">
 <table class="mytable">
 	<tr>
 		<td align="right">业务类别</td>
@@ -34,7 +39,7 @@ $xajax->printJavascript();
 			$where = " 
 			WHERE	u.user_pbc_template_id = ptb.pbc_template_id 
 			AND		ptb.pbc_biz_type_id = pbt.pbc_biz_type_id 
-			AND		u.user_id = ".$_SESSION['user_id']; 
+			AND		u.user_id = ".$user_id; 
 			echo listSelection($db,$table_name,$col_name,$col_value,$where);
 			?>
 		</select>

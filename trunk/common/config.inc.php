@@ -24,7 +24,7 @@ $pbc_config['last_submit_day'] = '0#3';
 
 //the date range of group manager to approve the pbc
 $pbc_config['start_approve_day'] = '0#1';
-$pbc_config['last_approve_day'] = '0#4';
+$pbc_config['last_approve_day'] = '0#6';
 
 //the date range of group manager to approve the pbc
 $pbc_config['start_score_day'] = '0#1';
