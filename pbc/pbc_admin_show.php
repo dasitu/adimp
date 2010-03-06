@@ -103,7 +103,9 @@ echo "
 			$action = "pbc_approve";
 			$is_evaluate = false;
 			$final_btn = "
-			<input class='btn' type='submit' name='submit' value='批准PBC'></input>";
+			<input class='btn' type='submit' name='submit' value='批准PBC'></input>
+			<input class='btn' type='button' name='add' value='添加记录' onclick=\"location.href='../pbc/pbc.php?uid=".$user_id."'\">
+			";
 			array_push($head,'操作');
 		}
 

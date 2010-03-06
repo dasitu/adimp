@@ -22,22 +22,34 @@ if($actions == "insert_pbc")
 {
 	$table_arr="";
 	$table_name = "pbc";
+	$user_id = $_GET['uid'];
+	if($user_id=="")
+	{
+		echo "插入pbc出错！";
+		exit;
+	}
 	//print_r($_POST);
 	//check whether the pbc of this month is existed.
 	//if not, insert the pbc of this month first. insert into table "pbc"
-	$sql = "select pbc_id from pbc where pbc_user_id = ".$_SESSION['user_id']." 
+	$sql = "select pbc_id,pbc_status from pbc where pbc_user_id = ".$user_id." 
 	and MONTH(FROM_UNIXTIME(pbc_time,'%y-%m-%d')) = ".date('n',time());
 	$pbc = $db->query_first($sql);
 	$pbc_id = $pbc['pbc_id'];
 
 	if(!$pbc_id)
 	{
-		$table_arr['pbc_user_id'] = $_SESSION['user_id'];
+		$table_arr['pbc_user_id'] = $user_id;
 		$table_arr['pbc_time'] = time();
 		$table_arr['pbc_status'] = "initial";
 		$table_arr['pbc_change_time'] = time();
 		$table_arr['pbc_change_by'] = $_SESSION['user_name'];
 		$pbc_id = $db->query_insert($table_name,$table_arr);
+	}
+	else
+	{
+		$pbc_status = 'submitted';
+		$update_user = $_SESSION['user_name'];
+		updatePBCStatus($pbc_id,$pbc['pbc_status'],$update_user,$db);
 	}
 	
 	//insert into pbc_data
@@ -55,6 +67,7 @@ if($actions == "insert_pbc")
 		}
 	}
 	$table_arr['pbc_id'] = $pbc_id;
+
 	$insert_id = $db->query_insert($table_name,$table_arr);
 	$msg = "添加成功！";
 }
