@@ -157,7 +157,7 @@ if(@$body[0])
 		if($tr=="")
 		{
 			$tr = "<tr><td colspan=$col_cnt align=center>没有记录！</td></tr>";
-			if($month == date('n') && $year = date('Y'))
+			if(date('n',determinPbcInsertTime($pbc_config))==$month)
 				$final_btn .= "<input class='btn' type='button' name='back' value='录入' onclick=\"location.href='../pbc/pbc.php'\"></input>";
 		}
 		else

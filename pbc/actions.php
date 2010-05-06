@@ -31,15 +31,16 @@ if($actions == "insert_pbc")
 	//print_r($_POST);
 	//check whether the pbc of this month is existed.
 	//if not, insert the pbc of this month first. insert into table "pbc"
+	$insert_time = determinPbcInsertTime($pbc_config);
 	$sql = "select pbc_id,pbc_status from pbc where pbc_user_id = ".$user_id." 
-	and MONTH(FROM_UNIXTIME(pbc_time,'%y-%m-%d')) = ".date('n',time());
+	and MONTH(FROM_UNIXTIME(pbc_time,'%y-%m-%d')) = ".date('n',$insert_time);
 	$pbc = $db->query_first($sql);
 	$pbc_id = $pbc['pbc_id'];
 
 	if(!$pbc_id)
 	{
 		$table_arr['pbc_user_id'] = $user_id;
-		$table_arr['pbc_time'] = time();
+		$table_arr['pbc_time'] = $insert_time;
 		$table_arr['pbc_status'] = "initial";
 		$table_arr['pbc_change_time'] = time();
 		$table_arr['pbc_change_by'] = $_SESSION['user_name'];
@@ -77,6 +78,11 @@ if($actions == "insert_pbc")
 else if($actions == "pbc_submit")
 {
 	$pbc_id = $_POST['pbc_id'];
+	$pbc_reward = $_POST['pbc_reward'];
+	$sql = "update pbc set pbc_reward='".$pbc_reward."'";
+	if($pbc_reward!=""){
+		$db->query($sql);
+	}
 	$pbc_status = 'submitted';
 	$update_user = $_SESSION['user_name'];
 	if(	updatePBCStatus($pbc_id,$pbc_status,$update_user,$db))
@@ -88,6 +94,11 @@ else if($actions == "pbc_submit")
 else if($actions == "pbc_approve")
 {
 	$pbc_id = $_POST['pbc_id'];
+	$pbc_reward = $_POST['pbc_reward'];
+	$sql = "update pbc set pbc_reward='".$pbc_reward."'";
+	if($pbc_reward!=""){
+		$db->query($sql);
+	}
 	$pbc_status = 'approved';
 	$update_user = $_SESSION['user_name'];
 	if(	updatePBCStatus($pbc_id,$pbc_status,$update_user,$db))

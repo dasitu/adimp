@@ -101,6 +101,7 @@ echo "
 		if ($is_submit)
 		{
 			$action = "pbc_approve";
+			$pbc_reward = "<input name='pbc_reward' type='textbox' maxlength=6 size='4' value=\"$pbc_reward\"></input>";
 			$is_evaluate = false;
 			$final_btn = "
 			<input class='btn' type='submit' name='submit' value='批准PBC'></input>
