@@ -1,0 +1,4 @@
+#m h dom mon dow cmd
+* * 5 * * E:\wamp\bin\php\php5.3.0\php-cgi.exe -f .\cron_appr_score_pbc.php
+* * 26 * * E:\wamp\bin\php\php5.3.0\php-cgi.exe -f .\cron_close_all_pbc.php
+* * 2 * * E:\wamp\bin\php\php5.3.0\php-cgi.exe -f .\cron_submit_all_pbc.php
