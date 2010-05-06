@@ -79,7 +79,7 @@ else if($actions == "pbc_submit")
 {
 	$pbc_id = $_POST['pbc_id'];
 	$pbc_reward = $_POST['pbc_reward'];
-	$sql = "update pbc set pbc_reward='".$pbc_reward."'";
+	$sql = "update pbc set pbc_reward='".$pbc_reward."' where pbc_id=".$pbc_id;
 	if($pbc_reward!=""){
 		$db->query($sql);
 	}
@@ -95,7 +95,7 @@ else if($actions == "pbc_approve")
 {
 	$pbc_id = $_POST['pbc_id'];
 	$pbc_reward = $_POST['pbc_reward'];
-	$sql = "update pbc set pbc_reward='".$pbc_reward."'";
+	$sql = "update pbc set pbc_reward='".$pbc_reward."' where pbc_id=".$pbc_id;
 	if($pbc_reward!=""){
 		$db->query($sql);
 	}
