@@ -4,7 +4,6 @@ require_once("../common/session.php");
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
 <HTML>
 <HEAD id=Head1>
-<TITLE>无标题页</TITLE>
 <META http-equiv=Content-Type content="text/html; charset=utf-8">
 <STYLE type=text/css> 
 *{
@@ -53,7 +52,7 @@ FORM {
 				<A href="javascript:history.go(1);"><IMG  src="../images/nav_forward.gif" align=absMiddle border=0>前进</A>
 				<A href="../common/logout.php" target=_top>
 				<IMG src="../images/nav_changePassword.gif" align=absMiddle border=0>重新登录</A> 
-				<A href="#" target=mainFrame>
+				<A href="../common/chpass.php" target=mainFrame>
 				<IMG src="../images/nav_resetPassword.gif" align=absMiddle border=0>修改密码</A>
 				<IMG src="../images/menu_seprator.gif" align=absMiddle> 
 				<SPAN id=clock></SPAN>
