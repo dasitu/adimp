@@ -1,4 +1,5 @@
 <?php
+set_time_limit(0);
 require_once("../common/session.php");
 header("Content-Type: text/html; charset=utf-8");
 require_once "../common/functions.php";
@@ -10,7 +11,7 @@ require "../lib/upload.class.php"; //classes is the map where the class file is 
 <?php
 if(!isset($_POST['actions']))
 {
-	$msg = "if is forbidden to access this file!";
+	$msg = "It is forbidden to access this file!";
 	golink($msg,$config['index']);//print a js for automatic redirect
 	exit;
 }
