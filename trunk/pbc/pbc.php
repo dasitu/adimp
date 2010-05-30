@@ -65,6 +65,7 @@ if($user_id=="")
 		<td align="right">权重</td>
 		<td align="left">
 		   <select name="pbc_weights" id="pbc_weights" alt="NotNull" >
+		      <option value = "0"> 0% </option>
 		      <option value = "10"> 10% </option>
 			  <option value = "20"> 20% </option>
 			  <option value = "30"> 30% </option>
@@ -74,6 +75,7 @@ if($user_id=="")
 			  <option value = "70"/> 70% </option>
 			  <option value = "80"/> 80% </option>
 			  <option value = "90"/> 90% </option>
+			  <option value = "100"> 100% </option>
 		   </select>
 		</td>
 	</tr>
