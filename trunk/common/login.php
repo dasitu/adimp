@@ -42,6 +42,13 @@ if(isset($_POST['btnLogin']))
 			<td colSpan=3>&nbsp;</td>
 		</tr>
 		<tr>
+			<td colSpan=3>&nbsp;</td>
+		</tr>
+		<tr>
+		     <td colSpan=2 align=right ><P><STRONG><FONT face=黑体 color=#ffffff size=7>天线部信息管理平台</FONT></STRONG></P> </td>
+			 <td colSpan=3>&nbsp;</td>
+		</tr>	 
+		<tr>
 			<td>&nbsp;</td>
 			<td id=login>
 			<TABLE height=498 width=800>
@@ -88,7 +95,12 @@ if(isset($_POST['btnLogin']))
 		</tr>
 		<tr>
 			<td>&nbsp;</td>
-			<td id=root>&nbsp;</td>
+			<td id=root align=center>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			中国电子科技集团公司第二十九研究所 天线部 版权所有 <p/> 
+			&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+			© All Right Reversed 2010  
+			联系方式：87550642
+			</td>
 			<td>&nbsp;</td>
 		</tr>
 	</table>
