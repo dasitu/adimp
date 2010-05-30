@@ -1,11 +1,10 @@
 <?php
 require_once("../common/session.php");
 require "../common/functions.php";
-header("Content-Type: text/html; charset=utf-8");
+require "../common/header.php";
 ?>
 <html>
   <head>
-	<link rel="stylesheet" type="text/css" href="../css/main.css" />
     <link rel="stylesheet" type="text/css" href="../css/jscal2/jscal2.css" />
     <link rel="stylesheet" type="text/css" href="../css/jscal2/border-radius.css" />
 	<script src="../js/main.js" type=text/javascript></script>
@@ -26,7 +25,7 @@ header("Content-Type: text/html; charset=utf-8");
 		<select name="f_user_id[]" id="f_user_id" SIZE="6" multiple>
 		<?php 
 		//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
-		echo listSelection($db,"user","user_name","user_id");
+		echo listSelection($db,"user","user_name","user_id","where user_active=1");
 		?>
 		</select>
 		</td>
@@ -37,7 +36,7 @@ header("Content-Type: text/html; charset=utf-8");
 		<select name="depart_id[]" id="depart_id" multiple>
 			<?php 
 			//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
-			echo listSelection($db,"department","depart_name","depart_id");
+			echo listSelection($db,"department","depart_name","depart_id",,"where depart_active=1");
 			?>
 		</select>
 		</td>

@@ -1,10 +1,9 @@
 <?php
 require_once("../common/session.php");
-header("Content-Type: text/html; charset=utf-8");
+require "../common/header.php";
 require_once "../common/functions.php";
 error_reporting(-1);
 ?>
-<link rel="stylesheet" type="text/css" href="../css/main.css" />
 <div class="topbody"></div>
 
 <?php

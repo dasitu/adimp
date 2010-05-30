@@ -42,6 +42,7 @@ $data = $db->query_first($sql);
 			$where = " 
 			WHERE	u.user_pbc_template_id = ptb.pbc_template_id 
 			AND		ptb.pbc_biz_type_id = pbt.pbc_biz_type_id 
+			AND     u.user_active=1 
 			AND		u.user_id = ".$user_id;
 			$selected_value = $data['pbc_biz_type_id'];
 			echo listSelection($db,$table_name,$col_name,$col_value,$where,$selected_value);

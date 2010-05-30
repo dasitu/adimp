@@ -27,7 +27,7 @@ header("Content-Type: text/html; charset=utf-8");
 		<select name="pbc_user_id[]" id="pbc_user_id" SIZE="6" multiple>
 		<?php 
 		//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
-		echo listSelection($db,"user","user_name","user_id");
+		echo listSelection($db,"user","user_name","user_id","where user_active=1");
 		?>
 		</select>
 		</td>
@@ -38,7 +38,7 @@ header("Content-Type: text/html; charset=utf-8");
 		<select name="depart_id[]" id="depart_id" multiple>
 			<?php 
 			//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
-			echo listSelection($db,"department","depart_name","depart_id");
+			echo listSelection($db,"department","depart_name","depart_id","where depart_active=1");
 			?>
 		</select>
 		</td>

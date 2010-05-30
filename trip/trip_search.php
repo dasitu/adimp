@@ -26,7 +26,7 @@ header("Content-Type: text/html; charset=utf-8");
 		<select name="trip_user_id[]" id="trip_user_id" SIZE="6" multiple>
 		<?php 
 		//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
-		echo listSelection($db,"user","user_name","user_id");
+		echo listSelection($db,"user","user_name","user_id","where user_active=1");
 		?>
 		</select>
 		</td>

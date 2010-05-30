@@ -2,7 +2,7 @@
 require_once("../common/session.php");
 require "../common/xajax_server.php";
 require_once ("../common/functions.php");
-header("Content-Type: text/html; charset=utf-8");
+require "../common/header.php";
 $xajax->printJavascript();
 $user_id = $_GET['uid'];
 if($user_id=="")
@@ -12,7 +12,6 @@ if($user_id=="")
 ?>
 <html>
   <head>
-	<link rel="stylesheet" type="text/css" href="../css/main.css" />
     <link rel="stylesheet" type="text/css" href="../css/jscal2/jscal2.css" />
     <link rel="stylesheet" type="text/css" href="../css/jscal2/border-radius.css" />
 	<script type="text/javascript" src="../js/main.js"></script>
@@ -38,6 +37,7 @@ if($user_id=="")
 			$col_value = "pbt.pbc_biz_type_id";
 			$where = " 
 			WHERE	u.user_pbc_template_id = ptb.pbc_template_id 
+			AND     u.user_active=1 
 			AND		ptb.pbc_biz_type_id = pbt.pbc_biz_type_id 
 			AND		u.user_id = ".$user_id; 
 			echo listSelection($db,$table_name,$col_name,$col_value,$where);

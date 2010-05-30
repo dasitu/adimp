@@ -1,12 +1,9 @@
 <?php
 require "../common/session.php";
 require "../common/functions.php";
-header("Content-Type: text/html; charset=utf-8");
+require "../common/header.php";
 ?>
 <html>
-  <head>
-	<link rel="stylesheet" type="text/css" href="../css/main.css" />
-  </head>
 <body>
 <div class="topbody"></div>
 <center>

@@ -45,7 +45,8 @@ and YEAR(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $year
 and pd.pbc_id = p.pbc_id
 and pd.pbc_biz_type_id = pbt.pbc_biz_type_id
 and p.pbc_user_id = u.user_id  
-and u.user_depart_id = depart_id
+and u.user_depart_id = depart_id 
+and u.user_active=1 
 order by pbt.pbc_biz_type_id
 ";
 //echo $sql."<br>";

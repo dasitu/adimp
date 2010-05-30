@@ -1,8 +1,7 @@
 <?php
 require_once("../common/session.php");
-header("Content-Type: text/html; charset=utf-8");
 require_once "../common/functions.php";
-
+require_once "../common/header.php";
 $pbc_data_id = $_GET['id'];
 $pbc_id = $_GET['pbc_id'];
 

@@ -1,10 +1,7 @@
 <?php
 require_once("../common/session.php");
 require "../common/functions.php";
-header("Content-Type: text/html; charset=utf-8");
-?>
-<link rel="stylesheet" type="text/css" href="../css/main.css" />
-<?php
+require "../common/header.php";
 $user_id = @$_SESSION['user_id'];
 @$month = $_GET['m'];
 @$year = $_GET['y'];
@@ -44,6 +41,7 @@ and pd.pbc_id = p.pbc_id
 and pd.pbc_biz_type_id = pbt.pbc_biz_type_id
 and p.pbc_user_id = u.user_id  
 and u.user_depart_id = depart_id
+AND u.user_active=1
 order by pbt.pbc_biz_type_id
 ";
 //echo $sql."<br>";
@@ -105,8 +103,10 @@ if(@$body[0])
 }
 
 //show the table itself
+
 ?>
-<form name="pbcSubmitForm" action="../pbc/actions.php" method="post" >
+<form name="pbcSubmitForm" action="../pbc/actions.php" method="post" 
+onsubmit="return checkPercent(this.total_percent.value)">
 <table class=mytable>
 	<?php
 		//create the header
@@ -119,6 +119,7 @@ if(@$body[0])
 
 		//create the body
 		$tr = "";
+		$total_percent = 0;
 		foreach ($body as $record)
 		{
 			$pbc_data_id = $record['pbc_data_id'];
@@ -139,8 +140,10 @@ if(@$body[0])
 
 				//add the % 
 				if($show_col[$i] == "pbc_weights")
+				{
 					$td_value = $td_value."%";
-
+					$total_percent += $td_value;
+				}
 				$tr .= "<td>".$td_value."</td>";
 			}
 			if($is_submit)
@@ -173,6 +176,7 @@ if(@$body[0])
 		</table>
 		<input type='hidden' name='pbc_id' value='$current_pbc_id' />
 		<input type='hidden' name='actions' value='$action' />
+		<input type='hidden' name='total_percent' value='$total_percent' />
 		<br>
 		$final_btn";
 ?>

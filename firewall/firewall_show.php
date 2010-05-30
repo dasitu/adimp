@@ -1,9 +1,6 @@
 <?php
 require "../common/functions.php";
-header("Content-Type: text/html; charset=utf-8");
-?>
-<link rel="stylesheet" type="text/css" href="../css/main.css" />
-<?php
+require "../common/header.php";
 $where = "";
 if(isset($_POST['actions']) && $_POST['actions'] == "filter_firewall")
 {
@@ -70,6 +67,7 @@ $sql_from = " FROM firewall f, user u, department d, firewall_content_type t
 WHERE f.f_user_id = u.user_id
 AND d.depart_id = u.user_depart_id
 AND f.f_type_id = t.f_c_type_id
+AND u.user_active=1
 ";
 
 //person-count 
@@ -85,8 +83,8 @@ $sql_select_t_c = $sql_select_t_c.$sql_from.$where." GROUP by t.f_c_type_name";
 //show part
 $sql_select = " select * ";
 $sql = $sql_select.$sql_from.$where;
-$head = array("ID","姓名","部门","事件","事件类型","日期","证明人","处罚条款");
-$show_col = array("firewall_id","user_name","depart_name","f_content","f_c_type_name","f_date","f_refer_name","f_rules");//determin with column will be shown
+$head = array("姓名","部门","事件","事件类型","日期","证明人","处罚条款");
+$show_col = array("user_name","depart_name","f_content","f_c_type_name","f_date","f_refer_name","f_rules");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"f_date",false); 
 //convert the datetime to string, "true" means it is a dataset, "f_date" means the column name, "false" means the datetime format is not inlcude the time
