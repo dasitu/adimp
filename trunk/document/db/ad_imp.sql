@@ -13,6 +13,7 @@ SHOW WARNINGS;
 CREATE  TABLE IF NOT EXISTS `department` (
   `depart_id` INT NOT NULL AUTO_INCREMENT ,
   `depart_name` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NOT NULL ,
+  `depart_active` INT NOT NULL DEFAULT 1 ,
   PRIMARY KEY (`depart_id`) )
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8
@@ -78,6 +79,9 @@ CREATE INDEX `FK_pbc_template` ON `user` (`user_pbc_template_id` ASC) ;
 
 SHOW WARNINGS;
 CREATE INDEX `FK_user_role` ON `user` (`user_pbc_role_id` ASC) ;
+
+SHOW WARNINGS;
+CREATE UNIQUE INDEX `UN_user_login` ON `user` () ;
 
 SHOW WARNINGS;
 
@@ -574,11 +578,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- Data for table `department`
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
-INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (1, '办公室');
-INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (2, '方案论证组');
-INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (3, '航天及地面组');
-INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (4, '航空组');
-INSERT INTO `department` (`depart_id`, `depart_name`) VALUES (5, '测试组');
+INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (1, '办公室', NULL);
+INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (2, '方案论证组', NULL);
+INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (3, '航天及地面组', NULL);
+INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (4, '航空组', NULL);
+INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (5, '测试组', NULL);
 
 COMMIT;
 
