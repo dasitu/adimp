@@ -17,9 +17,7 @@ if(isset($_POST['passwd2']))
 	if($_POST['passwd1'] == $_POST['passwd2'])
 	{
 		$sql = "UPDATE user SET 
-				user_login='".$_POST['user_login']."',
 				user_pwd=password('".$_POST['passwd1']."') where user_id='".$_SESSION['user_id']."'";
-		//echo $sql;
 		if($db->query($sql))
 		{
 			echo "<font color='red'>修改成功！</font><br>";
@@ -36,10 +34,6 @@ if(isset($_POST['passwd2']))
 	<tr>
 		<td>姓名</td>
 		<td><?php echo $_SESSION['user_name'];?></td>
-	</tr>
-	<tr>
-		<td>用户名</td>
-		<td><input name='user_login' value='<?php echo $_SESSION['user_login'];?>' alt="NotNull"></input></td>
 	</tr>
 	<tr>
 		<td>新密码</td>

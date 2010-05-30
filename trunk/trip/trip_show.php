@@ -89,6 +89,7 @@ WHERE t.trip_type_id = tt.trip_type_id
 AND t.trip_user_id = u.user_id 
 AND t.trip_project_id = p.project_id 
 AND t.trip_report_doc_id = uf.upfile_id 
+AND u.user_active=1 
 ";
 
 //人员-出差天数
@@ -114,8 +115,8 @@ $sql_select_pj_f = $sql_select_pj_f.$sql_from.$where." GROUP by p.project_no";
 //全部显示
 $sql_select = " select * ";
 $sql = $sql_select.$sql_from.$where;
-$head = array("ID","人员","项目代号","任务类型","出差时间","回所时间","出差天数","出差地点","派差单位","派差人员","差旅费用","完成情况","联系人","联系方式","出差报告");
-$show_col = array("trip_id","user_name","project_no","trip_type_name","trip_leaving_date","trip_back_date","trip_day_off","trip_location","trip_sender_depart","trip_sender","trip_fee","trip_result","trip_contact","trip_phone","doc_link");//determin with column will be shown
+$head = array("人员","项目代号","任务类型","出差时间","回所时间","出差天数","出差地点","派差单位","派差人员","差旅费用","完成情况","联系人","联系方式","出差报告");
+$show_col = array("user_name","project_no","trip_type_name","trip_leaving_date","trip_back_date","trip_day_off","trip_location","trip_sender_depart","trip_sender","trip_fee","trip_result","trip_contact","trip_phone","doc_link");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"trip_leaving_date",false);
 $body = time2str($body,true,"trip_back_date",false);

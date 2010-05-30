@@ -13,6 +13,16 @@ function checkNull(objForm)
 	return true;
 }
 
+function checkPercent(value)
+{
+	if(value>100)
+	{
+		alert('您的PBC总权重为'+value+'%, 超过了100%, 请查正后提交！');
+		return false;
+	}
+	return true;
+}
+
 // start and end should be formate like '2010/01/20'
 function getDateDiff(startObj,endObj,outObj){
 	var start = document.getElementById(startObj).value;

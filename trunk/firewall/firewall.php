@@ -1,7 +1,7 @@
 <?php
 require_once("../common/session.php");
 require "../common/functions.php";
-header("Content-Type: text/html; charset=utf-8");
+require "../common/header.php";
 
 if($_SESSION['depart_id']!='1')
 {
@@ -11,7 +11,6 @@ if($_SESSION['depart_id']!='1')
 ?>
 <html>
   <head>
-	<link rel="stylesheet" type="text/css" href="../css/main.css" />
     <link rel="stylesheet" type="text/css" href="../css/jscal2/jscal2.css" />
     <link rel="stylesheet" type="text/css" href="../css/jscal2/border-radius.css" />
 	<script src="../js/main.js" type=text/javascript></script>
@@ -34,7 +33,7 @@ if($_SESSION['depart_id']!='1')
 			<select name="f_user_id" id="f_user_id" alt="NotNull">
 				<?php 
 				//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
-				echo listSelection($db,"user","user_name","user_id");
+				echo listSelection($db,"user","user_name","user_id","where user_active=1");
 				?>
 			</select>
 		</td>

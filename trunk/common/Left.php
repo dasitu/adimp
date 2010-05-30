@@ -80,6 +80,11 @@ node[5][0] = new TreeNode('PBC管理', '../pbc/pbc_show.php');
 
 node[6][0] = new TreeNode('项目管理', '../project/project.php');
 
+<?php if($_SESSION['pbc_role_id'] != 3 ) {?>
+	node[7][0] = new TreeNode('用户管理', '../user/list.php');
+    node[8][0] = new TreeNode('工程组管理', '../depart/list.php');
+<?php }?>
+
 
 for(var outer=0;outer<node.length;outer++)
 {

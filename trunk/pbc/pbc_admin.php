@@ -29,6 +29,7 @@ $sql_common = "SELECT * FROM user u, pbc p, department dp
 WHERE MONTH(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $month 
 AND YEAR(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $year 
 AND p.pbc_user_id = u.user_id 
+AND u.user_active=1
 AND u.user_depart_id = dp.depart_id 
 AND u.user_id <> ".$_SESSION['user_id'];
 $sql[0] = $sql_common;

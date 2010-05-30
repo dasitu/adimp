@@ -23,7 +23,8 @@ SELECT		u.user_pbc_template_id, p.pbc_user_id
 FROM		user u, pbc p
 WHERE		YEAR(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $year 
 AND			MONTH(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $month
-AND			p.pbc_user_id = u.user_id";
+AND			p.pbc_user_id = u.user_id 
+AND			u.user_active=1 ";
 if($user_id!="")
 {
 	$sql_pbc .= " AND u.user_id=".$user_id;

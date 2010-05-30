@@ -84,8 +84,8 @@ $sql_select_t_c = $sql_select_t_c.$sql_from.$where." GROUP by t.f_c_type_name";
 //show part
 $sql_select = " select * ";
 $sql = $sql_select.$sql_from.$where;
-$head = array("ID","项目名称","项目代号","创建人","创建时间");
-$show_col = array("project_id","project_name","project_no","user_name","project_create_date");//determin with column will be shown
+$head = array("项目名称","项目代号","创建人","创建时间");
+$show_col = array("project_name","project_no","user_name","project_create_date");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"project_create_date",false); 
 //convert the datetime to string, "true" means it is a dataset, "project_creat_date" means the column name, "false" means the datetime format is not inlcude the time

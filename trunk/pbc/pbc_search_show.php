@@ -69,6 +69,7 @@ if(isset($_POST['actions']) && $_POST['actions'] == "filter_pbc")
 $sql_from = " FROM pbc p, user u, department d 
 WHERE p.pbc_user_id = u.user_id
 AND d.depart_id = u.user_depart_id
+AND u.user_active=1 
 ";
 
 //person-count 
@@ -79,8 +80,8 @@ $sql_select_p_c = $sql_select_p_c.$sql_from.$where." ";
 //show part
 $sql_select = " select * ";
 $sql = $sql_select.$sql_from.$where;
-$head = array("ID","姓名","部门","时间","总分");
-$show_col = array("pbc_id","user_name","depart_name","pbc_time","pbc_total_grade");//determin with column will be shown
+$head = array("姓名","部门","时间","总分");
+$show_col = array("user_name","depart_name","pbc_time","pbc_total_grade");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"pbc_time",false); 
 //convert the datetime to string, "true" means it is a dataset, "f_date" means the column name, "false" means the datetime format is not inlcude the time

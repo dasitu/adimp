@@ -101,7 +101,7 @@ function isCanSubmitPBC($pbc_config,$pbc_status,$pbc_time,$admin=0)
 //*****************************login**************************************//
 function login($db,$login,$pass)
 {
-	$sql = "select u.*,d.depart_name from user u, department d where u.user_login='$login' and u.user_pwd=password('$pass') and u.user_depart_id=d.depart_id";
+	$sql = "select u.*,d.depart_name from user u, department d where u.user_login='$login' and u.user_pwd=password('$pass') and u.user_depart_id=d.depart_id and u.user_active=1 ";
 	$user = $db->query_first($sql);
 	if($user){
 		return $user;
@@ -182,9 +182,9 @@ function checkFileExsit($db,$file_name,$path)
 
 //******************list all of the users in table***********************//
 function listUser($db){
-	$sql = "select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id";
-	$head = array("ID","登录名","用户名","部门");
-	$show_col = array("user_id","user_login","user_name","depart_name");//determin with column will be shown
+	$sql = "select a.user_id,a.user_login,a.user_name,b.depart_name from user a, department b where a.user_depart_id = b.depart_id and a.user_active=1";
+	$head = array("登录名","用户名","部门");
+	$show_col = array("user_login","user_name","depart_name");//determin with column will be shown
 	$body = $db->fetch_all_array($sql);
 	return listInTable($head,$body,$show_col);
 }
@@ -280,7 +280,7 @@ function listInTable($head,$body,$show_col)
 {
 	//create the header
 	$col_cnt = count($head);
-	for($header = "<tr bgColor='#B0DFEF'>",$i=0;$i<$col_cnt;$i++)
+	for($header = "<tr bgColor='#B0DFEF'><td><b>ID</b></td>",$i=0;$i<$col_cnt;$i++)
 	{
 		$header .= "<td><b>".$head[$i]."</b></td>";
 	}
@@ -288,14 +288,16 @@ function listInTable($head,$body,$show_col)
 
 	//create the body
 	$tr = "";
+	$num = 1;
 	foreach ($body as $record)
 	{
-		$tr .= "<tr>";
+		$tr .= "<tr><td>$num</td>";
 		for($i=0;$i<count($show_col);$i++)
 		{
 			$tr .= "<td>".$record["$show_col[$i]"]."</td>";
 		}
 		$tr .= "</tr>";
+		$num++;
 	}
 	if($tr=="")
 	{
@@ -351,6 +353,20 @@ function addDownloadLink($upfiles)
 }
 //**********************************************************************//
 
+//************add the del and modify link into the dataset***************//
+//*********then it can be listed in the table by listInTable function***//
+function addOPLink($dataset,$folder,$id_name)
+{	
+	for($i=0;$i<count($dataset);$i++)
+	{
+		$dataset[$i]['op_link'] = "
+		<a href='../$folder/actions.php?a=del&id=".$dataset[$i][$id_name]."' onclick=\"return confirm('确定要删除吗？')\">删除</a>
+		&nbsp;&nbsp;&nbsp;
+		<a href='../$folder/$folder.php?a=mdf&id=".$dataset[$i][$id_name]."'>修改</a>";
+	}
+	return $dataset;
+}
+//**********************************************************************//
 
 //******************convert the extension string to images****************//
 function ext2img($string_ext)
@@ -470,7 +486,7 @@ function calculatePBC($pbc_id,$db)
 //*********************************获得用户信息******************************//
 function getUser($user_id,$db)
 {
-	$sql = "select * from user u, department d where d.depart_id = u.user_depart_id and u.user_id=$user_id";
+	$sql = "select * from user u, department d where d.depart_id = u.user_depart_id and u.user_id=$user_id and  u.user_active=1";
 	$user = $db->query_first($sql);
 	return $user;
 }
