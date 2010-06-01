@@ -1,0 +1,1 @@
+INSERT INTO `user` (`user_id`, `user_login`, `user_name`, `user_pwd`, `user_depart_id`, `user_active`, `user_pbc_template_id`, `user_pbc_role_id`) VALUES  (1, 'admin', 'admin', password('admin'), 1, 1, 1, 4 );

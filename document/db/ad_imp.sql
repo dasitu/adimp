@@ -81,7 +81,7 @@ SHOW WARNINGS;
 CREATE INDEX `FK_user_role` ON `user` (`user_pbc_role_id` ASC) ;
 
 SHOW WARNINGS;
-CREATE UNIQUE INDEX `UN_user_login` ON `user` () ;
+CREATE UNIQUE INDEX `UN_user_login` ON `user` (`user_login` ASC) ;
 
 SHOW WARNINGS;
 
@@ -578,11 +578,11 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 -- Data for table `department`
 -- -----------------------------------------------------
 SET AUTOCOMMIT=0;
-INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (1, '办公室', NULL);
-INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (2, '方案论证组', NULL);
-INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (3, '航天及地面组', NULL);
-INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (4, '航空组', NULL);
-INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (5, '测试组', NULL);
+INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (1, '办公室', 1);
+INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (2, '方案论证组', 1);
+INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (3, '航天及地面组', 1);
+INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (4, '航空组', 1);
+INSERT INTO `department` (`depart_id`, `depart_name`, `depart_active`) VALUES (5, '测试组', 1);
 
 COMMIT;
 
