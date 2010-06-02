@@ -24,12 +24,12 @@ if($id!="" && $action=="mdf")
 {
 	$user_name = $_POST['user_name'];
 	$user_login = $_POST['user_login'];
-	$user_depart_id = $_POST['depart_id'];
-	$user_pbc_role_id = $_POST['pbc_user_role_id'];
-	$user_pbc_template_id = $_POST['pbc_template_id'];
+	$user_depart_id = $_POST['user_depart_id'];
+	$user_pbc_role_id = $_POST['user_pbc_role_id'];
+	$user_pbc_template_id = $_POST['user_pbc_template_id'];
 
 	$sql = "UPDATE		user 
-			SET			user_name='$depart_name',
+			SET			user_name='$user_name',
 						user_login='$user_login',
 						user_depart_id='$user_depart_id',
 						user_pbc_role_id='$user_pbc_role_id',
