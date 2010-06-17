@@ -63,7 +63,7 @@ foreach($pbc_temp as $temp)
 //get pbc details data	
 $sql_data = "
 SELECT pbt.pbc_biz_type_name, pd.pbc_active, pd.pbc_end_tag, FROM_UNIXTIME(pd.pbc_planned_end_date,'%Y-%m-%d') as pbc_planned_end_date, 
-pd.pbc_refer_task, pd.pbc_weights, pd.pbc_evaluator, pd.pbc_rule, pd.pbc_active_type, pd.pbc_grade_self, pd.pbc_grade, pd.pbc_comment, u.user_pbc_template_id, u.user_id,p.pbc_reward,p.pbc_total_grade,u.user_name
+pd.pbc_refer_task, pd.pbc_weights, pd.pbc_evaluator, pd.pbc_rule, pd.pbc_active_type, pd.pbc_grade_self, pd.pbc_grade, pd.pbc_comment, pd.pbc_advice,u.user_pbc_template_id, u.user_id,p.pbc_reward,p.pbc_total_grade,u.user_name
 FROM	pbc_data pd, user u, pbc p, pbc_biz_type pbt
 WHERE	YEAR(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $year 
 AND		MONTH(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $month
@@ -133,6 +133,7 @@ foreach($usr_tmp_list as $user_id => $temp_id)
 			  ->setCellValue('J1', '自评得分')
 			  ->setCellValue('K1', '评分')
 			  ->setCellValue('L1', '备注');
+			  //->setCellValue('M1', '评分意见');
 
 	//set the user name as the tab name
 	$objActSheet->getStyle('A1:L1')->getFill()->setFillType(PHPExcel_Style_Fill::FILL_SOLID)->getStartColor()->setARGB('FFDDDDDD');
@@ -234,6 +235,7 @@ function setLeftDataCell($objActSheet,$array,$col,$row)
 		$objActSheet->setCellValue('J'.$row, $data_other['pbc_grade_self']);
 		$objActSheet->setCellValue('K'.$row, $data_other['pbc_grade']);
 		$objActSheet->setCellValue('L'.$row, $data_other['pbc_comment']);
+		//$objActSheet->setCellValue('M'.$row, $data_other['pbc_advice']);
 		$row++;
 	}
 	return $row;

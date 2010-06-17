@@ -18,6 +18,8 @@ if($pbc_id)
 	if($db->query($sql))
 	{
 		$db->query($sql1);
+		$pbc_text = "PBC 删除一条记录完成 ";
+		logPBC($pbc_id,$pbc_text,$_SESSION['user_name'],$db);
 		$msg = "删除成功！";
 	}
 }

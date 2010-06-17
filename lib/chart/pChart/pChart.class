@@ -425,7 +425,7 @@
 
          foreach ( $Data as $Key => $Values )
           {
-           $Sum = 0;
+           $Sum = 5;
            foreach ( $DataDescription["Values"] as $Key2 => $ColName )
             {
              if (isset($Data[$Key][$ColName]))
