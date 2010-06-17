@@ -4,7 +4,7 @@ require "../common/xajax_server.php";
 require_once ("../common/functions.php");
 require "../common/header.php";
 $xajax->printJavascript();
-$user_id = $_GET['uid'];
+$user_id = @$_GET['uid'];
 if($user_id=="")
 {
 	$user_id = $_SESSION['user_id'];

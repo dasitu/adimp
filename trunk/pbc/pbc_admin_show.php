@@ -50,8 +50,8 @@ and u.user_active=1
 order by pbt.pbc_biz_type_id
 ";
 //echo $sql."<br>";
-$head = array("业务类型","活动分类","活动内容","完成标志","计划完成时间","关联任务","权重","考核主体","评分规则","自评分","评分","备注");
-$show_col = array("pbc_biz_type_name","pbc_active_type","pbc_active","pbc_end_tag","pbc_planned_end_date","pbc_refer_task","pbc_weights","pbc_evaluator","pbc_rule","pbc_grade_self","pbc_grade","pbc_comment");//determin with column will be shown
+$head = array("业务类型","活动分类","活动内容","完成标志","计划完成时间","关联任务","权重","考核主体","评分规则","自评分","评分","备注","评分意见");
+$show_col = array("pbc_biz_type_name","pbc_active_type","pbc_active","pbc_end_tag","pbc_planned_end_date","pbc_refer_task","pbc_weights","pbc_evaluator","pbc_rule","pbc_grade_self","pbc_grade","pbc_comment","pbc_advice");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"pbc_planned_end_date",false);
 //convert the datetime to string, "true" means it is a dataset, "f_date" means the column name, "false" means the datetime format is not inlcude the time
@@ -135,6 +135,12 @@ echo "
 					$pbc_data_id = $record['pbc_data_id'];
 					$td_value = "<input maxlength=3 size=3 type='textbox' name='pbc_grade#$pbc_data_id'></input>";
 				}
+				// if the colomn is for pbc_advice, give a input box
+				if($show_col[$i] == "pbc_advice" && $is_evaluate)
+				{
+					$pbc_data_id = $record['pbc_data_id'];
+					$td_value = "<textarea name='pbc_advice#$pbc_data_id' cols='10' rows='3'></textarea>";
+				}
 
 				//parse the grade rule
 				if($show_col[$i] == "pbc_rule")
@@ -169,7 +175,7 @@ echo "
 						<td colspan=3 align=right>本月预计绩效奖:</td><td colspan=3>
 						$pbc_reward
 						</td>
-						<td colspan=3 align=right>PBC合计得分:</td><td colspan=3>".$body[0]['pbc_total_grade']."</td>
+						<td colspan=3 align=right>PBC合计得分:</td><td colspan=4>".$body[0]['pbc_total_grade']."</td>
 					</tr>";
 		}
 		echo $header.$tr."

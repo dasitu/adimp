@@ -519,6 +519,8 @@ CREATE  TABLE IF NOT EXISTS `pbc_data` (
   `pbc_grade` INT NULL ,
   `pbc_comment` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL ,
   `pbc_id` INT NOT NULL ,
+  `pbc_advice` VARCHAR(45) CHARACTER SET 'utf8' COLLATE 'utf8_unicode_ci' NULL ,
+  `pbc_file` VARCHAR(45) NULL ,
   PRIMARY KEY (`pbc_data_id`) )
 ENGINE = InnoDB;
 
@@ -566,6 +568,29 @@ CREATE INDEX `FK_pbc_template` ON `pbc_temp_biz` (`pbc_template_id` ASC) ;
 
 SHOW WARNINGS;
 CREATE INDEX `FK_pbc_biz_type` ON `pbc_temp_biz` (`pbc_biz_type_id` ASC) ;
+
+SHOW WARNINGS;
+
+-- -----------------------------------------------------
+-- Table `pbc_change_log`
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS `pbc_change_log` ;
+
+SHOW WARNINGS;
+CREATE  TABLE IF NOT EXISTS `pbc_change_log` (
+  `pbc_change_id` INT NOT NULL AUTO_INCREMENT ,
+  `pbc_id` INT NOT NULL ,
+  `pbc_change_text` TEXT NOT NULL ,
+  `pbc_change_time` INT NOT NULL ,
+  `pbc_change_by` VARCHAR(45) NOT NULL ,
+  `pbc_change_ip` VARCHAR(45) NOT NULL ,
+  PRIMARY KEY (`pbc_change_id`) )
+ENGINE = InnoDB
+DEFAULT CHARACTER SET = utf8
+COLLATE = utf8_unicode_ci;
+
+SHOW WARNINGS;
+CREATE INDEX `FK_pbc_log` ON `pbc_change_log` (`pbc_id` ASC) ;
 
 SHOW WARNINGS;
 

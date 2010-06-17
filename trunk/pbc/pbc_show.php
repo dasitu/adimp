@@ -26,11 +26,6 @@ echo "
 ";
 ?>
 </form>
-<input class=btn type="button" name="export" value="导出到Excel" 
-onclick="location.href='../pbc/pbc_export.php?m=<?php echo $month;?>&y=<?php echo $year?>&u=<?php echo $user_id?>'"></input>
-</div>
-</br>
-<center>
 <?php
 //全部显示
 $sql = "select * FROM pbc_data pd, user u, pbc p, pbc_biz_type pbt, department dp
@@ -45,28 +40,21 @@ AND u.user_active=1
 order by pbt.pbc_biz_type_id
 ";
 //echo $sql."<br>";
-$head = array("业务类型","活动分类","活动内容","完成标志","计划完成时间","关联任务","权重","考核主体","评分规则","自评分","评分","备注");
-$show_col = array("pbc_biz_type_name","pbc_active_type","pbc_active","pbc_end_tag","pbc_planned_end_date","pbc_refer_task","pbc_weights","pbc_evaluator","pbc_rule","pbc_grade_self","pbc_grade","pbc_comment");//determin with column will be shown
+$head = array("业务类型","活动分类","活动内容","完成标志","计划完成时间","关联任务","权重","考核主体","评分规则","自评分","评分","备注","评分意见");
+$show_col = array("pbc_biz_type_name","pbc_active_type","pbc_active","pbc_end_tag","pbc_planned_end_date","pbc_refer_task","pbc_weights","pbc_evaluator","pbc_rule","pbc_grade_self","pbc_grade","pbc_comment","pbc_advice");//determin with column will be shown
 $body = $db->fetch_all_array($sql);
 $body = time2str($body,true,"pbc_planned_end_date",false);
 //convert the datetime to string, "true" means it is a dataset, "f_date" means the column name, "false" means the datetime format is not inlcude the time
 
-//show the table title
-	echo "<font size=4>
-			<b>".$_SESSION['depart_name'].
-			"——".$_SESSION['user_name'].
-			"——".$year."年".$month."月"."
-			</b>
-		 </font>
-<br><br>";
 $final_btn = "";
 $action = "";
 $current_pbc_id = "";
 $modify_td = "";
+$update_str = "";
 if(@$body[0])
 {
 	$pbc_status = @$body[0]['pbc_status'];
-	echo "
+	$update_str = "
 		<div align='left' style='margin-left:25px;'>
 		<b>上一次更改时间: </b>".time2str(@$body[0]['pbc_change_time'])."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		<b>更改人: </b>".@$body[0]['pbc_change_by']."&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -85,9 +73,11 @@ if(@$body[0])
 
 	if($is_evaluate)
 	{
-		
 		$action = "self_evaluate"; //used to indentify the action in the "../pbc/actions.php"
-		$final_btn = "<input class='btn' type='submit' name='submit' value='提交自评分'></input>";
+		$final_btn = "
+		<input class='btn' type='button' name='back' value='继续录入' onclick=\"location.href='../pbc/pbc.php'\"></input>
+		<input class='btn' type='submit' name='submit' value='提交自评分'></input>";
+		array_push($head,'操作');
 	}
 
 	if ($is_submit)
@@ -101,9 +91,23 @@ if(@$body[0])
 		array_push($head,'操作');
 	}
 }
-
-//show the table itself
-
+?>
+<input class=btn type="button" name="export" value="导出到Excel" onclick="location.href='../pbc/pbc_export.php?m=<?php echo $month;?>&y=<?php echo $year?>&u=<?php echo $user_id?>'"></input>
+&nbsp;&nbsp;&nbsp;
+<input class=btn type="button" name="export" value="查看历史" onclick="location.href='../pbc/pbc_log.php?id=<?php echo $current_pbc_id;?>'"></input>
+</div>
+</br>
+<center>
+<?php
+//show the table title
+	echo "<font size=4>
+			<b>".$_SESSION['depart_name'].
+			"——".$_SESSION['user_name'].
+			"——".$year."年".$month."月"."
+			</b>
+		 </font>
+<br><br>";
+echo $update_str;
 ?>
 <form name="pbcSubmitForm" action="../pbc/actions.php" method="post" 
 onsubmit="return checkPercent(this.total_percent.value)">
@@ -146,7 +150,7 @@ onsubmit="return checkPercent(this.total_percent.value)">
 				}
 				$tr .= "<td>".$td_value."</td>";
 			}
-			if($is_submit)
+			if($is_submit || $pbc_status=='approved')
 			{
 				$tr.="
 					<td>
@@ -169,7 +173,7 @@ onsubmit="return checkPercent(this.total_percent.value)">
 						<td colspan=3 align=right>本月预计绩效奖:</td><td colspan=3>
 						$pbc_reward
 						</td>
-						<td colspan=3 align=right>PBC合计得分:</td><td colspan=3>".$body[0]['pbc_total_grade']."</td>
+						<td colspan=3 align=right>PBC合计得分:</td><td colspan=5>".$body[0]['pbc_total_grade']."</td>
 					</tr>";
 		}
 		echo $header.$tr."

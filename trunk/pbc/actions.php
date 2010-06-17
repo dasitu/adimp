@@ -44,6 +44,8 @@ if($actions == "insert_pbc")
 		$table_arr['pbc_change_time'] = time();
 		$table_arr['pbc_change_by'] = $_SESSION['user_name'];
 		$pbc_id = $db->query_insert($table_name,$table_arr);
+		$pbc_text = "开始新的PBC ";
+		logPBC($pbc_id,$pbc_text,$_SESSION['user_name'],$db);
 	}
 	else
 	{
@@ -100,6 +102,7 @@ else if($actions == "pbc_approve")
 	}
 	$pbc_status = 'approved';
 	$update_user = $_SESSION['user_name'];
+	$msg = "提交失败";
 	if(	updatePBCStatus($pbc_id,$pbc_status,$update_user,$db))
 		$msg = "提交成功！";
 }
@@ -134,7 +137,7 @@ else if($actions == "pbc_evaluate")
 	$pbc_id = $_POST['pbc_id'];
 	foreach($_POST as $key => $value)
 	{
-		if(substr($key, 0, 9) == 'pbc_grade')
+		if((substr($key, 0, 9) == 'pbc_grade') || (substr($key, 0, 10) == 'pbc_advice'))
 		{
 			$arr = explode("#",$key);
 			$col_name = $arr[0];
@@ -155,7 +158,11 @@ else if($actions == "pbc_evaluate")
 		pbc_change_by = '".$update_user."'
 	WHERE pbc_id = '".$pbc_id."'";
 	if($db->query($sql))
+	{
+		$pbc_text = "PBC 评分完成 ";
+		logPBC($pbc_id,$pbc_text,$_SESSION['user_name'],$db);
 		$msg = "提交成功！";
+	}
 }
 //*****************************************************//
 
@@ -187,7 +194,11 @@ if($actions == "modify_pbc")
 			pbc_change_by = '".$update_user."'
 		WHERE pbc_id = '".$pbc_id."'";
 	if($db->query($sql))
+	{
+		$pbc_text = "PBC 修改完成 ";
+		logPBC($pbc_id,$pbc_text,$update_user,$db);
 		echo "<script>history.go(-2);</script>";
+	}
 }
 //*********************end insert**********************//
 

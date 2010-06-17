@@ -5,7 +5,7 @@ require_once ("../common/functions.php");
 header("Content-Type: text/html; charset=utf-8");
 $xajax->printJavascript();
 
-$user_id = $_GET['uid'];
+$user_id = @$_GET['uid'];
 if($user_id=="")
 	$user_id = $_SESSION['user_id'];
 
@@ -80,7 +80,7 @@ $data = $db->query_first($sql);
 		   <select name="pbc_weights" id="pbc_weights" alt="NotNull" >
 			   <?php
 			   
-			   for($i=10;$i<100;$i=$i+10)
+			   for($i=0;$i<=100;$i=$i+10)
 			   {
 					$select = "";
 					if($i == $data['pbc_weights'])
