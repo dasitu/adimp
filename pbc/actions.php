@@ -47,12 +47,6 @@ if($actions == "insert_pbc")
 		$pbc_text = "开始新的PBC ";
 		logPBC($pbc_id,$pbc_text,$_SESSION['user_name'],$db);
 	}
-	else
-	{
-		$pbc_status = 'submitted';
-		$update_user = $_SESSION['user_name'];
-		updatePBCStatus($pbc_id,$pbc['pbc_status'],$update_user,$db);
-	}
 	
 	//insert into pbc_data
 	$table_arr="";
@@ -71,6 +65,8 @@ if($actions == "insert_pbc")
 	$table_arr['pbc_id'] = $pbc_id;
 
 	$insert_id = $db->query_insert($table_name,$table_arr);
+	$pbc_text = "<font color=red>添加</font> 一条PBC记录 ";
+	logPBC($pbc_id,$pbc_text,$_SESSION['user_name'],$db);
 	$msg = "添加成功！";
 }
 //*********************end insert**********************//
@@ -159,7 +155,7 @@ else if($actions == "pbc_evaluate")
 	WHERE pbc_id = '".$pbc_id."'";
 	if($db->query($sql))
 	{
-		$pbc_text = "PBC 评分完成 ";
+		$pbc_text = "PBC 状态更新为 <font color=red>已评分</font> ";
 		logPBC($pbc_id,$pbc_text,$_SESSION['user_name'],$db);
 		$msg = "提交成功！";
 	}
@@ -195,7 +191,7 @@ if($actions == "modify_pbc")
 		WHERE pbc_id = '".$pbc_id."'";
 	if($db->query($sql))
 	{
-		$pbc_text = "PBC 修改完成 ";
+		$pbc_text = "<font color=red>修改</font> 一条PBC记录 ";
 		logPBC($pbc_id,$pbc_text,$update_user,$db);
 		echo "<script>history.go(-2);</script>";
 	}

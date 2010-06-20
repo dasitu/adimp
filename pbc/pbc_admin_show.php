@@ -14,30 +14,7 @@ if($year=="")
 	$year = date('Y');
 if($user_id=="")
 	$user_id = $_SESSION['user_id'];
-?>
-<div class="topbody">
-<form action='#' method="get">
-<?php
-echo 
-"<input class='btn' type='button' name='back' value='<< 返回列表' onclick=\"location.href='../pbc/pbc_admin.php'\"></input> ";
-echo "<input class=btn type='button' onclick=\"location.href='?m=".($month-1)."&uid=".$user_id."'\" value='上个月'></input>";
-if($month != date('n',time()) || $year != date('Y',time()) )
-	echo "<input class=btn type='button' onclick=\"location.href='?m=".date('n',time())."&uid=$user_id'\" value='当月'></input> ";
-if($month < date('n',time()) && $year <= date('Y',time()) )
-	echo '<input class=btn type=button onclick="location.href=\'?m='.($month+1).'&uid=$user_id\'" value="下个月"></input> ';
-echo "
-年份：<input name=y type=textbox size='4' value=".$year."></input>
-月份：<input name=m type=textbox size='3'></input>
-<input name=uid type=hidden value=".$user_id."></input>
-<input class=btn type=submit value='GO'></input>
-";
-?>
-</form>
-</div>
-</br>
-<center>
-<?php
-//全部显示
+	
 $sql = "select * FROM pbc_data pd, user u, pbc p, pbc_biz_type pbt, department dp
 WHERE u.user_id = ".$user_id." 
 and MONTH(FROM_UNIXTIME(p.pbc_time,'%y-%m-%d')) = $month 
@@ -57,7 +34,45 @@ $body = time2str($body,true,"pbc_planned_end_date",false);
 //convert the datetime to string, "true" means it is a dataset, "f_date" means the column name, "false" means the datetime format is not inlcude the time
 
 $pbc_status = @$body[0]['pbc_status']; //about the status, please refer to the function parsePBCStatus
+//check what this page is used for
+// 1. just a view of the data $action = ""
+// 2. Submit the evaluate grade of last month $action = "pbc_evaluate"
+// 3. Submit the pbc of current month $action = "pbc_approve"
 
+$current_pbc_time = @$body[0]['pbc_time'];
+$current_pbc_id   = @$body[0]['pbc_id'];
+$pbc_reward = @$body[0]['pbc_reward'];
+$admin = 1;
+$is_evaluate = isCanEvaluate($pbc_config,$pbc_status,$current_pbc_time,$admin); //$admin = 1
+$is_submit = isCanSubmitPBC($pbc_config,$pbc_status,$current_pbc_time,$admin);	//#admin = 1
+$final_btn = "";
+$action = "";
+?>
+<div class="topbody">
+<form action='#' method="get">
+<?php
+echo 
+"<input class='btn' type='button' name='back' value='<< 返回列表' onclick=\"location.href='../pbc/pbc_admin.php'\"></input> ";
+echo "<input class=btn type='button' onclick=\"location.href='?m=".($month-1)."&uid=".$user_id."'\" value='上个月'></input>";
+if($month != date('n',time()) || $year != date('Y',time()) )
+	echo "<input class=btn type='button' onclick=\"location.href='?m=".date('n',time())."&uid=$user_id'\" value='当月'></input> ";
+if($month < date('n',time()) && $year <= date('Y',time()) )
+	echo '<input class=btn type=button onclick="location.href=\'?m='.($month+1).'&uid=$user_id\'" value="下个月"></input> ';
+echo "
+年份：<input name=y type=textbox size='4' value=".$year."></input>
+月份：<input name=m type=textbox size='3'></input>
+<input name=uid type=hidden value=".$user_id."></input>
+<input class=btn type=submit value='GO'></input>
+";
+?>
+</form>
+<input class=btn type="button" name="export" value="导出到Excel" onclick="location.href='../pbc/pbc_export.php?m=<?php echo $month;?>&y=<?php echo $year?>&u=<?php echo $user_id?>'"></input>
+&nbsp;&nbsp;&nbsp;
+<input class=btn type="button" name="export" value="查看历史" onclick="location.href='../pbc/pbc_log.php?id=<?php echo $current_pbc_id;?>'"></input>
+</div>
+</br>
+<center>
+<?php
 $user = getUser($user_id,$db);
 	echo "<font size=4>
 			<b>".$user['depart_name'].
@@ -80,19 +95,6 @@ echo "
 <form name="pbcSubmitForm" action="../pbc/actions.php" method="post" >
 <table class=mytable>
 	<?php
-		//check what this page is used for
-		// 1. just a view of the data $action = ""
-		// 2. Submit the evaluate grade of last month $action = "pbc_evaluate"
-		// 3. Submit the pbc of current month $action = "pbc_approve"
-		
-		$current_pbc_time = @$body[0]['pbc_time'];
-		$current_pbc_id   = @$body[0]['pbc_id'];
-		$pbc_reward = @$body[0]['pbc_reward'];
-		$admin = 1;
-		$is_evaluate = isCanEvaluate($pbc_config,$pbc_status,$current_pbc_time,$admin); //$admin = 1
-		$is_submit = isCanSubmitPBC($pbc_config,$pbc_status,$current_pbc_time,$admin);	//#admin = 1
-		$final_btn = "";
-		$action = "";
 		if($is_evaluate)
 		{
 			$action = "pbc_evaluate"; //used to indentify the action in the "../pbc/actions.php"
@@ -158,7 +160,7 @@ echo "
 			{
 				$tr.="
 					<td>
-						<a href='pbc_del.php?id=$pbc_data_id&pbc_id=$current_pbc_id'>删除</a>
+						<a href='pbc_del.php?id=$pbc_data_id&pbc_id=$current_pbc_id' onclick=\"return confirm('确定要删除吗？')\">删除</a>
 						<BR>
 						<a href='pbc_modify.php?id=$pbc_data_id&pbc_id=$current_pbc_id&uid=$user_id'>修改</a>
 					</td>";
