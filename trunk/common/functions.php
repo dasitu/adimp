@@ -500,7 +500,7 @@ function updatePBCStatus($pbc_id,$pbc_status,$user_name,$db)
 			pbc_change_time = '".time()."',
 			pbc_change_by = '".$user_name."'
 		WHERE pbc_id = '".$pbc_id."'";
-	$pbc_text = "PBC 状态更新为 ".parsePBCStatus($pbc_status);
+	$pbc_text = "PBC 状态更新为 <font color=red>".parsePBCStatus($pbc_status)."</font>";
 	logPBC($pbc_id,$pbc_text,$user_name,$db);
 	//echo $sql;
 	return $db->query($sql);

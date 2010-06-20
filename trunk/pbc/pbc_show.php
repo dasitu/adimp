@@ -90,11 +90,11 @@ if(@$body[0])
 		<input class='btn' type='submit' name='submit' value='提交PBC'></input>";
 		array_push($head,'操作');
 	}
-}
 ?>
 <input class=btn type="button" name="export" value="导出到Excel" onclick="location.href='../pbc/pbc_export.php?m=<?php echo $month;?>&y=<?php echo $year?>&u=<?php echo $user_id?>'"></input>
 &nbsp;&nbsp;&nbsp;
 <input class=btn type="button" name="export" value="查看历史" onclick="location.href='../pbc/pbc_log.php?id=<?php echo $current_pbc_id;?>'"></input>
+<?php }?>
 </div>
 </br>
 <center>
@@ -154,7 +154,7 @@ onsubmit="return checkPercent(this.total_percent.value)">
 			{
 				$tr.="
 					<td>
-						<a href='pbc_del.php?id=$pbc_data_id&pbc_id=$current_pbc_id'>删除</a>
+						<a href='pbc_del.php?id=$pbc_data_id&pbc_id=$current_pbc_id' onclick=\"return confirm('确定要删除吗？')\">删除</a>
 						<BR>
 						<a href='pbc_modify.php?id=$pbc_data_id&pbc_id=$current_pbc_id'>修改</a>
 					</td>";
