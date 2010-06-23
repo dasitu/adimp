@@ -51,8 +51,8 @@ if($action=="add")
 	$user_pbc_role_id = $_POST['user_pbc_role_id'];
 	$user_pbc_template_id = $_POST['user_pbc_template_id'];
 	$sql = "
-	INSERT INTO  user(user_name,user_login,user_depart_id,user_pbc_role_id,user_pbc_template_id) 
-	VALUES        ('$user_name','$user_login','$user_depart_id','$user_pbc_role_id','$user_pbc_template_id')";
+	INSERT INTO  user(user_name,user_login,user_pwd,user_depart_id,user_pbc_role_id,user_pbc_template_id) 
+	VALUES        ('$user_name','$user_login',PASSWORD('$user_pwd'),'$user_depart_id','$user_pbc_role_id','$user_pbc_template_id')";
 	$msg = "添加失败！";
 	if($db->query($sql))
 	{
