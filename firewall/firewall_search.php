@@ -36,7 +36,7 @@ require "../common/header.php";
 		<select name="depart_id[]" id="depart_id" multiple>
 			<?php 
 			//$db, $table_name, $clo_name:column name that you want to list, $col_value:values that you want to add
-			echo listSelection($db,"department","depart_name","depart_id",,"where depart_active=1");
+			echo listSelection($db,"department","depart_name","depart_id","where depart_active=1");
 			?>
 		</select>
 		</td>
