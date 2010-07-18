@@ -2,7 +2,7 @@
 require_once "../lib/database.class.php";
 require_once "../common/config.inc.php";
 
-$db = new database();
+$db = new database($config['server'],$config['user'],$config['pass'],$config['database'],$config['tablePrefix']);
 $db->connect();
 //*********************************println********************************//
 function echoln($msg)
@@ -196,7 +196,7 @@ function listUser($db){
 function input($tablename,$use,$checkNull,$is_use = true)
 {
 	$sql = "select * from $tablename limit 0,1";
-	$input_arr = "<input type="" name="upfile_name"></input>";
+	$input_arr = "<input type="" name="upfile_name"/>";
 }
 */
 
@@ -204,11 +204,11 @@ function input($tablename,$use,$checkNull,$is_use = true)
 function chartButton($sql,$btn_name,$draw_type,$x_col_name,$y_col_name){
 	echo '
 			<form action="../common/image.php" method=post>
-				<input type=hidden name=sql value = "'.$sql.'"></input>
-				<input class=btn type=submit name=submit value="'.$btn_name.'"></input>
-				<input type=hidden name=draw_type value="'.$draw_type.'"></input>
-				<input type=hidden name=x_name value="'.$x_col_name.'"></input>
-				<input type=hidden name=y_name value="'.$y_col_name.'"></input>
+				<input type=hidden name=sql value = "'.$sql.'"/>
+				<input class=btn type=submit name=submit value="'.$btn_name.'"/>
+				<input type=hidden name=draw_type value="'.$draw_type.'"/>
+				<input type=hidden name=x_name value="'.$x_col_name.'"/>
+				<input type=hidden name=y_name value="'.$y_col_name.'"/>
 			</form>
 	';
 }
@@ -218,12 +218,12 @@ function chartButton($sql,$btn_name,$draw_type,$x_col_name,$y_col_name){
 function pbcChartButton($sql,$btn_name,$draw_type,$x_col_name,$y_col_name,$z_name){
 	echo '
 			<form action="../common/image_pbc.php" method=post>
-				<input type=hidden name=sql value = "'.$sql.'"></input>
-				<input class=btn type=submit name=submit value="'.$btn_name.'"></input>
-				<input type=hidden name=draw_type value="'.$draw_type.'"></input>
-				<input type=hidden name=x_name value="'.$x_col_name.'"></input>
-				<input type=hidden name=y_name value="'.$y_col_name.'"></input>
-				<input type=hidden name=z_name value="'.$z_name.'"></input>
+				<input type=hidden name=sql value = "'.$sql.'"/>
+				<input class=btn type=submit name=submit value="'.$btn_name.'"/>
+				<input type=hidden name=draw_type value="'.$draw_type.'"/>
+				<input type=hidden name=x_name value="'.$x_col_name.'"/>
+				<input type=hidden name=y_name value="'.$y_col_name.'"/>
+				<input type=hidden name=z_name value="'.$z_name.'"/>
 			</form>
 	';
 }
@@ -301,7 +301,7 @@ function listInTable($head,$body,$show_col)
 	}
 	if($tr=="")
 	{
-		$tr = "<tr><td colspan=$col_cnt align=center>没有记录！</td></tr>";
+		$tr = "<tr><td colspan=".($col_cnt+1)." align=center>没有记录！</td></tr>";
 	}
 	return "<table class=mytable>".$header.$tr."</table>";
 }

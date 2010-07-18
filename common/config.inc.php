@@ -2,6 +2,14 @@
 //server info config
 $config['index'] = 'http://'.$_SERVER['SERVER_NAME'].'/ad_imp/common/welcome.php';
 
+//database info
+$config['server'] = 'localhost';
+$config['user'] = 'root';
+$config['pass'] = 'test123';
+$config['database'] = 'ad_imp';
+$config['debug'] = '0';
+$config['tablePrefix'] = '';
+
 //file upload config
 $config['language_upfile'] = "ch";
 $config['upload_dir'] = "../upload/"; //ending with "/"

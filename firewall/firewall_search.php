@@ -54,7 +54,7 @@ require "../common/header.php";
 
 	<tr>
 		<td colSpan="2" align="center">
-		<input class=btn type="submit" name="submit" value="提交筛选"></input>
+		<input class=btn type="submit" name="submit" value="提交筛选"/>
 		</td>
 	</tr>
 </table>

@@ -4,7 +4,7 @@ require "../common/functions.php";
 require "../common/header.php";
 ?>
 <div class="topbody">
-	<input class=btn type="button" name="add" value="添加记录" onclick="location.href='../user/user.php?a=add'"></input>
+	<input class=btn type="button" name="add" value="添加记录" onclick="location.href='../user/user.php?a=add'"/>
 </div>
 <center>
 <?php

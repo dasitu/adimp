@@ -1,9 +1,11 @@
 <?php
 require "../common/session.php";
 require "../common/functions.php";
-require "../common/header.php";
 ?>
 <html>
+<head>
+<?php require "../common/header.php"; ?>
+</head>
 <body>
 <div class="topbody"></div>
 <center>
@@ -15,15 +17,15 @@ require "../common/header.php";
 		<table class="mytable">
 		<tr>
 			<td>文档名称</td>
-			<td><input class="textbox" type="textbox" name="upfile_name"></input></td>
+			<td><input class="textbox" type="textbox" name="upfile_name"/></td>
 		</tr>
 		<tr>
 			<td>路径</td>
-			<td><input type="file" name="upfile"></input></td>
+			<td><input type="file" name="upfile"/></td>
 		</tr>
-		<tr><td colSpan="2" align="center"><input  class=btn type="submit" name="submit" value="上传"></input></td></tr>
+		<tr><td colSpan="2" align="center"><input  class=btn type="submit" name="submit" value="上传"/></td></tr>
 		</table>
-		<input type="hidden" name="actions" value="insert_firewall_rule"></input>
+		<input type="hidden" name="actions" value="insert_firewall_rule"/>
 		</form>
 		<?php }?>
 		</div>

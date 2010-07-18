@@ -136,7 +136,7 @@ $data = $db->query_first($sql);
 	</tr>
 	<tr>
 		<td colSpan="2" align="center">
-		<input class=btn type="submit" name="submit" value="保存"></input>
+		<input class=btn type="submit" name="submit" value="保存"/>
 		<input class=btn type="button" name="back" value="取消" onclick="javascript:history.back();" />
 		</td>
 	</tr>

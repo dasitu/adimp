@@ -22,7 +22,7 @@ function listActiveType($biz_type_id,$target_obj_name){
 
 		if($target_value=="")
 		{
-			$target_value = "<input class=textbox name='$target_obj_name'></input>";
+			$target_value = "<input class=textbox name='$target_obj_name'/>";
 		}
 		else
 		{

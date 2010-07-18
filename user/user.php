@@ -112,7 +112,7 @@ if($action == "mdf")
 	</tr>
 	<tr>
 		<td colSpan="2" align="center">
-		<input class=btn type="submit" name="submit" value="提交"></input>
+		<input class=btn type="submit" name="submit" value="提交"/>
 		</td>
 	</tr>
 </table>

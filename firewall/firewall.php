@@ -1,8 +1,6 @@
 <?php
 require_once("../common/session.php");
 require "../common/functions.php";
-require "../common/header.php";
-
 if($_SESSION['depart_id']!='1')
 {
 	header("Location:firewall_show.php");
@@ -11,6 +9,9 @@ if($_SESSION['depart_id']!='1')
 ?>
 <html>
   <head>
+<?php
+require "../common/header.php";
+?>
     <link rel="stylesheet" type="text/css" href="../css/jscal2/jscal2.css" />
     <link rel="stylesheet" type="text/css" href="../css/jscal2/border-radius.css" />
 	<script src="../js/main.js" type=text/javascript></script>
@@ -19,9 +20,9 @@ if($_SESSION['depart_id']!='1')
   </head>
 <body>
 <div class="topbody">
-	<input class=btn type="button" name="filter" value="筛选数据" onclick="location.href='../firewall/firewall_search.php'"></input>
+	<input class=btn type="button" name="filter" value="筛选数据" onclick="location.href='../firewall/firewall_search.php'"/>
 	&nbsp;&nbsp;
-	<input class=btn type="button" name="filter" value="查看记录" onclick="location.href='../firewall/firewall_show.php'"></input>
+	<input class=btn type="button" name="filter" value="查看记录" onclick="location.href='../firewall/firewall_show.php'"/>
 </div>
 <center>
 <!-- user input form -->
@@ -67,7 +68,7 @@ if($_SESSION['depart_id']!='1')
 	</tr>
 	<tr>
 		<td colSpan="2" align="center">
-		<input class=btn type="submit" name="submit" value="提交"></input>
+		<input class=btn type="submit" name="submit" value="提交"/>
 		</td>
 	</tr>
 </table>
