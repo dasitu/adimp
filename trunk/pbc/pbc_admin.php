@@ -39,19 +39,19 @@ $sql[2] = $sql_common." AND dp.depart_id=".$_SESSION['depart_id'];
 <div class="topbody">
 <form action='#' method="get">
     
-	<input class=btn type='button' onclick="location.href='?m=<?php echo $month-1;?>'" value="上个月"></input>
+	<input class=btn type='button' onclick="location.href='?m=<?php echo $month-1;?>'" value="上个月"/>
 	<?php
 	if($month != date('n',time()) || $year != date('Y',time()) )
-		echo "<input class=btn type='button' onclick=\"location.href='?m=".date('n',time())."'\" value='当月'></input> ";
+		echo "<input class=btn type='button' onclick=\"location.href='?m=".date('n',time())."'\" value='当月'/> ";
 	if($month < date('n',time()) && $year <= date('Y',time()) )
-		echo '<input class=btn type=button onclick="location.href=\'?m=' .($month+1). '\'" value="下个月"></input> ';
+		echo '<input class=btn type=button onclick="location.href=\'?m=' .($month+1). '\'" value="下个月"/> ';
 	?>
-	年份：<input name=y type=textbox size='4' value=<?php echo $year?>></input>
-	月份：<input name=m type=textbox size='3'></input>
-	<input class=btn type="submit" value='GO'></input>
+	年份：<input name=y type=textbox size='4' value=<?php echo $year?>/>
+	月份：<input name=m type=textbox size='3'/>
+	<input class=btn type="submit" value='GO'/>
 </form>
 <input class=btn type="button" name="export" value="导出到Excel" 
-onclick="location.href='../pbc/pbc_export.php<?php echo $export_link;?>'"></input>
+onclick="location.href='../pbc/pbc_export.php<?php echo $export_link;?>'"/>
 </div>
 <center>
 <?php

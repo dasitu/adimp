@@ -5,8 +5,7 @@ include "../common/session.php";
 <HTML>
 <HEAD>
 <TITLE>无标题页</TITLE>
-<META http-equiv=Content-Type content="text/html;
- charset=utf-8">
+<META http-equiv=Content-Type content="text/html; charset=utf-8">
 <STYLE type=text/css> 
 {
 	FONT-SIZE: 12px
@@ -45,7 +44,7 @@ include "../common/session.php";
 <SCRIPT type=text/javascript>
 var tree = null;
 var root = new TreeNode('系统菜单');
-var menu_cnt = 13;
+var menu_cnt = 4;
 
 //the first level menu
 var node = new Array();
@@ -54,35 +53,22 @@ for(var i=0;i<menu_cnt;i++)
 	node[i] = new Array();
 }
 
-//the first node used to store the menu name
-/*
-node[0][0] = new TreeNode('交流与培训管理');
-node[0][1] = new TreeNode('年度培训计划', '', 'tree_node.gif', null, 'tree_node.gif', null);
-node[0][2] = new TreeNode('交流培训记录', '', 'tree_node.gif', null, 'tree_node.gif', null);
-node[0][3] = new TreeNode('人员培训记录', '', 'tree_node.gif', null, 'tree_node.gif', null);
-*/
+node[0][0] = new TreeNode('防火墙管理');
+node[0][1] = new TreeNode('防火墙条款', '../firewall/firewall_rule.php', 'tree_node.gif', null, 'tree_node.gif', null);
+node[0][2] = new TreeNode('防火墙事件', '../firewall/firewall.php', 'tree_node.gif', null, 'tree_node.gif', null);
 
-node[1][0] = new TreeNode('防火墙管理');
-node[1][1] = new TreeNode('防火墙条款', '../firewall/firewall_rule.php', 'tree_node.gif', null, 'tree_node.gif', null);
-node[1][2] = new TreeNode('防火墙事件', '../firewall/firewall.php', 'tree_node.gif', null, 'tree_node.gif', null);
+node[1][0] = new TreeNode('出差管理', '../trip/trip.php');
 
-//node[2][0] = new TreeNode('技术情报管理');
-//node[3][0] = new TreeNode('规范与标准管理');
-
-node[4][0] = new TreeNode('出差管理', '../trip/trip.php');
-
-node[5][0] = new TreeNode('PBC管理', '../pbc/pbc_show.php');
-
+node[2][0] = new TreeNode('PBC管理', '../pbc/pbc_show.php');
 <?php if($_SESSION['pbc_role_id'] != 3 ) {?>
-	node[5][1] = new TreeNode('管理PBC', '../pbc/pbc_admin.php', 'tree_node.gif', null, 'tree_node.gif', null);
-	node[5][2] = new TreeNode('数据统计','../pbc/pbc_search.php','tree_node.gif', null, 'tree_node.gif', null);
+	node[2][1] = new TreeNode('管理PBC', '../pbc/pbc_admin.php', 'tree_node.gif', null, 'tree_node.gif', null);
+	node[2][2] = new TreeNode('数据统计','../pbc/pbc_search.php','tree_node.gif', null, 'tree_node.gif', null);
 <?php }?>
 
-node[6][0] = new TreeNode('项目管理', '../project/project.php');
-
+node[3][0] = new TreeNode('项目管理', '../project/project.php');
 <?php if($_SESSION['pbc_role_id'] != 3 ) {?>
-	node[7][0] = new TreeNode('用户管理', '../user/list.php');
-    node[8][0] = new TreeNode('工程组管理', '../depart/list.php');
+	node[3][1] = new TreeNode('用户管理', '../user/list.php');
+    node[3][2] = new TreeNode('工程组管理', '../depart/list.php');
 <?php }?>
 
 
@@ -93,7 +79,9 @@ for(var outer=0;outer<node.length;outer++)
 		root.add(node[outer][0]);
 		for(var inner=1;inner<node[outer].length;inner++)
 		{
-			nodeL1.add(node[outer][inner]);
+			if(typeof(node[outer][inner]) != 'undefined'){
+				nodeL1.add(node[outer][inner]);
+			}
 		}
 	}
 }

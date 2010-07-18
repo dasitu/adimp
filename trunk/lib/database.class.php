@@ -60,6 +60,16 @@ var $affected_rows = 0;
 var $link_id = 0;
 var $query_id = 0;
 
+#-##############################################
+# desc: constructor
+function database($server, $user, $pass, $database, $debug=0, $pre=''){
+	$this->server 	= $server;
+	$this->user 	= $user;
+	$this->pass 	= $pass;
+	$this->database = $database;
+	$this->debug 	= $debug;
+	$this->pre 		= $pre;
+}#-#constructor()
 
 #-#############################################
 # desc: connect and select database using vars above

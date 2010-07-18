@@ -20,7 +20,7 @@ if($user_id=="")
   </head>
 <body>
 <div class="topbody">
-	<input class=btn type="button" name="filter" value="查看PBC" onclick="location.href='../pbc/pbc_show.php'"></input>
+	<input class=btn type="button" name="filter" value="查看PBC" onclick="location.href='../pbc/pbc_show.php'"/>
 </div>
 <center>
 <!-- user input form -->
@@ -108,7 +108,7 @@ if($user_id=="")
 	</tr>
 	<tr>
 		<td colSpan="2" align="center">
-		<input class=btn type="submit" name="submit" value="保存"></input>
+		<input class=btn type="submit" name="submit" value="保存"/>
 		</td>
 	</tr>
 </table>

@@ -13,16 +13,16 @@ if($year=="")
 <div class="topbody">
 <form action='#' method="get">
 <?php
-echo "<input class=btn type='button' onclick=\"location.href='?m=".($month-1)."&uid=".$user_id."'\" value='上个月'></input>";
+echo "<input class=btn type='button' onclick=\"location.href='?m=".($month-1)."&uid=".$user_id."'\" value='上个月'/>";
 if($month != date('n',time()) || $year != date('Y',time()) )
-	echo "<input class=btn type='button' onclick=\"location.href='?m=".date('n',time())."&uid=$user_id'\" value='当月'></input> ";
+	echo "<input class=btn type='button' onclick=\"location.href='?m=".date('n',time())."&uid=$user_id'\" value='当月'/> ";
 if($month < date('n',time()) && $year <= date('Y',time()) )
-	echo '<input class=btn type=button onclick="location.href=\'?m='.($month+1).'&uid=$user_id\'" value="下个月"></input> ';
+	echo '<input class=btn type=button onclick="location.href=\'?m='.($month+1).'&uid=$user_id\'" value="下个月"/> ';
 echo "
-年份：<input name=y type=textbox size='4' value=".$year."></input>
-月份：<input name=m type=textbox size='3'></input>
-<input name=uid type=hidden value=".$user_id."></input>
-<input class=btn type=submit value='GO'></input>
+年份：<input name=y type=textbox size='4' value=".$year."/>
+月份：<input name=m type=textbox size='3'/>
+<input name=uid type=hidden value=".$user_id."/>
+<input class=btn type=submit value='GO'/>
 ";
 ?>
 </form>
@@ -75,25 +75,25 @@ if(@$body[0])
 	{
 		$action = "self_evaluate"; //used to indentify the action in the "../pbc/actions.php"
 		$final_btn = "
-		<input class='btn' type='button' name='back' value='继续录入' onclick=\"location.href='../pbc/pbc.php'\"></input>
-		<input class='btn' type='submit' name='submit' value='提交自评分'></input>";
+		<input class='btn' type='button' name='back' value='继续录入' onclick=\"location.href='../pbc/pbc.php'\"/>
+		<input class='btn' type='submit' name='submit' value='提交自评分'/>";
 		array_push($head,'操作');
 	}
 
 	if ($is_submit)
 	{
 		$action = "pbc_submit";
-		$pbc_reward = "<input name='pbc_reward' type='textbox' maxlength=6 size='4'></input>";
+		$pbc_reward = "<input name='pbc_reward' type='textbox' maxlength=6 size='4'/>";
 		$is_evaluate = false;
 		$final_btn = "
-		<input class='btn' type='button' name='back' value='继续录入' onclick=\"location.href='../pbc/pbc.php'\"></input>
-		<input class='btn' type='submit' name='submit' value='提交PBC'></input>";
+		<input class='btn' type='button' name='back' value='继续录入' onclick=\"location.href='../pbc/pbc.php'\"/>
+		<input class='btn' type='submit' name='submit' value='提交PBC'/>";
 		array_push($head,'操作');
 	}
 ?>
-<input class=btn type="button" name="export" value="导出到Excel" onclick="location.href='../pbc/pbc_export.php?m=<?php echo $month;?>&y=<?php echo $year?>&u=<?php echo $user_id?>'"></input>
+<input class=btn type="button" name="export" value="导出到Excel" onclick="location.href='../pbc/pbc_export.php?m=<?php echo $month;?>&y=<?php echo $year?>&u=<?php echo $user_id?>'"/>
 &nbsp;&nbsp;&nbsp;
-<input class=btn type="button" name="export" value="查看历史" onclick="location.href='../pbc/pbc_log.php?id=<?php echo $current_pbc_id;?>'"></input>
+<input class=btn type="button" name="export" value="查看历史" onclick="location.href='../pbc/pbc_log.php?id=<?php echo $current_pbc_id;?>'"/>
 <?php }?>
 </div>
 </br>
@@ -135,7 +135,7 @@ onsubmit="return checkPercent(this.total_percent.value)">
 				//if the month is the used to submit the grade it self, add the input
 				if($show_col[$i] == "pbc_grade_self" && $is_evaluate)
 				{
-					$td_value = "<input maxlength=3 size=3 type='textbox' name='pbc_grade_self#$pbc_data_id'></input>";
+					$td_value = "<input maxlength=3 size=3 type='textbox' name='pbc_grade_self#$pbc_data_id'/>";
 				}
 
 				//parse the grade rule
@@ -165,7 +165,7 @@ onsubmit="return checkPercent(this.total_percent.value)">
 		{
 			$tr = "<tr><td colspan=$col_cnt align=center>没有记录！</td></tr>";
 			if(date('n',determinPbcInsertTime($pbc_config))==$month)
-				$final_btn .= "<input class='btn' type='button' name='back' value='录入' onclick=\"location.href='../pbc/pbc.php'\"></input>";
+				$final_btn .= "<input class='btn' type='button' name='back' value='录入' onclick=\"location.href='../pbc/pbc.php'\"/>";
 		}
 		else
 		{

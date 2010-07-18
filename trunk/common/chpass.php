@@ -37,15 +37,15 @@ if(isset($_POST['passwd2']))
 	</tr>
 	<tr>
 		<td>新密码</td>
-		<td><input name='passwd1' alt="NotNull"></input></td>
+		<td><input name='passwd1' alt="NotNull"/></td>
 	</tr>
 	<tr>
 		<td>确认新密码</td>
-		<td><input name='passwd2' alt="NotNull"></input></td>
+		<td><input name='passwd2' alt="NotNull"/></td>
 	</tr>
 	<tr>
 		<td></td>
-		<td><input type='submit' value='提交'></input></td>
+		<td><input type='submit' value='提交'/></td>
 	</tr>
 </table>
 <form>

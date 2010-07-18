@@ -52,23 +52,23 @@ $action = "";
 <form action='#' method="get">
 <?php
 echo 
-"<input class='btn' type='button' name='back' value='<< 返回列表' onclick=\"location.href='../pbc/pbc_admin.php'\"></input> ";
-echo "<input class=btn type='button' onclick=\"location.href='?m=".($month-1)."&uid=".$user_id."'\" value='上个月'></input>";
+"<input class='btn' type='button' name='back' value='<< 返回列表' onclick=\"location.href='../pbc/pbc_admin.php'\"/> ";
+echo "<input class=btn type='button' onclick=\"location.href='?m=".($month-1)."&uid=".$user_id."'\" value='上个月'/>";
 if($month != date('n',time()) || $year != date('Y',time()) )
-	echo "<input class=btn type='button' onclick=\"location.href='?m=".date('n',time())."&uid=$user_id'\" value='当月'></input> ";
+	echo "<input class=btn type='button' onclick=\"location.href='?m=".date('n',time())."&uid=$user_id'\" value='当月'/> ";
 if($month < date('n',time()) && $year <= date('Y',time()) )
-	echo '<input class=btn type=button onclick="location.href=\'?m='.($month+1).'&uid=$user_id\'" value="下个月"></input> ';
+	echo '<input class=btn type=button onclick="location.href=\'?m='.($month+1).'&uid=$user_id\'" value="下个月"/> ';
 echo "
-年份：<input name=y type=textbox size='4' value=".$year."></input>
-月份：<input name=m type=textbox size='3'></input>
-<input name=uid type=hidden value=".$user_id."></input>
-<input class=btn type=submit value='GO'></input>
+年份：<input name=y type=textbox size='4' value=".$year."/>
+月份：<input name=m type=textbox size='3'/>
+<input name=uid type=hidden value=".$user_id."/>
+<input class=btn type=submit value='GO'/>
 ";
 ?>
 </form>
-<input class=btn type="button" name="export" value="导出到Excel" onclick="location.href='../pbc/pbc_export.php?m=<?php echo $month;?>&y=<?php echo $year?>&u=<?php echo $user_id?>'"></input>
+<input class=btn type="button" name="export" value="导出到Excel" onclick="location.href='../pbc/pbc_export.php?m=<?php echo $month;?>&y=<?php echo $year?>&u=<?php echo $user_id?>'"/>
 &nbsp;&nbsp;&nbsp;
-<input class=btn type="button" name="export" value="查看历史" onclick="location.href='../pbc/pbc_log.php?id=<?php echo $current_pbc_id;?>'"></input>
+<input class=btn type="button" name="export" value="查看历史" onclick="location.href='../pbc/pbc_log.php?id=<?php echo $current_pbc_id;?>'"/>
 </div>
 </br>
 <center>
@@ -98,16 +98,16 @@ echo "
 		if($is_evaluate)
 		{
 			$action = "pbc_evaluate"; //used to indentify the action in the "../pbc/actions.php"
-			$final_btn = "<input class='btn' type='submit' name='submit' value='提交评分'></input>";
+			$final_btn = "<input class='btn' type='submit' name='submit' value='提交评分'/>";
 		}
 
 		if ($is_submit)
 		{
 			$action = "pbc_approve";
-			$pbc_reward = "<input name='pbc_reward' type='textbox' maxlength=6 size='4' value=\"$pbc_reward\"></input>";
+			$pbc_reward = "<input name='pbc_reward' type='textbox' maxlength=6 size='4' value=\"$pbc_reward\"/>";
 			$is_evaluate = false;
 			$final_btn = "
-			<input class='btn' type='submit' name='submit' value='批准PBC'></input>
+			<input class='btn' type='submit' name='submit' value='批准PBC'/>
 			<input class='btn' type='button' name='add' value='添加记录' onclick=\"location.href='../pbc/pbc.php?uid=".$user_id."'\">
 			";
 			array_push($head,'操作');
@@ -135,7 +135,7 @@ echo "
 				if($show_col[$i] == "pbc_grade" && $is_evaluate)
 				{
 					$pbc_data_id = $record['pbc_data_id'];
-					$td_value = "<input maxlength=3 size=3 type='textbox' name='pbc_grade#$pbc_data_id'></input>";
+					$td_value = "<input maxlength=3 size=3 type='textbox' name='pbc_grade#$pbc_data_id'/>";
 				}
 				// if the colomn is for pbc_advice, give a input box
 				if($show_col[$i] == "pbc_advice" && $is_evaluate)

@@ -14,9 +14,9 @@ header("Content-Type: text/html; charset=utf-8");
   </head>
 <body>
 <div class="topbody">
-	<input class=btn type="button" name="filter" value="筛选数据" onclick="location.href='../trip/trip_search.php'"></input>
+	<input class=btn type="button" name="filter" value="筛选数据" onclick="location.href='../trip/trip_search.php'"/>
 	&nbsp;&nbsp;
-	<input class=btn type="button" name="filter" value="查看记录" onclick="location.href='../trip/trip_show.php'"></input>
+	<input class=btn type="button" name="filter" value="查看记录" onclick="location.href='../trip/trip_show.php'"/>
 </div>
 <center>
 <!-- user input form -->
@@ -97,7 +97,7 @@ header("Content-Type: text/html; charset=utf-8");
 	</tr>
 	<tr>
 		<td colSpan="2" align="center">
-		<input class=btn type="submit" name="submit" value="提交"></input>
+		<input class=btn type="submit" name="submit" value="提交"/>
 		</td>
 	</tr>
 </table>
